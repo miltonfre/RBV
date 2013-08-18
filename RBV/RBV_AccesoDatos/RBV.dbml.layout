@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="RBV">
+  <DataContextMoniker Name="/RBVDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6cb1962a-9d04-4aa1-a223-0b8a1bfca910" absoluteBounds="2.625, 0.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/RBVDataContext/empresa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b04861d-7ba2-465c-9522-ec16a651f008" absoluteBounds="2.64, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa685703-8ac6-45b3-b1f9-e84e4aa2ad53" absoluteBounds="1.625, 3.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/RBVDataContext/empresaUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2df4e2d3-4390-4b82-94f1-29934b24627f" absoluteBounds="1.6400000000000001, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 2.06899251302083); (3.125 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/RBVDataContext/empresa/empresa_empresaUsuario" />
+      <nodes>
+        <classShapeMoniker Id="6cb1962a-9d04-4aa1-a223-0b8a1bfca910" />
+        <classShapeMoniker Id="aa685703-8ac6-45b3-b1f9-e84e4aa2ad53" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

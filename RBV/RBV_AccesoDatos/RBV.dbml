@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="RBV" Class="RBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MILTON1;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.empresa" Member="empresas">
+    <Type Name="empresa">
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="empresa" Member="empresa1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="empresa_empresaUsuario" Member="empresaUsuarios" OtherKey="idEmpresa" Type="empresaUsuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.empresaUsuario" Member="empresaUsuarios">
+    <Type Name="empresaUsuario">
+      <Column Name="idUsuarioEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="empresa_empresaUsuario" Member="empresa" ThisKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.aspnet_Membership_GetPassword" Method="aspnet_Membership_GetPassword">
+    <Parameter Name="ApplicationName" Parameter="applicationName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(256)" />
+    <Parameter Name="MaxInvalidPasswordAttempts" Parameter="maxInvalidPasswordAttempts" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PasswordAttemptWindow" Parameter="passwordAttemptWindow" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CurrentTimeUtc" Parameter="currentTimeUtc" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="PasswordAnswer" Parameter="passwordAnswer" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="aspnet_Membership_GetPasswordResult">
+      <Column Name="Column1" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Column2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
