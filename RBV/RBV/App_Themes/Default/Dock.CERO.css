@@ -1,0 +1,230 @@
+/* Docking Zone properties */
+
+.RadDockZone_CERO
+{
+    border:0px solid #ccc;
+    padding:5px 0 0 5px;
+    background:transparent;
+    float:left;
+}
+
+*>.RadDockZone_CERO.rdVertical /* hidden from IE6 */
+{
+    padding-right:5px;
+}
+
+/* Dock Object properties */
+
+/* wrappers and borders */
+
+.RadDockZone_CERO .rdPlaceHolder
+{
+    border-color:#666;
+}
+
+.RadDock_CERO
+{
+    margin:0 5px 5px 0;
+    background:#fff;
+    color:#000;
+    font-family:'ms sans serif',sans-serif;
+    text-align:left;
+}
+
+.RadDock_CERO .rdTopBorder,
+.RadDock_CERO .rdSideBorders,
+.RadDock_CERO .rdBottomBorder
+{
+    border-width:1px;
+    border-color:#e5e5e5;
+}
+.RadDock_CERO .rdSideBorders
+{
+    border-top-style:none;
+    border-right-style:solid;
+    border-left-style:solid;
+    border-bottom-style:none;
+}
+.RadDock_CERO .rdTopBorder
+{
+    border-top-style:solid;
+    border-right-style:none;
+    border-left-style:none;
+    border-bottom-style:none;
+    
+}
+.RadDock_CERO .rdBottomBorder
+{
+    border-top-style:none;
+    border-right-style:none;
+    border-left-style:none;
+    border-bottom-style:solid;
+}
+
+
+/* titlebar and buttons */
+
+.RadDock_CERO .rdTitlebar
+{
+    top:2px; /*brd*/
+    color:#154a93;
+}
+
+.RadDock_CERO .rdHTitlebar .rdTitlebar
+{
+    height:18px;
+    padding-left:3px;
+    border-bottom:1px solid #e5e5e5;
+}
+.RadDock_CERO.rdCollapsed .rdHTitlebar .rdTitlebar
+{
+    padding-bottom:0px; /*brd - title brd*/
+}
+.RadDock_CERO .rdVTitlebar .rdTitlebar
+{
+    left:1px;
+    width:20px;
+}
+
+.RadDock_CERO .rdTitlebar .rdTitle
+{
+    font:bold 11px/21px 'ms sans serif',sans-serif;
+}
+
+.RadDock_CERO .rdHTitlebar .rdTitle
+{
+    height:18px;
+    padding-left:5px;
+    margin-right:3px;
+}
+.RadDock_CERO .rdVTitlebar .rdTitle
+{
+    padding:5px 0 0 0;
+    line-height:1.4em;
+}
+
+.RadDock_CERO .rdHTitlebar .rdCommands
+{
+    padding-left:2px;
+    height:18px;
+    right:auto;
+    left:0px;
+}
+
+.RadDock_CERO .rdHTitlebar .rdCommands a
+{
+    margin:0 3px 0 0;
+}
+.RadDock_CERO .rdVTitlebar .rdCommands a
+{
+    margin:0;
+}
+
+.RadDock_CERO .rdCommands a
+{
+    height:17px;
+    margin-top:3px;
+}
+.RadDock_CERO .rdCollapse
+{
+    width:12px;
+    background:url(Dock/Collapse.gif) repeat-x;
+}
+.RadDock_CERO .rdExpand
+{
+    width:12px;
+    background:url(Dock/Expand.gif) repeat-x;
+}
+.RadDock_CERO .rdClose
+{
+    width:12px;
+    background:url(Dock/Close.gif) repeat-x;
+}
+.RadDock_CERO .rdPin
+{
+    width:12px;
+    background:url(Dock/Pin.gif) repeat-x;
+}
+.RadDock_CERO .rdUnpin
+{
+    width:12px;
+    background:url(Dock/Unpin.gif) repeat-x;
+}
+
+.RadDock_CERO .rdCustom
+{
+    width:12px;
+    background:url(Dock/Custom.gif) no-repeat;
+}
+
+
+/* inner content */
+
+.RadDock_CERO .rdContent
+{
+    top:0px; /*brd*/
+    padding-bottom:1px; /*brd*/
+    font:11px/1.2 verdana,sans-serif;
+}
+
+.RadDock_CERO .rdVTitlebar .rdContent
+{
+    margin-left:20px;
+}
+
+
+/* drag grips */
+
+.RadDock_CERO .rdGripTop,
+.RadDock_CERO .rdGripLeft
+{
+    background:#666;
+}
+
+.RadDock_CERO .rdGripTop
+{
+    top:2px; /*brd*/
+    height:3px;
+}
+.RadDock_CERO .rdGripLeft
+{
+    left:2px; /*brd*/
+    width:3px;
+}
+
+.RadDock_CERO .rdWGripLeft .rdContent
+{
+    margin-left:3px;
+}
+
+.RadDock_CERO .rdTopLeft,
+.RadDock_CERO .rdTopRight,
+.RadDock_CERO .rdBottomLeft,
+.RadDock_CERO .rdBottomRight,
+.RadDock_CERO .rdLeftMiddle,
+.RadDock_CERO .rdRightMiddle
+{
+	height: 3px;
+	width: 3px;
+	line-height: 3px;
+	background: #8db2e3;
+}
+
+.RadDock_CERO .rdTopCenter, 
+.RadDock_CERO .rdBottomCenter 
+{
+	background: #8db2e3;
+	height: 3px;
+	line-height: 3px;
+}
+
+.RadDock_CERO .rdWrapTable .rdTitlebar,
+.RadDock_CERO .rdWrapTable .rdTitle,
+.RadDock_CERO .rdWrapTable .rdCommands
+{
+}
+
+.RadDock_CERO .rdWrapTable .rdSideBorders.rdHTitlebar
+{
+    border: 0 !important;
+}

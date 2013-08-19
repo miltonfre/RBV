@@ -45,8 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="aspnet_MembershipBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RBV_AccesoDatos\RBV_AccesoDatos.csproj">
+      <Project>{533473E1-60DF-4AD5-8C7C-F9AA08F678D7}</Project>
+      <Name>RBV_AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RBV_Clases\RBV_Clases.csproj">
+      <Project>{0EE639C2-8E50-4835-BE74-641011633706}</Project>
+      <Name>RBV_Clases</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,212 @@
+<%@ Master Language="C#" AutoEventWireup="true" Codebehind="Popup.master.cs" Inherits="WebApplication.Shared.Popup" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="Westwind.Globalization" Namespace="Westwind.Globalization" TagPrefix="ww" %>
+<%@ Register Assembly="Flan.Controls" Namespace="Flan.Controls" TagPrefix="fc1" %>
+<%@ Register Src="Mensaje.ascx" TagName="Mensaje" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Script-Content-Type" content="text/javascript; charset=iso-8859-1" />
+    <link href="~/css/estilos.css" rel="stylesheet" type="text/css" runat="server" id="linkEstilos" />
+</head>
+<body style="min-width:200px" onload="asignarEventoCerrar();" onunload="liberarEventoCerrarConUnload();" onbeforeunload="liberarEventoCerrarConBeforeUnload();">
+    <form id="form1" runat="server">    
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server" AsyncPostBackTimeout="7200" EnableScriptGlobalization="True" EnableScriptLocalization="false" EnablePartialRendering="True" ScriptMode="Release" OnAsyncPostBackError="RadScriptManager1_AsyncPostBackError">
+        <Scripts>
+            <asp:ScriptReference Path="~/FusionCharts/FusionCharts.js" />
+            <asp:ScriptReference Path="~/FusionCharts/FusionChartsExportComponent.js" />
+            <asp:ScriptReference Path="~/js/wz_jsgraphics.js" />
+            <asp:ScriptReference Path="~/js/textArea.js" />
+            <asp:ScriptReference Path="~/js/jquery.min.js" />
+            <asp:ScriptReference Path="~/js/jquery.colorbox-min.js" />
+            <asp:ScriptReference Path="~/js/jquery-jtemplates.js" />
+        </Scripts>
+        </telerik:RadScriptManager>
+        <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server">
+        </telerik:RadStyleSheetManager>
+        <script type="text/javascript" language="javascript">
+            jQuery.noConflict();
+
+            function asignarEventoCerrar()
+            {
+                var currentWindow = GetRadWindow();
+                currentWindow.add_close(cerrandoVentana);
+            }
+            
+            function cerrandoVentana(ventana) 
+            {
+                if(ventana.argument == null || ventana.argument == undefined)
+                {
+                    ventana.argument = new Object();
+                    ventana.argument.accion = 'CerradoPopupX';
+                    ventana.argument.nombrePopup = '';
+                    ventana.argument.resultado = document.getElementById('<%=hIdPadre.ClientID %>').value+"_"+document.getElementById('<%=hNombrePagina.ClientID %>').value;                        
+                }
+            
+                var oWnd = window.GetRadWindow();
+                if(oWnd.nivel>1)
+                {
+                    var padre = oWnd.get_windowManager().getWindowByName("RadWindow"+(oWnd.nivel-1)); 
+                    padre.get_contentFrame().contentWindow.PopupCerrado(ventana.argument);
+                }
+                else
+                {
+                    oWnd.BrowserWindow.PopupCerrado(ventana.argument);
+                }
+                ventana.argument = null;
+                oWnd.remove_close(window.cerrandoVentana);
+            }
+
+            // PARA QUE FUNCIONE SEGUN EL NAVEGADOR
+            function liberarEventoCerrarConUnload()
+            {
+                if (navigator.appName == 'Microsoft Internet Explorer')
+                {
+                    var oWnd = window.GetRadWindow();
+                    oWnd.remove_close(window.cerrandoVentana);
+
+                    if (oWnd.nivel == 1)
+                    {
+                        oWnd.BrowserWindow.MostrarScroll();
+                    }
+                }
+            }
+            
+            // PARA QUE FUNCIONE SEGUN EL NAVEGADOR
+            function liberarEventoCerrarConBeforeUnload() 
+            {
+                if (navigator.appName != 'Microsoft Internet Explorer')
+                {
+                    var oWnd = window.GetRadWindow();
+                    oWnd.remove_close(window.cerrandoVentana);
+
+                    if (oWnd.nivel == 1)
+                    {
+                        oWnd.BrowserWindow.MostrarScroll();
+                    }
+                }
+            }
+            function GetRadWindow()
+            {
+                var oWindow = null;
+                if (window.radWindow)
+                    oWindow = window.radWindow;
+                else if (window.frameElement.radWindow)
+                    oWindow = window.frameElement.radWindow;
+                
+                return oWindow;
+            }
+            
+            function cerrarPopup(accion, nombrePopup, resultado) 
+            {
+                var parametros = new Object();
+            
+                var currentWindow = GetRadWindow();
+
+                parametros.accion = accion;
+                parametros.nombrePopup = nombrePopup;
+                parametros.resultado = resultado;
+                currentWindow.argument = parametros;
+                currentWindow.close();
+            }
+            
+            function abrirRadWindow(url, ancho, alto)
+            {
+                var move = 32;
+                var close = 4;
+                var resize = 1;
+                var maximize = 16;
+                //var minimize = 2;
+                //var pin = 8;
+                var oBrowserWnd = GetRadWindow().BrowserWindow;
+                var nuevoNivel = GetRadWindow().nivel+1;
+                var oWnd = oBrowserWnd.radopen(url, "RadWindow"+nuevoNivel);
+                oWnd.nivel = nuevoNivel;
+                oWnd.setSize(oBrowserWnd.document.documentElement.clientWidth * 0.8, oBrowserWnd.document.documentElement.clientHeight * 0.8);
+                oWnd.center();
+                oWnd.set_behaviors(move + close + resize + maximize);
+                oWnd.show();
+            }
+            
+            function PopupCerrado(parametros) 
+            {
+                var ventana = GetRadWindow();
+                if(parametros!=null && parametros!=undefined)
+                {
+                    document.getElementById('<%=hAccionPopupCerrado.ClientID %>').value = parametros.accion;
+                    document.getElementById('<%=hNombrePopupCerrado.ClientID %>').value = parametros.nombrePopup;
+                    document.getElementById('<%=hResultadoPopupCerrado.ClientID %>').value = parametros.resultado;
+                    document.getElementById('<%=bPopupCerrado.ClientID %>').click();
+                }
+            }
+
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+            function EndRequestHandler(sender, args)
+            {
+                if (args.get_error() != null)
+                {
+                    var errorMessage = args.get_error().message;
+                    args.set_errorHandled(true);
+                    if (args.get_error().httpStatusCode = 12030)
+                    {
+                        // El error es comun cuando la cookie de autenticacion expiro por lo tanto
+                        // se hace un reload que lleva a la pagina de login al ya no estar autenticado
+                        GetRadWindow().BrowserWindow.Recargar();
+                    }
+                    else
+                    {
+                        // Si es otro error se visualiza el mensaje
+                        alert(errorMessage);
+                    }
+                }
+            }
+
+            function ControlarSesionFinalizada()
+            {
+                GetRadWindow().BrowserWindow.Recargar();
+            }
+        </script>           
+        <div>
+            <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
+                <ProgressTemplate>
+                    <div>
+                        Cargando...
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+            <fc1:UpdateProgressOverlayExtender ID="UpdateProgressOverlayExtender1" runat="server"
+                CssClass="updateProgress" TargetControlID="UpdateProgress1" OverlayType="Browser" />
+            <table width="98%" border="0" class="tablaDatos">
+                <tr>
+                    <td align="center" style="text-align:left;">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                         <ww:DbResourceControl ID="DbResourceControl1" Visible="false" runat="server" CssClass="errordisplay"
+                                     Width="250px" ShowIconsInitially="DontShow" Style="display: block; margin: 10px;"
+                                     meta:resourcekey="DbResourceControl1"></ww:DbResourceControl>
+                    </td>
+                </tr>
+            </table>
+            <asp:UpdatePanel RenderMode="Inline" UpdateMode="Always" runat="server" ID="upPopupCerrado">
+                <ContentTemplate>
+                    <asp:HiddenField runat="server" ID="hAccionPopupCerrado" />
+                    <asp:HiddenField runat="server" ID="hNombrePopupCerrado" />
+                    <asp:HiddenField runat="server" ID="hResultadoPopupCerrado" />
+                    <asp:Button runat="server" ID="bPopupCerrado" Text="" Style="display: none;" OnClick="bPopupCerrado_Click" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            
+          <asp:UpdatePanel ID="UpdatePanelmaster" runat="server" RenderMode="Inline" UpdateMode="always">
+            <ContentTemplate>
+            <uc1:Mensaje ID="Mensaje" runat="server" />
+            </ContentTemplate>
+          </asp:UpdatePanel>
+            
+        </div>
+        <asp:HiddenField runat="server" ID="hIdPadre" />
+        <asp:HiddenField runat="server" ID="hNombrePagina" />
+    </form>
+</body>
+</html>

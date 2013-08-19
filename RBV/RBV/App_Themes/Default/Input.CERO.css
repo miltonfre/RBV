@@ -1,0 +1,153 @@
+/*Telerik RadInput Default Skin*/
+
+/*global*/
+
+.radInput_CERO
+{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 11px;
+	vertical-align:middle;
+}
+
+.radInput_CERO table,
+.radInput_CERO table td
+{
+	border:0;
+}
+
+.radInput_CERO table
+{
+	vertical-align:bottom;
+}
+
+.radInput_CERO td
+{
+	padding:0;
+	vertical-align:middle;
+	overflow:visible;/*RadGrid*/
+}
+
+.radInput_CERO td.inputCell
+{
+	padding-right:4px;
+}
+
+.radInput_CERO textarea
+{
+	vertical-align:bottom;
+	overflow:auto;
+}
+
+/*textbox states*/
+
+.radEnabledCss_CERO,
+.radEmptyMessageCss_CERO,
+.radHoverCss_CERO,
+.radFocusedCss_CERO,
+.radReadOnlyCss_CERO,
+.radDisabledCss_CERO,
+.radNegativeCss_CERO,
+.radInvalidCss_CERO
+{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 11px;
+	padding: 1px;
+	margin: 1px;
+	color:#333;
+}
+
+.radEnabledCss_CERO 
+{
+	border:1px solid #626262;
+}
+
+.radEmptyMessageCss_CERO
+{
+	border:1px solid #aeaeae;
+}
+
+.radHoverCss_CERO 
+{
+	border:1px solid #000;
+}
+
+.radFocusedCss_CERO
+{
+	border:1px solid #000;
+	color:#000;	
+}
+
+.radReadOnlyCss_CERO,
+.radDisabledCss_CERO
+{
+	color:gray;
+	background:#F8F8F8;
+	border:1px solid #E5E5E5;
+}
+
+.radNegativeCss_CERO 
+{
+	border:1px solid #aeaeae;
+}
+
+.radInvalidCss_CERO 
+{
+	background:url('Input/sprite.gif') 99% -183px no-repeat;
+	border:1px solid #f32800;
+	color:#f32800;
+}
+
+/*buttons*/
+
+.radInput_CERO a
+{
+	display:block;
+	text-indent:-4444px;
+	overflow:hidden;
+	position:relative;/*FF*/
+	outline:none;/*FF*/
+	z-index:2;/*Opera*/
+	background:url('Input/sprite.gif') no-repeat;
+}
+* html .radInput_CERO a{position:static}/*IE6*/
+*+html .radInput_CERO a{position:static}/*IE7*/
+
+/*go*/
+
+.radInput_CERO a.gobutton
+{
+	width:20px;
+	height:17px;
+	line-height:17px;
+	background-position:3px 4px;
+}
+
+/*spin*/
+
+.radInput_CERO a.spinbutton
+{
+	width:13px;
+	height:7px;
+	line-height:7px;
+	margin:0 1px;
+}
+
+.radInput_CERO a.up
+{
+	background-position:3px -36px;
+}
+
+.radInput_CERO a.down
+{
+	background-position:3px -64px;
+	margin-top:2px;
+}
+
+/*label*/
+
+.radLabelCss_CERO
+{
+	margin:0 4px 0 0;
+	color:#000;
+	white-space:nowrap;
+}

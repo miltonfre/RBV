@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -46,15 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aspnet_Applications.cs" />
+    <Compile Include="aspnet_Membership.cs" />
+    <Compile Include="aspnet_Paths.cs" />
+    <Compile Include="aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="aspnet_Profile.cs" />
+    <Compile Include="aspnet_Roles.cs" />
+    <Compile Include="aspnet_Users.cs" />
+    <Compile Include="aspnet_UsersInRoles.cs" />
+    <Compile Include="caracteristicaRecursoValioso.cs" />
+    <Compile Include="clasificacionRecursoValioso.cs" />
     <Compile Include="Empresa.cs" />
-    <Compile Include="MembershipProvider.cs" />
+    <Compile Include="empresaUsuario.cs" />
+    <Compile Include="escalaCalificacion.cs" />
+    <Compile Include="escalaValoracion.cs" />
+    <Compile Include="matrizValoracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RBV_AccesoDatos\RBV_AccesoDatos.csproj">
-      <Project>{533473E1-60DF-4AD5-8C7C-F9AA08F678D7}</Project>
-      <Name>RBV_AccesoDatos</Name>
-    </ProjectReference>
+    <Compile Include="recursosEmpresa.cs" />
+    <Compile Include="sector.cs" />
+    <Compile Include="sectorEmpresa.cs" />
+    <Compile Include="tipoRecurso.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

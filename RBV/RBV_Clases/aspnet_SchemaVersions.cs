@@ -1,0 +1,1 @@
+ERROR: en Fill: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY.

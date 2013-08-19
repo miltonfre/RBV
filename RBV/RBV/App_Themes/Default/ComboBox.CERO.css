@@ -1,0 +1,299 @@
+/* RadComboBox Default skin */
+
+/*global*/
+
+
+.RadComboBox_CERO *
+{
+	margin:0;
+	padding:0;
+}
+
+.RadComboBox_CERO,
+.RadComboBox_CERO input,
+.RadComboBoxDropDown_CERO
+{
+	
+		color: #000000;
+	border: 1px solid #adc3de;	font-family: Arial, Helvetica, sans-serif; font-size: 11px;
+	margin: 0px;
+	padding: 0px;
+	left: 2px;
+	background-color: #F8F8F8;
+}
+
+/* combobox */
+
+.RadComboBox_CERO
+{
+	vertical-align:bottom;
+	text-align: left;
+}
+
+.RadComboBox_CERO table
+{
+	border: 0;
+}
+
+.RadComboBox_CERO table td
+{
+	border: 0px solid #C3D9F9;
+	padding: 0;
+}
+
+.RadComboBox_CERO .rcbInputCell
+{
+	height:18px;
+	line-height:18px;
+	vertical-align:top;
+	background: #fff;
+}
+
+.RadComboBox_CERO .rcbInputCellLeft
+{
+	border-right-width: 0;
+}
+
+.RadComboBox_CERO .rcbInputCellRight
+{
+	border-left-width: 0;
+}
+
+.RadComboBox_CERO .rcbInputCell input
+{
+	width:100%;
+	background:#f8f8f8;
+	border:0;
+	vertical-align:middle;
+	padding:2px 0 0 2px;
+	height: 12px;
+	line-height: 12px;
+	margin-top:1px;
+	margin-left:2px;
+	
+}
+.RadComboBox_CERO_rtl .rcbInputCell input
+{
+	padding:2px 2px 0 0;
+}
+
+.RadComboBox_CERO .rcbArrowCell
+{
+	width:15px;
+	padding-right:1px;
+}
+
+.RadComboBox_CERO .rcbArrowCell a
+{
+	position:fixed;
+	outline:none;
+	display:block;
+	/*background:#eff3ff url('ComboBox/rcbArrowCell.gif') 0 0 no-repeat;*/
+	background:#eff3ff url('ComboBox/rcbArrowCell.gif') 0 0 no-repeat;
+	/*background-image:'ComboBox/rcbArrowCell.gif';*/
+	/*background-position:static;*/
+	width:15px;
+	height:16px;
+	line-height:16px;
+	text-decoration:none;
+	text-indent: -9999px;
+	font-size: 0;
+	position:static;
+}
+
+.RadComboBox_CERO_rtl .rcbArrowCell a
+{
+	text-indent: 9999px;
+}
+
+.RadComboBox_CERO .rcbDisabled .rcbArrowCell a
+{
+	cursor:no-drop;
+}
+
+.RadComboBox_CERO .rcbDisabled
+{
+	opacity:.6;
+	-moz-opacity:.6;
+}
+
+/* dropdown */
+
+.rcbSlide
+{
+	position:absolute;
+	overflow:hidden;
+	display:none;
+	_height:1px;
+	float:left;
+}
+
+.RadComboBoxDropDown_CERO
+{
+	position:absolute;
+	border: 1px solid #adc3de;
+	cursor:default;
+	font-size:11px;
+	text-align: left;
+	background: #fff;
+}
+
+.RadComboBoxDropDown_CERO .rcbScroll
+{
+	overflow:auto;
+}
+
+.RadComboBoxDropDown_CERO .rcbList
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+	zoom:1;
+}
+
+.RadComboBoxDropDown_CERO .rcbHeader 
+{
+	background:#f2f2f2;
+	color:#404040;
+	padding:4px;
+	border-bottom: 1px solid #adc3de;
+}
+
+.RadComboBoxDropDown_CERO .rcbNoWrap .rcbItem,
+.RadComboBoxDropDown_CERO .rcbNoWrap .rcbHovered,
+.RadComboBoxDropDown_CERO .rcbNoWrap .rcbDisabled,
+.RadComboBoxDropDown_CERO .rcbNoWrap .rcbLoading
+{
+	white-space:nowrap;
+}
+
+.RadComboBoxDropDown_CERO .rcbItem,
+.RadComboBoxDropDown_CERO .rcbHovered,
+.RadComboBoxDropDown_CERO .rcbDisabled,
+.RadComboBoxDropDown_CERO .rcbLoading
+{
+	padding:1px 20px 1px 4px;
+}
+
+* html .RadComboBoxDropDown_CERO .rcbItem,
+* html .RadComboBoxDropDown_CERO .rcbHovered,
+* html .RadComboBoxDropDown_CERO .rcbDisabled,
+* html .RadComboBoxDropDown_CERO .rcbLoading
+{
+	zoom:1;
+}
+
+.RadComboBoxDropDown_CERO_rtl .rcbItem,
+.RadComboBoxDropDown_CERO_rtl .rcbHovered,
+.RadComboBoxDropDown_CERO_rtl .rcbDisabled,
+.RadComboBoxDropDown_CERO_rtl .rcbLoading
+{
+	padding:1px 4px 1px 20px;
+}
+
+.RadComboBoxDropDown_CERO .rcbHovered
+{
+	background:#306ac5;
+	color:#fff;
+}
+
+.RadComboBoxDropDown_CERO .rcbDisabled
+{
+	color:#808080;
+	cursor:no-drop;
+}
+
+.RadComboBoxDropDown_CERO .rcbLoading
+{
+	background:#f0f0f0;
+}
+
+.RadComboBoxDropDown_CERO .rcbNoWidth .rcbLoading
+{
+	text-align:center;
+}
+
+.RadComboBoxDropDown_CERO .rcbMoreResults
+{
+	clear:both;
+	background:#f1f1f1;
+	padding:4px;
+	text-align:center;
+	border-top: 1px solid #adc3de;
+}
+
+.RadComboBoxDropDown_CERO .rcbMoreResults a
+{
+	display:block;
+	width:16px;
+	height:16px;
+	background:transparent url('ComboBox/rcbMoreResults.gif') no-repeat 0 -16px;
+	margin:0 auto 4px;
+	text-indent:-3333px;
+	overflow:hidden;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.RadComboBoxDropDown_CERO .rcbMoreResults a:hover
+{
+	background-position:0 0;
+}
+
+.RadComboBoxDropDown_CERO .rcbMoreResults span
+{
+	display:block;
+	text-align:center;
+}
+
+.RadComboBoxDropDown_CERO .rcbScroll
+{
+	scrollbar-face-color: #e9e9e9;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #e9e9e9;
+	scrollbar-3dlight-color: #dbdbdb;
+	scrollbar-arrow-color: #787878;
+	scrollbar-track-color: #f5f5f5;
+	scrollbar-darkshadow-color: #aeaeae;
+}
+.inline_override
+{
+ display:inline-block !important;
+}
+/*hacks*/
+
+/*Opera start*/
+@media screen and (min-width:550px)
+{
+	.RadComboBoxDropDown_CERO_rtl .rcbItem,
+	.RadComboBoxDropDown_CERO_rtl .rcbHovered,
+	.RadComboBoxDropDown_CERO_rtl .rcbDisabled,
+	.RadComboBoxDropDown_CERO_rtl .rcbLoading
+	{
+		padding:4px 20px 4px 4px;
+		zoom:1;
+	}
+}
+/*Opera end*/
+
+/*Correccion Error Botón ==Daniel 01-02-12==*/
+td.rcbArrowCell.rcbArrowCellRight{
+	position:relative !important;
+	display:block;
+}
+td.rcbArrowCell.rcbArrowCellRight a{
+	position:absolute !important;
+	top:2px !important;
+	left:0px !important;	
+}
+div.RadComboBox{
+	position:relative !important;
+	height:20px !important;
+}
+div.RadComboBox > table
+{
+	position:absolute !important;
+	top:0px !important;
+	left:0px !important;
+}
+/*Fin Correccion Error Botón*/

@@ -1,0 +1,184 @@
+/* RadMenu Plain skin */
+
+.RadMenu_CERO 
+{
+	/*background: #ececec url(Menu/MenuItemBackground.gif) repeat-x;*/
+	border-top: solid 1px #e5e5e5;
+	border-right: solid 1px #e5e5e5;
+	border-bottom: solid 1px #bbbbbb;
+	border-left: solid 1px #bbbbbb;
+}
+
+.RadMenu_CERO_Context
+{
+	background: none;
+	border:0;
+}
+.RadMenu_CERO .rmItem
+{
+	min-width:150px;
+	white-space:nowrap;
+}
+.RadMenu_CERO .rmLink,
+.RadMenu_CERO .rmTemplate .rmText
+{
+	line-height: 21px;
+
+	text-decoration:none;
+	color: #666;
+	/*background: #ececec url(Menu/MenuItemBackground.gif) repeat-x;*/
+	border-left: solid 1px #fff;
+	border-right: solid 1px #d6d6d6;
+}
+.RadMenu_CERO .rmFocused
+{
+	line-height: 21px;
+}
+
+.RadMenu_CERO .rmTemplate .rmText:hover,
+.RadMenu_CERO .rmFocused,
+.RadMenu_CERO .rmExpanded
+{
+	color: #000;
+}
+.RadMenu_CERO .rmLink:hover
+{
+	color: #ff6600;
+}
+
+.RadMenu_CERO .rmText
+{
+	padding-left: 10px;	
+	padding-right: 36px;
+	font-size: 11px;
+	font-family: Arial, Verdana;
+}
+
+.RadMenu_CERO_rtl .rmText
+{
+	padding-right: 10px;	
+	padding-left: 36px;
+}
+
+
+.RadMenu_CERO .rmRootGroup,
+.RadMenu_CERO .rmGroup
+{
+	border: solid 1px #bbbbbb;
+	border-right: 0px;
+	border-bottom: 0px;
+}
+
+.RadMenu_CERO .rmRootGroup .rmLink,
+.RadMenu_CERO .rmRootGroup .rmTemplate .rmText,
+.RadMenu_CERO .rmGroup .rmLink,
+.RadMenu_CERO .rmGroup .rmTemplate .rmText
+{
+	background: #f7f7f7;
+	border-top: solid 1px #fff;
+	border-bottom: solid 1px #d7d7d7;
+	text-align: left;
+}
+
+.RadMenu_CERO_rtl .rmRootGroup .rmTemplate .rmText,
+.RadMenu_CERO_rtl .rmRootGroup .rmLink,
+.RadMenu_CERO_rtl .rmGroup .rmTemplate .rmText,
+.RadMenu_CERO_rtl .rmGroup .rmLink
+{
+	text-align: right;
+}
+
+.RadMenu_CERO .rmRootGroup .rmTemplate .rmText:hover,
+.RadMenu_CERO .rmRootGroup .rmLink:hover,
+.RadMenu_CERO .rmRootGroup .rmFocused,
+.RadMenu_CERO .rmRootGroup .rmExpanded,
+.RadMenu_CERO .rmGroup .rmTemplate .rmText:hover,
+.RadMenu_CERO .rmGroup .rmLink:hover,
+.RadMenu_CERO .rmGroup .rmFocused,
+.RadMenu_CERO .rmGroup .rmExpanded
+{
+	background: #ededed;
+	border-bottom-color: #d7d7d7;
+	font-weight: normal;
+}
+
+.RadMenu_CERO .rmLeftArrow,
+.RadMenu_CERO .rmRightArrow,
+.RadMenu_CERO .rmTopArrow,
+.RadMenu_CERO .rmBottomArrow,
+.RadMenu_CERO .rmLeftArrowDisabled,
+.RadMenu_CERO .rmRightArrowDisabled,
+.RadMenu_CERO .rmTopArrowDisabled,
+.RadMenu_CERO .rmBottomArrowDisabled
+{
+	background: #ededed url(Menu/left.gif) center center no-repeat;
+	width:15px;
+}
+
+.RadMenu_CERO .rmTopArrow,
+.RadMenu_CERO .rmTopArrowDisabled
+{
+	background-image:url(Menu/top.gif);
+	width:100%;
+}
+
+.RadMenu_CERO .rmBottomArrow,
+.RadMenu_CERO .rmBottomArrowDisabled
+{
+	background-image:url(Menu/bottom.gif);
+	width:100%;
+}
+
+.RadMenu_CERO .rmRightArrow,
+.RadMenu_CERO .rmLeftArrow
+{
+	height:100%;
+}
+
+.RadMenu_CERO .rmRightArrow,
+.RadMenu_CERO .rmRightArrowDisabled
+{
+	background-image: url(Menu/right.gif);
+}
+
+.RadMenu_CERO .rmVertical .rmSeparator
+{
+	padding: 0;
+	background: #ccc;
+	font-size: 1px;
+	line-height: 1px;
+	height: 1px;
+}
+
+.RadMenu_CERO .rmFocused .rmExpandLeft,
+.RadMenu_CERO .rmFocused .rmExpandRight,
+.RadMenu_CERO .rmExpandLeft,
+.RadMenu_CERO .rmExpandRight
+{
+	background: transparent url(Menu/groupImage.gif) left center no-repeat;
+	margin-right: 4px;
+}
+
+.RadMenu_CERO_rtl .rmExpandLeft,
+.RadMenu_CERO_rtl .rmExpandRight
+{
+	background: url(Menu/groupImageRTL.gif) left center no-repeat;
+}
+
+.RadMenu_CERO .rmLink:hover .rmExpandLeft,
+.RadMenu_CERO .rmLink:hover .rmExpandRight,
+.RadMenu_CERO .rmExpanded .rmExpandLeft,
+.RadMenu_CERO .rmExpanded .rmExpandRight
+{
+	background:transparent url(Menu/invertedGroupImage.gif) left center no-repeat;
+}
+
+.RadMenu_CERO_rtl .rmLink:hover .rmExpandLeft,
+.RadMenu_CERO_rtl .rmLink:hover .rmExpandRight,
+.RadMenu_CERO_rtl .rmFocused .rmExpandLeft,
+.RadMenu_CERO_rtl .rmFocused .rmExpandRight,
+.RadMenu_CERO_rtl .rmExpanded .rmExpandLeft,
+.RadMenu_CERO_rtl .rmExpanded .rmExpandRight
+{
+	background:transparent url(Menu/groupImageRTL.gif) left center no-repeat;
+}
