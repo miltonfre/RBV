@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6D365F6C-D95D-41A4-B3A0-511BDCB34480}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -74,6 +74,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\Clasificacion.aspx.cs">
+      <DependentUpon>Clasificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\Clasificacion.aspx.designer.cs">
+      <DependentUpon>Clasificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\Sector.aspx.cs">
+      <DependentUpon>Sector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\Sector.aspx.designer.cs">
+      <DependentUpon>Sector.aspx</DependentUpon>
     </Compile>
     <Compile Include="MemberPages\CrearUsuario.aspx.cs">
       <DependentUpon>CrearUsuario.aspx</DependentUpon>
@@ -352,6 +366,11 @@
       <LastGenOutput>RBV.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="images\ico_borrar.gif" />
+    <Content Include="images\ico_lapiz.gif" />
+    <Content Include="images\ico_X.gif" />
+    <Content Include="Maestros\Clasificacion.aspx" />
+    <Content Include="Maestros\Sector.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -378,6 +397,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
