@@ -1,23 +1,73 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="RBV.MemberPages.Login1" Title="Recursos Valiosos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/Master.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="RBV.MemberPages.Logon" Title="Recursos Valiosos" %>
+<%--<%@ Register Assembly="Web" Namespace="System.Web.UI.WebControls" TagPrefix="cc1" %>--%>
+ 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
-   
-           
-        <br />
-        <asp:Login ID="login2" runat="server" RememberMeSet="true" RememberMeText="true" DisplayRememberMe="false" >
-        </asp:Login>
-        <br />
-        <asp:PasswordRecovery ID="PasswordRecovery1" runat="server" >
-        </asp:PasswordRecovery>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"/> 
+    <asp:UpdatePanel ID="updatepanel1" RenderMode="Inline" runat="server" UpdateMode="Always">
+           <ContentTemplate>
+          <%--  <cc1:ValidationSummary ID="ValidationSummary1" runat="server" 
+            UpdatePanel="updatepanel1"  ValidationGroup="ctl05$Login1" DisplayMode="BulletList"  
+            ShowMessageBox="true"  HeaderText=""  
+            MensajeDeIntroduccion=""
+            ShowSummary="false" />--%>
+               <asp:Login ID="Login1" runat="server" 
+        FailureText="<%$ Resources:Login1FailureText %>" 
+                LoginButtonText="<%$ Resources:Login1LoginButtonText %>" PasswordLabelText="<%$ Resources:Login1PasswordLabelText %>" PasswordRequiredErrorMessage="<%$ Resources:Login1PasswordRequiredErrorMessage %>"
+                RememberMeText="<%$ Resources:Login1RememberMeText %>" TitleText="<%$ Resources:Login1TitleText %>" UserNameLabelText="<%$ Resources:Login1UserNameLabelText %>"
+                UserNameRequiredErrorMessage="<%$ Resources:Login1UserNameRequiredErrorMessage %>" OnAuthenticate="Login1_Authenticate">
+                
+               <LabelStyle HorizontalAlign="left" />
+                <LayoutTemplate>
+                  
+                   <asp:Panel ID="mainLogin" runat="server" DefaultButton="LoginButton">
+                   
+                    <table border="0" cellpadding="0">
+                        <tr>
+                            <td align="center" colspan="2">
+                                <asp:Literal runat="server" ID="ltlIniciarSesion" Text="<%$ Resources:ltlIniciarSesionText %>" ></asp:Literal>
+                               </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Text="<%$ Resources:Login1UserNameLabelText %>"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="UserName" runat="server" CssClass="input" MaxLength="255" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
+                                    ErrorMessage="<%$ Resources:UserNameRequiredErrorMessage %>" ToolTip="<%$ Resources:UserNameRequiredToolTip %>"
+                                    ValidationGroup="ctl05$Login1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" Text="<%$ Resources:PasswordLabelText %>"></asp:Label></td>
+                            <td>
+                                <asp:TextBox ID="Password" runat="server" CssClass="input" TextMode="Password" MaxLength="50" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
+                                    ErrorMessage="<%$ Resources:PasswordRequiredErrorMessage %>" ToolTip="<%$ Resources:PasswordRequiredToolTip	 %>" ValidationGroup="ctl05$Login1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:CheckBox ID="RememberMe" runat="server" Text="<%$ Resources:RememberMeText %>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2" style="color: red">
+                                <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2">
+                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" CssClass="input"
+                                    Text="<%$ Resources:LoginButtonText %>" ValidationGroup="ctl05$Login1" 
+                                    />
+                            </td>
+                        </tr>
+                    </table>
+                    </asp:Panel>
+                   </LayoutTemplate>
+               </asp:Login>
        
-        <br />
-    
-<asp:CreateUserWizard ID="cuwCrearUsuario" runat="server">
-            <WizardSteps>
-                <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
-                </asp:CreateUserWizardStep>
-                <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
-                </asp:CompleteWizardStep>
-            </WizardSteps>
-        </asp:CreateUserWizard>
-</asp:Content>
-
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    </asp:Content>
