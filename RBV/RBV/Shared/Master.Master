@@ -4,22 +4,90 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/arial.js"></script>
-<script type="text/javascript" src="js/cuf_run.js"></script>
+<link href="~/css/estilos.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript" src="../js/cufon-yui.js"></script>
+<script type="text/javascript" src="../js/arial.js"></script>
+<script type="text/javascript" src="../js/cuf_run.js"></script>
     <title>Visión de la empresa Basada en los recursos valiosos</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server"><div class="hbg"><img src="../images/header_images.jpg" width="970" height="294" alt="" /></div>
-    <div>
-        <asp:ContentPlaceHolder ID="cphContenidoPaginas" runat="server">
+    <form id="form1" runat="server"><div class="hbg">
+    <asp:Panel ID="AccessKeyPanel" runat="server" />
+<script type="text/javascript">
+ function navigateTo(url) {
+    window.location = url;
+ }
+</script>
+        <img src="../../images/rompecabezas.jpg" /></div>
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="TablaEncabezado">
+            <tr class="TopCeldaLeft">
+             <td valign="middle" class="TopLogo" style="width:200px">                </td>
+                <td align="center">
+                    <asp:Button ID="Button1" runat="server" Enabled="False" Text="Button" Visible="False" />
+                    <span class="TopUsuario">Bienvenido(a) :<asp:Label ID="lblUsuario" runat="server"
+                        CssClass="TopNombreUsuario"></asp:Label>
+                    </span>
+                </td>
+                </td>
+             </tr>
+             
+             <tr class="TopCeldaLeft">
+             <td valign="middle" class="TopLogo" style="width:200px">                
+                <asp:Panel ID="panelMenu" runat="server" Width="100%" Height="100%" ScrollBars="None"  CssClass="menuPanes">
+                                    <asp:SiteMapDataSource id="MenuSource" runat="server" />
+                                        <div class="background">
+                                          <asp:menu id="NavigationMenu" CssClass="NavigationMenu"  
+                                                staticdisplaylevels="2" DynamicHorizontalOffset="1"
+                                                staticsubmenuindent="1px" MaximumDynamicDisplayLevels="4"
+                                                orientation="Vertical"   
+                                                DynamicPopOutImageUrl="~/Images/right-arrow.gif" 
+                                                StaticPopOutImageUrl="~/Images/drop-arrow.gif"
+                                                datasourceid="MenuSource"    
+                                                runat="server" Height="30px">
+
+                                                <staticmenuitemstyle ItemSpacing="10" 
+                                                            CssClass="staticMenuItemStyle"/>
+                                                <statichoverstyle CssClass="staticHoverStyle" />
+                                               <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle"/> 
+                                                <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />      
+                                                <dynamichoverstyle CssClass="menuItemMouseOver" />
+                                                <DynamicMenuStyle CssClass="menuItem" />
+                                               <DynamicSelectedStyle CssClass="menuItemSelected" />
+                                             
+                                               <DataBindings>        
+                                                     <asp:MenuItemBinding DataMember="siteMapNode" 
+                                                            NavigateUrlField="url" TextField="title"  
+                                                            ToolTipField="description" />
+                                                </DataBindings>
+
+                                              </asp:menu>
+                                        </div>
+                                        <div id="e">
+                                           <asp:SiteMapPath ID="SiteMapPath1" runat="server" 
+                                                    RenderCurrentNodeAsLink="true" 
+                                                    CssClass="currentNodeStyle"
+                                                PathSeparator=" >> ">
+                                                <PathSeparatorStyle ForeColor="#5D7B9D" CssClass="currentNodeStyle" />
+                                                <CurrentNodeStyle ForeColor="#333333" CssClass="currentNodeStyle" />
+                                                <NodeStyle ForeColor="#7C6F57"  CssClass="currentNodeStyle"  />
+                                                <RootNodeStyle  ForeColor="#5D7B9D" CssClass="currentNodeStyle"  />
+                                        </asp:SiteMapPath> 
+                                    </div>                                   
+                                </asp:Panel>
+                </td>
+                 <td align="center">
+                   <asp:ContentPlaceHolder ID="cphContenidoPaginas" runat="server">
         
         </asp:ContentPlaceHolder>
+                </td>
+             </tr>
+          </table
+    <div>
+        
     </div>
     </form>
 </body>
