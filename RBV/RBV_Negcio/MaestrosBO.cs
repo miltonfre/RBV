@@ -53,5 +53,29 @@ namespace RBV_Negocio
             Datos.MaestrosDA.EliminarSector(IdSector);
         }
         #endregion
+        
+        #region TipoRecurso
+
+        public static void InsertarTipoRecurso(TipoRecurso tipoRecurso)
+        {
+            Datos.MaestrosDA.InsertarTipoRecurso(tipoRecurso);
+        }
+
+        public static void ActualizarTipoRecurso(TipoRecurso tipoRecurso)
+        {
+            Datos.MaestrosDA.ActualizarTipoRecurso(tipoRecurso);
+        }
+
+        public static void EliminarTipoRecurso(short IdTipoRecurso)
+        {
+            Datos.MaestrosDA.EliminarTipoRecurso(IdTipoRecurso);
+        }
+
+        public static List<TipoRecurso> ConsultarTiposRecurso()
+        {
+            return Datos.MaestrosDA.ConsultarTiposRecurso();
+        }
+
+        #endregion
     }
 }
