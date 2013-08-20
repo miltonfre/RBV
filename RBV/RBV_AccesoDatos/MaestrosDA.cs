@@ -121,5 +121,60 @@ namespace RBV_AccesoDatos
         
         #endregion
 
+        #region TipoRecurso
+
+        public static void InsertarTipoRecurso(TipoRecurso tipoRecurso)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.tipoRecursos.InsertOnSubmit(new tipoRecurso
+            {
+                tipoRecurso1 = tipoRecurso.NombreTipoRecurso
+            });
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void ActualizarTipoRecurso(TipoRecurso tipoRecurso)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            tipoRecurso tipoRecursoAnterior = new tipoRecurso();
+
+            tipoRecursoAnterior = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
+            tipoRecursoAnterior.tipoRecurso1 = tipoRecurso.NombreTipoRecurso;
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void EliminarTipoRecurso(short IdTipoRecurso)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+            tipoRecurso tipoRecursoEliminar = new tipoRecurso();
+
+            tipoRecursoEliminar = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == IdTipoRecurso);
+            contextoRBV.tipoRecursos.DeleteOnSubmit(tipoRecursoEliminar);
+            contextoRBV.SubmitChanges();
+        }
+
+        public static List<TipoRecurso> ConsultarTiposRecurso()
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<TipoRecurso> tiposRecurso = new List<TipoRecurso>();
+
+            tiposRecurso = (from tipoRecursoC in contextoRBV.tipoRecursos
+
+                        select new TipoRecurso
+                        {
+                            IdTipoRecurso = tipoRecursoC.idTipoRecurso,
+                            NombreTipoRecurso = tipoRecursoC.tipoRecurso1
+                        }).ToList();
+
+
+            return tiposRecurso;
+        }
+
+        #endregion
     }
 }
