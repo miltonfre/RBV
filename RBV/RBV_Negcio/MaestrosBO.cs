@@ -77,5 +77,29 @@ namespace RBV_Negocio
         }
 
         #endregion
+
+        #region Caracteristica
+
+        public static void InsertarCaracteristica(Caracteristica caracteristica)
+        {
+            Datos.MaestrosDA.InsertarCaracteristica(caracteristica);
+        }
+
+        public static void ActualizarCaracteristica(Caracteristica caracteristica)
+        {
+           Datos.MaestrosDA.ActualizarCaracteristica(caracteristica);
+        }
+
+        public static void EliminarCaracteristica(short IdCaracteristica)
+        {
+            Datos.MaestrosDA.EliminarCaracteristica(IdCaracteristica);
+        }
+
+        public static List<Caracteristica> ConsultarCaracteristicas()
+        {
+            return Datos.MaestrosDA.ConsultarCaracteristicas();
+        }
+
+        #endregion
     }
 }
