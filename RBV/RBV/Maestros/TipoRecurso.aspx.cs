@@ -8,7 +8,7 @@ using Entidades = RBV_Clases;
 
 namespace RBV.Maestros
 {
-    public partial class Sector : System.Web.UI.Page
+    public partial class TipoRecurso : System.Web.UI.Page
     {
         public bool Actualizar
         {
@@ -29,13 +29,13 @@ namespace RBV.Maestros
             }
         }
 
-        public short IdSector
+        public short IdTipoRecurso
         {
             get
             {
-                if (ViewState["IdSector"] != null)
+                if (ViewState["IdTipoRecurso"] != null)
                 {
-                    return (short)ViewState["IdSector"];
+                    return (short)ViewState["IdTipoRecurso"];
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace RBV.Maestros
             }
             set
             {
-                ViewState["IdSector"] = value;
+                ViewState["IdTipoRecurso"] = value;
             }
         }
 
@@ -52,27 +52,27 @@ namespace RBV.Maestros
         {
             if (!IsPostBack)
             {
-                ConsultarSectores();
+                ConsultarTiposRecurso();
             }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Entidades.Sector sector = new Entidades.Sector();
-            sector.NombreSector = txtSector.Text.Trim();
+            Entidades.TipoRecurso tipoRecurso = new Entidades.TipoRecurso();
+            tipoRecurso.NombreTipoRecurso = txtTipoRecurso.Text.Trim();
 
             if (Actualizar)
             {
-                sector.IdSector = IdSector;
-                RBV_Negocio.MaestrosBO.ActualizarSector(sector);
+                tipoRecurso.IdTipoRecurso = IdTipoRecurso;
+                RBV_Negocio.MaestrosBO.ActualizarTipoRecurso(tipoRecurso);
                 Actualizar = false;
             }
             else
             {
-                RBV_Negocio.MaestrosBO.InsertarSector(sector);
+                RBV_Negocio.MaestrosBO.InsertarTipoRecurso(tipoRecurso);
             }
 
-            ConsultarSectores();
+            ConsultarTiposRecurso();
             LimpiarPagina();
         }
 
@@ -81,35 +81,33 @@ namespace RBV.Maestros
             LimpiarPagina();
         }
 
-        private void ConsultarSectores()
+        private void ConsultarTiposRecurso()
         {
-            grdSector.DataSource = RBV_Negocio.MaestrosBO.ConsultarSectores();
-            grdSector.DataBind();
+            grdTipoRecurso.DataSource = RBV_Negocio.MaestrosBO.ConsultarTiposRecurso();
+            grdTipoRecurso.DataBind();
         }
 
         private void LimpiarPagina()
         {
-            txtSector.Text = string.Empty;
+            txtTipoRecurso.Text = string.Empty;
             Actualizar = false;
         }
 
-        protected void grdSector_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void grdTipoRecurso_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtSector.Text = grdSector.Rows[e.NewEditIndex].Cells[1].Text;
-            IdSector = Convert.ToInt16(grdSector.Rows[e.NewEditIndex].Cells[0].Text);
+            txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[1].Text;
+            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text);
         }
 
-        protected void grdSector_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void grdTipoRecurso_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdSector = Convert.ToInt16(grdSector.Rows[e.RowIndex].Cells[0].Text);
-            RBV_Negocio.MaestrosBO.EliminarSector(IdSector);
+            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.Rows[e.RowIndex].Cells[0].Text);
+            RBV_Negocio.MaestrosBO.EliminarTipoRecurso(IdTipoRecurso);
 
-            ConsultarSectores();
+            ConsultarTiposRecurso();
             LimpiarPagina();
         }
-
-       
     }
 }

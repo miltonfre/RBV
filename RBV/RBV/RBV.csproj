@@ -89,6 +89,13 @@
     <Compile Include="Maestros\Sector.aspx.designer.cs">
       <DependentUpon>Sector.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\TipoRecurso.aspx.cs">
+      <DependentUpon>TipoRecurso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\TipoRecurso.aspx.designer.cs">
+      <DependentUpon>TipoRecurso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MemberPages\CrearUsuario.aspx.cs">
       <DependentUpon>CrearUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -371,6 +378,7 @@
     <Content Include="images\ico_X.gif" />
     <Content Include="Maestros\Clasificacion.aspx" />
     <Content Include="Maestros\Sector.aspx" />
+    <Content Include="Maestros\TipoRecurso.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
