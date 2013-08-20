@@ -56,7 +56,7 @@
     <Compile Include="aspnet_Roles.cs" />
     <Compile Include="aspnet_Users.cs" />
     <Compile Include="aspnet_UsersInRoles.cs" />
-    <Compile Include="caracteristicaRecursoValioso.cs" />
+    <Compile Include="Caracteristica.cs" />
     <Compile Include="Clasificacion.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="empresaUsuario.cs" />
