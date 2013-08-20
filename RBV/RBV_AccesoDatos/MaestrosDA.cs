@@ -176,5 +176,69 @@ namespace RBV_AccesoDatos
         }
 
         #endregion
+
+        #region Caracteristica
+
+        public static void InsertarCaracteristica(Caracteristica caracteristica)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.caracteristicaRecursoValiosos.InsertOnSubmit(new caracteristicaRecursoValioso
+            {
+                caracteristicaRV = caracteristica.NombreCaracteristica
+                ,idClasificacionRV = caracteristica.IdClasificacionRV
+            });
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void ActualizarCaracteristica(Caracteristica caracteristica)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            caracteristicaRecursoValioso caracteristicaAnterior = new caracteristicaRecursoValioso();
+
+            caracteristicaAnterior = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
+            caracteristicaAnterior.caracteristicaRV = caracteristica.NombreCaracteristica;
+            caracteristicaAnterior.idClasificacionRV = caracteristica.IdClasificacionRV;
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void EliminarCaracteristica(short IdCaracteristica)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+            caracteristicaRecursoValioso caracteristicaEliminar = new caracteristicaRecursoValioso();
+
+            caracteristicaEliminar = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == IdCaracteristica);
+            contextoRBV.caracteristicaRecursoValiosos.DeleteOnSubmit(caracteristicaEliminar);
+            contextoRBV.SubmitChanges();
+        }
+
+        public static List<Caracteristica> ConsultarCaracteristicas()
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<Caracteristica> caracteristicas = new List<Caracteristica>();
+
+            caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+
+                               select new Caracteristica
+                               {
+                                   IdCaracteristica = caracteristicaC.idCaracteristicaRV,
+                                   NombreCaracteristica = caracteristicaC.caracteristicaRV,
+                                   IdClasificacionRV = caracteristicaC.idClasificacionRV,
+                                   ClasificacionAsociada = new Clasificacion
+                                   {
+                                       IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
+                                       ClasificacionRV = caracteristicaC.clasificacionRecursoValioso.clasificacionRV
+                                   }
+                               }).ToList();
+
+
+            return caracteristicas;
+        }
+
+        #endregion
     }
 }
