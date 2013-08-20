@@ -5,18 +5,13 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"/> 
     <asp:UpdatePanel ID="updatepanel1" RenderMode="Inline" runat="server" UpdateMode="Always">
            <ContentTemplate>
-          <%--  <cc1:ValidationSummary ID="ValidationSummary1" runat="server" 
-            UpdatePanel="updatepanel1"  ValidationGroup="ctl05$Login1" DisplayMode="BulletList"  
-            ShowMessageBox="true"  HeaderText=""  
-            MensajeDeIntroduccion=""
-            ShowSummary="false" />--%>
-               <asp:Login ID="Login1" runat="server" 
-        FailureText="<%$ Resources:Login1FailureText %>" 
+                         <asp:Login ID="Login1" runat="server" 
+        FailureText="<%$ Resources:Login1FailureText %>"  CreateUserUrl="~/MemberPages/CrearUsuario.aspx" DestinationPageUrl="~/Default.aspx" CreateUserText="Crear nuevo usuario"
                 LoginButtonText="<%$ Resources:Login1LoginButtonText %>" PasswordLabelText="<%$ Resources:Login1PasswordLabelText %>" PasswordRequiredErrorMessage="<%$ Resources:Login1PasswordRequiredErrorMessage %>"
                 RememberMeText="<%$ Resources:Login1RememberMeText %>" TitleText="<%$ Resources:Login1TitleText %>" UserNameLabelText="<%$ Resources:Login1UserNameLabelText %>"
-                UserNameRequiredErrorMessage="<%$ Resources:Login1UserNameRequiredErrorMessage %>" OnAuthenticate="Login1_Authenticate">
+                UserNameRequiredErrorMessage="<%$ Resources:Login1UserNameRequiredErrorMessage %>" >
                 
-               <LabelStyle HorizontalAlign="left" />
+               <LabelStyle HorizontalAlign="Center" />
                 <LayoutTemplate>
                   
                    <asp:Panel ID="mainLogin" runat="server" DefaultButton="LoginButton">
