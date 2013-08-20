@@ -75,6 +75,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\Caracteristica.aspx.cs">
+      <DependentUpon>Caracteristica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\Caracteristica.aspx.designer.cs">
+      <DependentUpon>Caracteristica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\Clasificacion.aspx.cs">
       <DependentUpon>Clasificacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -376,6 +383,7 @@
     <Content Include="images\ico_borrar.gif" />
     <Content Include="images\ico_lapiz.gif" />
     <Content Include="images\ico_X.gif" />
+    <Content Include="Maestros\Caracteristica.aspx" />
     <Content Include="Maestros\Clasificacion.aspx" />
     <Content Include="Maestros\Sector.aspx" />
     <Content Include="Maestros\TipoRecurso.aspx" />
