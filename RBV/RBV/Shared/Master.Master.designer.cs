@@ -14,15 +14,6 @@ namespace RBV {
     public partial class Site1 {
         
         /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -59,40 +50,22 @@ namespace RBV {
         protected global::System.Web.UI.WebControls.Label lblUsuario;
         
         /// <summary>
-        /// panelMenu control.
+        /// Menu1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelMenu;
+        protected global::System.Web.UI.WebControls.Menu Menu1;
         
         /// <summary>
-        /// MenuSource control.
+        /// SiteMapDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource MenuSource;
-        
-        /// <summary>
-        /// NavigationMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu NavigationMenu;
-        
-        /// <summary>
-        /// SiteMapPath1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath SiteMapPath1;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
         
         /// <summary>
         /// cphContenidoPaginas control.
