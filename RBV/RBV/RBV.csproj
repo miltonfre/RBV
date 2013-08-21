@@ -89,6 +89,20 @@
     <Compile Include="Maestros\Clasificacion.aspx.designer.cs">
       <DependentUpon>Clasificacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\Empresa.aspx.cs">
+      <DependentUpon>Empresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\Empresa.aspx.designer.cs">
+      <DependentUpon>Empresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maestros\EscalaCalificacion.aspx.cs">
+      <DependentUpon>EscalaCalificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\EscalaCalificacion.aspx.designer.cs">
+      <DependentUpon>EscalaCalificacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\Sector.aspx.cs">
       <DependentUpon>Sector.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -385,6 +399,8 @@
     <Content Include="images\ico_X.gif" />
     <Content Include="Maestros\Caracteristica.aspx" />
     <Content Include="Maestros\Clasificacion.aspx" />
+    <Content Include="Maestros\Empresa.aspx" />
+    <Content Include="Maestros\EscalaCalificacion.aspx" />
     <Content Include="Maestros\Sector.aspx" />
     <Content Include="Maestros\TipoRecurso.aspx" />
   </ItemGroup>

@@ -101,5 +101,53 @@ namespace RBV_Negocio
         }
 
         #endregion
+
+        #region Empresa
+
+        public static void InsertarEmpresa(Empresa empresaInsertar)
+        {
+            Datos.MaestrosDA.InsertarEmpresa(empresaInsertar);
+        }
+
+        public static void ActualizarEmpresa(Empresa empresaActualizar)
+        {
+            Datos.MaestrosDA.ActualizarEmpresa(empresaActualizar);
+        }
+
+        public static void EliminarEmpresa(short IdEmpresa)
+        {
+            Datos.MaestrosDA.EliminarEmpresa(IdEmpresa);
+        }
+
+        public static List<Empresa> ConsultarEmpresas()
+        {
+            return Datos.MaestrosDA.ConsultarEmpresas();
+        }
+
+        #endregion
+
+        #region EscalaCalificacion
+
+        public static void InsertarEscalaCalificacion(EscalaCalificacion escalaCalificacionInsertar)
+        {
+            Datos.MaestrosDA.InsertarEscalaCalificacion(escalaCalificacionInsertar);
+        }
+
+        public static void ActualizarEscalaCalificacion(EscalaCalificacion escalaCalificacionActualizar)
+        {
+            Datos.MaestrosDA.ActualizarEscalaCalificacion(escalaCalificacionActualizar);
+        }
+
+        public static void EliminarEscalaCalificacion(short IdEscalaCalificacion)
+        {
+            Datos.MaestrosDA.EliminarEscalaCalificacion(IdEscalaCalificacion);
+        }
+
+        public static List<EscalaCalificacion> ConsultarEscalaCalificaciones(short IdEmpresa)
+        {
+            return Datos.MaestrosDA.ConsultarEscalaCalificaciones(IdEmpresa);
+        }
+
+        #endregion
     }
 }

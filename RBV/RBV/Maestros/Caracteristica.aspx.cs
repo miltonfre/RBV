@@ -50,8 +50,7 @@ namespace RBV.Maestros
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //radComboBox.Items.Insert(0, new RadComboBoxItem(Etiquetas.ITEM_VACIO, Etiquetas.ID_ITEM_VACIO));
-            //radComboBox.SelectedValue = Etiquetas.ID_ITEM_VACIO;
+            
             if (!IsPostBack)
             {
                 ConsultarCaracteristicas();

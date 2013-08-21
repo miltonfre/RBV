@@ -240,5 +240,129 @@ namespace RBV_AccesoDatos
         }
 
         #endregion
+
+        #region Empresa
+
+        public static void InsertarEmpresa(Empresa empresaInsertar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.empresas.InsertOnSubmit(new empresa
+            {
+                nombreEmpresa = empresaInsertar.NombreEmpresa,
+                nit = empresaInsertar.Nit,
+                represetanteLegal = empresaInsertar.RepresetanteLegal
+            });
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void ActualizarEmpresa(Empresa empresaActualizar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            empresa empresaAnterior = new empresa();
+
+            empresaAnterior = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa == empresaActualizar.IdEmpresa);
+            empresaAnterior.nombreEmpresa = empresaActualizar.NombreEmpresa;
+            empresaAnterior.represetanteLegal = empresaActualizar.RepresetanteLegal;
+            empresaAnterior.nit = empresaActualizar.Nit;
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void EliminarEmpresa(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+            empresa empresaEliminar = new empresa();
+
+            empresaEliminar = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
+            contextoRBV.empresas.DeleteOnSubmit(empresaEliminar);
+            contextoRBV.SubmitChanges();
+        }
+
+        public static List<Empresa> ConsultarEmpresas()
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<Empresa> empresas = new List<Empresa>();
+
+            empresas = (from empresaC in contextoRBV.empresas
+
+                               select new Empresa
+                               {
+                                   IdEmpresa = empresaC.idEmpresa,
+                                   NombreEmpresa = empresaC.nombreEmpresa,
+                                   RepresetanteLegal = empresaC.represetanteLegal ,
+                                   Nit = empresaC.nit
+                               }).ToList();
+
+
+            return empresas;
+        }
+
+        #endregion
+
+        #region EscalaCalificacion
+
+        public static void InsertarEscalaCalificacion(EscalaCalificacion escalaCalificacionInsertar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.escalaCalificacions.InsertOnSubmit(new escalaCalificacion
+            {
+                Escala = escalaCalificacionInsertar.Escala,
+                Valor = escalaCalificacionInsertar.Valor,
+                idEmpresa = escalaCalificacionInsertar.IdEmpresa
+            });
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void ActualizarEscalaCalificacion(EscalaCalificacion escalaCalificacionActualizar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            escalaCalificacion escalaCalificacionAnterior = new escalaCalificacion();
+
+            escalaCalificacionAnterior = contextoRBV.escalaCalificacions.SingleOrDefault(p => p.IdEscalaCalificacion == escalaCalificacionActualizar.IdEscalaCalificacion);
+            escalaCalificacionAnterior.idEmpresa = escalaCalificacionActualizar.IdEmpresa;
+            escalaCalificacionAnterior.Valor = escalaCalificacionActualizar.Valor;
+            escalaCalificacionAnterior.Escala = escalaCalificacionActualizar.Escala;
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void EliminarEscalaCalificacion(short IdEscalaCalificacion)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+            escalaCalificacion escalaCalificacionEliminar = new escalaCalificacion();
+
+            escalaCalificacionEliminar = contextoRBV.escalaCalificacions.SingleOrDefault(p => p.IdEscalaCalificacion == IdEscalaCalificacion);
+            contextoRBV.escalaCalificacions.DeleteOnSubmit(escalaCalificacionEliminar);
+            contextoRBV.SubmitChanges();
+        }
+
+        public static List<EscalaCalificacion> ConsultarEscalaCalificaciones(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<EscalaCalificacion> escalaCalificacion = new List<EscalaCalificacion>();
+
+            escalaCalificacion = (from escalaC in contextoRBV.escalaCalificacions
+                                  where (escalaC.idEmpresa == IdEmpresa)
+                        select new EscalaCalificacion
+                        {
+                            IdEmpresa = escalaC.idEmpresa,
+                            IdEscalaCalificacion = escalaC.IdEscalaCalificacion,
+                            Escala = escalaC.Escala,
+                            Valor = escalaC.Valor
+                        }).ToList();
+
+
+            return escalaCalificacion;
+        }
+
+        #endregion
     }
 }

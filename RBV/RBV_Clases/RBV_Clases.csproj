@@ -60,7 +60,7 @@
     <Compile Include="Clasificacion.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="empresaUsuario.cs" />
-    <Compile Include="escalaCalificacion.cs" />
+    <Compile Include="EscalaCalificacion.cs" />
     <Compile Include="escalaValoracion.cs" />
     <Compile Include="matrizValoracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
