@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Master.Master" CodeBehind="TipoRecurso.aspx.cs" Inherits="RBV.Maestros.TipoRecurso" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Shared/Master.Master" CodeBehind="TipoRecurso.aspx.cs" Inherits="RBV.Maestros.TipoRecurso" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
     <div>
     <table>

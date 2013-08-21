@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sector.aspx.cs" Inherits="RBV.Maestros.Sector" MasterPageFile="~/Master.Master"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sector.aspx.cs" Inherits="RBV.Maestros.Sector" MasterPageFile="~/Shared/Master.Master"  %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
     <div>
