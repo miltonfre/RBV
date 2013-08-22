@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RBV_Clases
 {
@@ -8,5 +9,6 @@ namespace RBV_Clases
         public string Nit { get; set; }
         public string NombreEmpresa { get; set; }
         public string RepresetanteLegal { get; set; }
+        public List<SectorEmpresa> SectoresEmpresas { get; set; }
     }
 }

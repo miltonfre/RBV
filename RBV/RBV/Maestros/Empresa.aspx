@@ -29,6 +29,14 @@
             </tr>
             <tr>
                 <td>
+                    <asp:Label ID="lblSector" Text="Sector: *" runat="server"></asp:Label>
+                </td>
+                <td>
+                    <asp:CheckBoxList ID="chklSector" runat="server" DataValueField="IdSector" DataTextField="NombreSector"></asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <asp:Button ID ="btnGuardar" Text="Guardar" runat="server" 
                         onclick="btnGuardar_Click" />
                 </td>

@@ -149,5 +149,13 @@ namespace RBV_Negocio
         }
 
         #endregion
+
+        #region SectorEmpresa
+
+        public static List<SectorEmpresa> ConsultarSectorEmpresa(short IdEmpresa)
+        {
+            return Datos.MaestrosDA.ConsultarSectorEmpresa(IdEmpresa);
+        }
+        #endregion
     }
 }

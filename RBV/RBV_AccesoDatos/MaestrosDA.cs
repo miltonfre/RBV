@@ -247,14 +247,23 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.empresas.InsertOnSubmit(new empresa
-            {
-                nombreEmpresa = empresaInsertar.NombreEmpresa,
-                nit = empresaInsertar.Nit,
-                represetanteLegal = empresaInsertar.RepresetanteLegal
-            });
+            empresa empresa = new empresa();
+            empresa.nit = empresaInsertar.Nit;
+            empresa.nombreEmpresa = empresaInsertar.NombreEmpresa;
+            empresa.represetanteLegal = empresaInsertar.RepresetanteLegal;
 
+            //contextoRBV.empresas.InsertOnSubmit(new empresa
+            //{
+            //    nombreEmpresa = empresaInsertar.NombreEmpresa,
+            //    nit = empresaInsertar.Nit,
+            //    represetanteLegal = empresaInsertar.RepresetanteLegal,
+            //    idEmpresa = empresaInsertar.IdEmpresa
+            //});
+            contextoRBV.empresas.InsertOnSubmit(empresa);
+            
             contextoRBV.SubmitChanges();
+            (from sectorC in empresaInsertar.SectoresEmpresas select sectorC.IdEmpresa = empresa.idEmpresa).ToList();
+            InsertarEmpresaSector(empresaInsertar.SectoresEmpresas);
         }
 
         public static void ActualizarEmpresa(Empresa empresaActualizar)
@@ -268,7 +277,11 @@ namespace RBV_AccesoDatos
             empresaAnterior.represetanteLegal = empresaActualizar.RepresetanteLegal;
             empresaAnterior.nit = empresaActualizar.Nit;
 
+            (from sectorC in empresaActualizar.SectoresEmpresas select sectorC.IdEmpresa = empresaActualizar.IdEmpresa).ToList();
+            
             contextoRBV.SubmitChanges();
+
+            ActualizarEmpresaSector(empresaActualizar.SectoresEmpresas);
         }
 
         public static void EliminarEmpresa(short IdEmpresa)
@@ -276,6 +289,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             empresa empresaEliminar = new empresa();
 
+            EliminarEmpresaSector(IdEmpresa);
+            
             empresaEliminar = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
             contextoRBV.empresas.DeleteOnSubmit(empresaEliminar);
             contextoRBV.SubmitChanges();
@@ -289,13 +304,20 @@ namespace RBV_AccesoDatos
 
             empresas = (from empresaC in contextoRBV.empresas
 
-                               select new Empresa
-                               {
-                                   IdEmpresa = empresaC.idEmpresa,
-                                   NombreEmpresa = empresaC.nombreEmpresa,
-                                   RepresetanteLegal = empresaC.represetanteLegal ,
-                                   Nit = empresaC.nit
-                               }).ToList();
+                        select new Empresa
+                        {
+                            IdEmpresa = empresaC.idEmpresa,
+                            NombreEmpresa = empresaC.nombreEmpresa,
+                            RepresetanteLegal = empresaC.represetanteLegal,
+                            Nit = empresaC.nit,
+                            SectoresEmpresas = (from sectorC in empresaC.sectorEmpresas 
+                                                select new SectorEmpresa 
+                                                { 
+                                                    IdSector = sectorC.idSector, 
+                                                    IdEmpresa = sectorC.idEmpresa 
+                                                }).ToList()
+
+                        }).ToList();
 
 
             return empresas;
@@ -363,6 +385,71 @@ namespace RBV_AccesoDatos
             return escalaCalificacion;
         }
 
+        #endregion
+
+        #region EmpresaSector
+        private static void InsertarEmpresaSector(List<SectorEmpresa> SectoresEmpresas)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.sectorEmpresas.InsertAllOnSubmit((from sectorC in SectoresEmpresas select new sectorEmpresa 
+                                        { 
+                                            idSector = sectorC.IdSector, 
+                                            idEmpresa = sectorC.IdEmpresa 
+                                        }).ToList());
+
+            contextoRBV.SubmitChanges();
+        }
+
+        private static void ActualizarEmpresaSector(List<SectorEmpresa> SectoresEmpresas)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<sectorEmpresa> sectoresEmpresaEliminar = new List<sectorEmpresa>();
+
+            sectoresEmpresaEliminar = contextoRBV.sectorEmpresas.Where(p => p.idEmpresa == SectoresEmpresas[0].IdEmpresa).ToList();
+            contextoRBV.sectorEmpresas.DeleteAllOnSubmit(sectoresEmpresaEliminar);
+
+            contextoRBV.sectorEmpresas.InsertAllOnSubmit((from sectorC in SectoresEmpresas
+                                                          select new sectorEmpresa
+                                                          {
+                                                              idSector = sectorC.IdSector,
+                                                              idEmpresa = sectorC.IdEmpresa
+                                                          }).ToList());
+            
+            contextoRBV.SubmitChanges();            
+        }
+
+        private static void EliminarEmpresaSector(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<sectorEmpresa> sectoresEmpresaEliminar = new List<sectorEmpresa>();
+
+            sectoresEmpresaEliminar = contextoRBV.sectorEmpresas.Where(p => p.idEmpresa == IdEmpresa).ToList();
+            contextoRBV.sectorEmpresas.DeleteAllOnSubmit(sectoresEmpresaEliminar);
+
+            contextoRBV.SubmitChanges();            
+        }
+
+        public static List<SectorEmpresa> ConsultarSectorEmpresa(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<SectorEmpresa> sectoresEmpresas = new List<SectorEmpresa>();
+
+
+            sectoresEmpresas = (from sectorC in contextoRBV.sectorEmpresas
+                                where sectorC.idEmpresa == IdEmpresa
+                                select new SectorEmpresa
+                                {
+                                    IdEmpresa = sectorC.idEmpresa,
+                                    IdSector = sectorC.idSector
+
+                                }).ToList();
+
+            return sectoresEmpresas;
+        }
         #endregion
     }
 }

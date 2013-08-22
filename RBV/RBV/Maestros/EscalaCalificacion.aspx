@@ -46,8 +46,8 @@
                     <Columns>
                         <asp:BoundField DataField="IdEscalaCalificacion" HeaderText="Id Empresa" />
                         <asp:BoundField DataField="Escala" HeaderText="Nombre Empresa" />
-                        <asp:BoundField DataField="Valor" HeaderText="NIT" />
-                        <asp:BoundField DataField="idEmpresa" HeaderText="Empresa" Visible="false" />
+                        <asp:BoundField DataField="Valor" HeaderText="Valor" />
+                        <asp:BoundField DataField="idEmpresa" HeaderText="Empresa" Visible="true" />
                         <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText ="Editar" 
                             EditImageUrl="~/images/ico_lapiz.gif" />
                         <asp:CommandField ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" HeaderText ="Eliminar" 

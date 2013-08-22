@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades = RBV_Clases;
 
+
 namespace RBV.Maestros
 {
     public partial class Empresa : System.Web.UI.Page
@@ -52,8 +53,15 @@ namespace RBV.Maestros
         {
             if (!IsPostBack)
             {
-                ConsultarEmpresas();
+                ConsultarSectores();
+                ConsultarEmpresas();                
             }
+        }
+
+        private void ConsultarSectores()
+        {
+            chklSector.DataSource = RBV_Negocio.MaestrosBO.ConsultarSectores();
+            chklSector.DataBind();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -67,6 +75,18 @@ namespace RBV.Maestros
             empresa.NombreEmpresa = txtEmpresa.Text.Trim();
             empresa.Nit = txtNIT.Text.Trim();
             empresa.RepresetanteLegal = txtRepresentante.Text.Trim();
+
+            List<Entidades.SectorEmpresa> SectorEmpresas = new List<Entidades.SectorEmpresa>();
+            foreach (ListItem item in chklSector.Items)
+	        {
+                if (item.Selected)
+                {
+                    Entidades.SectorEmpresa sectorEmpresa = new Entidades.SectorEmpresa();
+                    sectorEmpresa.IdSector = Convert.ToInt16(item.Value);
+                    SectorEmpresas.Add(sectorEmpresa);                    
+                }
+	        }
+            empresa.SectoresEmpresas = SectorEmpresas;
 
             if (Actualizar)
             {
@@ -95,6 +115,7 @@ namespace RBV.Maestros
             txtNIT.Text = string.Empty;
             txtRepresentante.Text = string.Empty;
             Actualizar = false;
+            chklSector.ClearSelection();
         }
 
         protected void grdEmpresas_RowEditing(object sender, GridViewEditEventArgs e)
@@ -104,6 +125,21 @@ namespace RBV.Maestros
             txtNIT.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[2].Text;
             txtRepresentante.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[3].Text;
             IdEmpresa = Convert.ToInt16(grdEmpresas.Rows[e.NewEditIndex].Cells[0].Text);
+
+            List<Entidades.SectorEmpresa> sectoresEmpresas = RBV_Negocio.MaestrosBO.ConsultarSectorEmpresa(IdEmpresa);
+
+            foreach (Entidades.SectorEmpresa item in sectoresEmpresas)
+            {
+                for (int i = 0; i < chklSector.Items.Count; i++)
+			    {
+                    if (chklSector.Items[i].Value.Equals(item.IdSector.ToString()))
+	                {
+                        chklSector.Items[i].Selected = true;
+	                }
+			        
+			    }
+                
+            }
         }
 
         protected void grdEmpresas_RowDeleting(object sender, GridViewDeleteEventArgs e)
