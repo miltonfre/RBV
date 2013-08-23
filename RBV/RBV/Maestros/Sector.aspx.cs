@@ -96,14 +96,14 @@ namespace RBV.Maestros
         protected void grdSector_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtSector.Text = grdSector.Rows[e.NewEditIndex].Cells[1].Text;
-            IdSector = Convert.ToInt16(grdSector.Rows[e.NewEditIndex].Cells[0].Text);
+            txtSector.Text = grdSector.Rows[e.NewEditIndex].Cells[0].Text;
+            IdSector = Convert.ToInt16(grdSector.DataKeys[e.NewEditIndex].Value);
         }
 
         protected void grdSector_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdSector = Convert.ToInt16(grdSector.Rows[e.RowIndex].Cells[0].Text);
+            IdSector = Convert.ToInt16(grdSector.DataKeys[e.RowIndex].Value);
             RBV_Negocio.MaestrosBO.EliminarSector(IdSector);
 
             ConsultarSectores();

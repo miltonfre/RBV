@@ -120,11 +120,10 @@ namespace RBV.Maestros
 
         protected void grdEmpresas_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Actualizar = true;
-            txtEmpresa.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[1].Text;
-            txtNIT.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[2].Text;
-            txtRepresentante.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[3].Text;
-            IdEmpresa = Convert.ToInt16(grdEmpresas.Rows[e.NewEditIndex].Cells[0].Text);
+            txtEmpresa.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[0].Text;
+            txtNIT.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[1].Text;
+            txtRepresentante.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[2].Text;
+            IdEmpresa = Convert.ToInt16(grdEmpresas.DataKeys[e.NewEditIndex].Value); 
 
             List<Entidades.SectorEmpresa> sectoresEmpresas = RBV_Negocio.MaestrosBO.ConsultarSectorEmpresa(IdEmpresa);
 

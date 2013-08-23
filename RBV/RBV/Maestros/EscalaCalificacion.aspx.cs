@@ -74,7 +74,7 @@ namespace RBV.Maestros
 
             if (Actualizar)
             {
-                escalaCalificacion.IdEmpresa = IdEscalaCalificacion;
+                escalaCalificacion.IdEscalaCalificacion = IdEscalaCalificacion;
                 RBV_Negocio.MaestrosBO.ActualizarEscalaCalificacion(escalaCalificacion);
                 Actualizar = false;
             }
@@ -104,17 +104,17 @@ namespace RBV.Maestros
         protected void grdEscalaCalificaciones_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtEscala.Text = grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[1].Text;
-            txtValor.Text = grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[2].Text;
-            ddlEmpresas.SelectedValue = grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[3].Text;
-            IdEscalaCalificacion = Convert.ToInt16(grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[0].Text);
+            txtEscala.Text = grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[0].Text;
+            txtValor.Text = grdEscalaCalificaciones.Rows[e.NewEditIndex].Cells[1].Text;
+            ddlEmpresas.SelectedValue = grdEscalaCalificaciones.DataKeys[e.NewEditIndex].Values[1].ToString(); 
+            IdEscalaCalificacion = Convert.ToInt16(grdEscalaCalificaciones.DataKeys[e.NewEditIndex].Value); 
         }
 
         protected void grdEscalaCalificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdEscalaCalificacion = Convert.ToInt16(grdEscalaCalificaciones.Rows[e.RowIndex].Cells[0].Text);
-            short IdEmpresa = Convert.ToInt16(grdEscalaCalificaciones.Rows[e.RowIndex].Cells[3].Text);
+            IdEscalaCalificacion = Convert.ToInt16(grdEscalaCalificaciones.DataKeys[e.RowIndex].Value);
+            short IdEmpresa = Convert.ToInt16(grdEscalaCalificaciones.DataKeys[e.RowIndex].Values[1].ToString());
             RBV_Negocio.MaestrosBO.EliminarEscalaCalificacion(IdEscalaCalificacion);
 
             ConsultarEscalaCalificaciones(IdEmpresa);

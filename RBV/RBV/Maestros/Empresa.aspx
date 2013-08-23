@@ -49,9 +49,8 @@
             <td colspan="2">
                 <asp:GridView ID="grdEmpresas" runat="server" 
                     AutoGenerateColumns="False" onrowediting="grdEmpresas_RowEditing" 
-                    onrowdeleting="grdEmpresas_RowDeleting">
+                    onrowdeleting="grdEmpresas_RowDeleting" DataKeyNames="idEmpresa">
                     <Columns>
-                        <asp:BoundField DataField="idEmpresa" HeaderText="Id Empresa" />
                         <asp:BoundField DataField="nombreEmpresa" HeaderText="Nombre Empresa" />
                         <asp:BoundField DataField="nit" HeaderText="NIT" />
                         <asp:BoundField DataField="represetanteLegal" HeaderText="Representante Legal" />

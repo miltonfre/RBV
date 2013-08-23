@@ -96,14 +96,14 @@ namespace RBV.Maestros
         protected void grdTipoRecurso_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[1].Text;
-            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text);
+            txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text;
+            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.DataKeys[e.NewEditIndex].Value);
         }
 
         protected void grdTipoRecurso_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.Rows[e.RowIndex].Cells[0].Text);
+            IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.DataKeys[e.RowIndex].Value);
             RBV_Negocio.MaestrosBO.EliminarTipoRecurso(IdTipoRecurso);
 
             ConsultarTiposRecurso();

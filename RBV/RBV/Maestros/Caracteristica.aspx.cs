@@ -104,15 +104,15 @@ namespace RBV.Maestros
         protected void grdCaracteristica_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtCaracteristica.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[1].Text;
-            IdCaracteristica = Convert.ToInt16(grdCaracteristica.Rows[e.NewEditIndex].Cells[0].Text);
-            ddlClasificacion.SelectedValue = ((Label)grdCaracteristica.Rows[e.NewEditIndex].Cells[2].FindControl("lblIdClasificionG")).Text;
+            txtCaracteristica.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[0].Text;
+            IdCaracteristica = Convert.ToInt16(grdCaracteristica.DataKeys[e.NewEditIndex].Value);
+            ddlClasificacion.SelectedValue = ((Label)grdCaracteristica.Rows[e.NewEditIndex].Cells[1].FindControl("lblIdClasificionG")).Text;
         }
 
         protected void grdCaracteristica_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdCaracteristica = Convert.ToInt16(grdCaracteristica.Rows[e.RowIndex].Cells[0].Text);
+            IdCaracteristica = Convert.ToInt16(grdCaracteristica.DataKeys[e.RowIndex].Value); 
             RBV_Negocio.MaestrosBO.EliminarCaracteristica(IdCaracteristica);
 
             ConsultarCaracteristicas();

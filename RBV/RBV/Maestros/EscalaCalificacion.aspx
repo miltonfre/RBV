@@ -8,7 +8,7 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlEmpresas" DataValueField="idEmpresa" 
-                        DataTextField="nombreEmpresa" runat="server" 
+                        DataTextField="nombreEmpresa" runat="server" AutoPostBack="true"
                         onselectedindexchanged="ddlEmpresas_SelectedIndexChanged"></asp:DropDownList>
                 </td>
             </tr>
@@ -42,12 +42,10 @@
             <td colspan="2">
                 <asp:GridView ID="grdEscalaCalificaciones" runat="server" 
                     AutoGenerateColumns="False" onrowediting="grdEscalaCalificaciones_RowEditing" 
-                    onrowdeleting="grdEscalaCalificaciones_RowDeleting">
+                    onrowdeleting="grdEscalaCalificaciones_RowDeleting" DataKeyNames="IdEscalaCalificacion,idEmpresa">
                     <Columns>
-                        <asp:BoundField DataField="IdEscalaCalificacion" HeaderText="Id Empresa" />
                         <asp:BoundField DataField="Escala" HeaderText="Nombre Empresa" />
                         <asp:BoundField DataField="Valor" HeaderText="Valor" />
-                        <asp:BoundField DataField="idEmpresa" HeaderText="Empresa" Visible="true" />
                         <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText ="Editar" 
                             EditImageUrl="~/images/ico_lapiz.gif" />
                         <asp:CommandField ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" HeaderText ="Eliminar" 

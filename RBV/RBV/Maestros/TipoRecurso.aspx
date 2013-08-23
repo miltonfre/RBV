@@ -22,9 +22,9 @@
                 <td colspan="2">
                     <asp:GridView ID="grdTipoRecurso" runat="server" AutoGenerateColumns="False" 
                         onrowdeleting="grdTipoRecurso_RowDeleting" onrowediting="grdTipoRecurso_RowEditing" 
-                        >
+                        DataKeyNames="IdTipoRecurso">
                         <Columns>
-                            <asp:BoundField DataField="IdTipoRecurso" HeaderText="Id Sector" />
+                            
                             <asp:BoundField DataField="NombreTipoRecurso" HeaderText="Sector" />
                             <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="Editar" EditImageUrl="~/images/ico_lapiz.gif" />
                             <asp:CommandField DeleteText="Eliminar" ShowDeleteButton="True" HeaderText="Eliminar"

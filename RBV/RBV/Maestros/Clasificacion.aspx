@@ -26,9 +26,8 @@
             <td colspan="2">
                 <asp:GridView ID="grdClasificaciones" runat="server" 
                     AutoGenerateColumns="False" onrowediting="grdClasificaciones_RowEditing" 
-                    onrowdeleting="grdClasificaciones_RowDeleting">
+                    onrowdeleting="grdClasificaciones_RowDeleting" DataKeyNames="IdClasificacionRV">
                     <Columns>
-                        <asp:BoundField DataField="IdClasificacionRV" HeaderText="Id Clasificacion" />
                         <asp:BoundField DataField="ClasificacionRV" HeaderText="ClasificacionRV" />
                         <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText ="Editar" 
                             EditImageUrl="~/images/ico_lapiz.gif" />

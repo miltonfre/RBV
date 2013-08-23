@@ -22,9 +22,8 @@
             <tr>
                 <td colspan="2">
                     <asp:GridView ID="grdSector" runat="server" AutoGenerateColumns="False" OnRowDeleting="grdSector_RowDeleting"
-                        OnRowEditing="grdSector_RowEditing">
+                        OnRowEditing="grdSector_RowEditing" DataKeyNames="IdSector">
                         <Columns>
-                            <asp:BoundField DataField="idSector" HeaderText="Id Sector" />
                             <asp:BoundField DataField="NombreSector" HeaderText="Sector" />
                             <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="Editar" EditImageUrl="~/images/ico_lapiz.gif" />
                             <asp:CommandField DeleteText="Eliminar" ShowDeleteButton="True" HeaderText="Eliminar"

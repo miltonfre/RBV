@@ -97,14 +97,14 @@ namespace RBV.Maestros
         protected void grdClasificaciones_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtClasificacion.Text = grdClasificaciones.Rows[e.NewEditIndex].Cells[1].Text;
-            IdClasificacion = Convert.ToInt16(grdClasificaciones.Rows[e.NewEditIndex].Cells[0].Text);
+            txtClasificacion.Text = grdClasificaciones.Rows[e.NewEditIndex].Cells[0].Text;
+            IdClasificacion = Convert.ToInt16(grdClasificaciones.DataKeys[e.NewEditIndex].Value); 
         }
 
         protected void grdClasificaciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdClasificacion = Convert.ToInt16(grdClasificaciones.Rows[e.RowIndex].Cells[0].Text);
+            IdClasificacion = Convert.ToInt16(grdClasificaciones.DataKeys[e.RowIndex].Value); 
             RBV_Negocio.MaestrosBO.EliminarClasificacion(IdClasificacion);
 
             ConsultarClasificaciones();

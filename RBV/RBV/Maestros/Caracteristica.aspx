@@ -33,9 +33,8 @@
             <tr>
                 <td colspan="2">
                     <asp:GridView ID="grdCaracteristica" runat="server" AutoGenerateColumns="False" OnRowEditing="grdCaracteristica_RowEditing"
-                        OnRowDeleting="grdCaracteristica_RowDeleting">
+                        OnRowDeleting="grdCaracteristica_RowDeleting" DataKeyNames="IdCaracteristica">
                         <Columns>
-                            <asp:BoundField DataField="IdCaracteristica" HeaderText="Id Caracteristica" />
                             <asp:BoundField DataField="NombreCaracteristica" HeaderText="Caracteristica" />
                             <asp:TemplateField Visible="false">
                                 <ItemTemplate>
