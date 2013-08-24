@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="Administración"  description="">
+    <siteMapNode url="" title="Usuarios"  description="">
+      <siteMapNode url="MemberPages/CrearUsuario.aspx" title="Crear Usuario"  description="" />
+    </siteMapNode>
+    <siteMapNode url="" title="Maestros"  description="">
+      <siteMapNode url="Maestros/Caracteristica.aspx" title="Característica"  description="" />
+      <siteMapNode url="Maestros/Clasificacion.aspx" title="Clasificación"  description="" />
+      <siteMapNode url="Maestros/Sector.aspx" title="Sector"  description="" />
+      <siteMapNode url="Maestros/TipoRecurso.aspx" title="Tipo de Recurso"  description="" />
+      <siteMapNode url="Maestros/Empresa.aspx" title="Empresa"  description="" />
+      <siteMapNode url="Maestros/EscalaCalificacion.aspx" title="Escala de Calificación"  description="" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

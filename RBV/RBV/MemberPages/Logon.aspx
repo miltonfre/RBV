@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Shared/Master.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="RBV.MemberPages.Logon" Title="Recursos Valiosos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" Inherits="RBV.MemberPages.Logon" Title="Recursos Valiosos" %>
 <%--<%@ Register Assembly="Web" Namespace="System.Web.UI.WebControls" TagPrefix="cc1" %>--%>
- 
-<asp:Content ID="Content1" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
+ <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
+<div>
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"/> 
     <asp:UpdatePanel ID="updatepanel1" RenderMode="Inline" runat="server" UpdateMode="Always">
            <ContentTemplate>
