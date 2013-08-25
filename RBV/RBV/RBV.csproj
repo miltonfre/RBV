@@ -104,6 +104,13 @@
     <Compile Include="Maestros\EscalaCalificacion.aspx.designer.cs">
       <DependentUpon>EscalaCalificacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\Recursos.aspx.cs">
+      <DependentUpon>Recursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\Recursos.aspx.designer.cs">
+      <DependentUpon>Recursos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\Sector.aspx.cs">
       <DependentUpon>Sector.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +413,7 @@
     <Content Include="Maestros\TipoRecurso.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Maestros\Recursos.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>

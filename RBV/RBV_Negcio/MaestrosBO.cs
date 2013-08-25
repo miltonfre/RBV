@@ -157,5 +157,29 @@ namespace RBV_Negocio
             return Datos.MaestrosDA.ConsultarSectorEmpresa(IdEmpresa);
         }
         #endregion
+
+        #region Recursos
+
+        public static void InsertarRecurso(RecursosEmpresa recursoInsertar)
+        {
+            Datos.MaestrosDA.InsertarRecurso(recursoInsertar);
+        }
+
+        public static void ActualizarRecurso(RecursosEmpresa recursoActualizar)
+        {
+            Datos.MaestrosDA.ActualizarRecurso(recursoActualizar);
+        }
+
+        public static void EliminarRecurso(short IdRecurso)
+        {
+            Datos.MaestrosDA.EliminarRecurso(IdRecurso);
+        }
+
+        public static List<RecursosEmpresa> ConsultarRecursos(short IdEmpresa)
+        {
+            return Datos.MaestrosDA.ConsultarRecursos(IdEmpresa);
+        }
+
+        #endregion
     }
 }

@@ -451,5 +451,80 @@ namespace RBV_AccesoDatos
             return sectoresEmpresas;
         }
         #endregion
+
+
+        #region Recursos
+
+        public static void InsertarRecurso(RecursosEmpresa recursoInsertar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.recursosEmpresas.InsertOnSubmit(new recursosEmpresa
+            {
+                recurso = recursoInsertar.NombreRecurso,
+                idTipoRecurso = recursoInsertar.TipoRecurso.IdTipoRecurso,
+                Descripcion = recursoInsertar.DescripcionRecurso,
+                idEmpresa = recursoInsertar.Empresa.IdEmpresa
+            });
+
+            contextoRBV.SubmitChanges();
+        }
+
+        public static void ActualizarRecurso(RecursosEmpresa recursoActualizar)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            recursosEmpresa recursoAnterior = new recursosEmpresa();
+
+            recursoAnterior = contextoRBV.recursosEmpresas.SingleOrDefault(p => p.idRecursoEmpresa == recursoActualizar.IdRecursoEmpresa);
+            recursoAnterior.recurso = recursoActualizar.NombreRecurso;
+            recursoAnterior.Descripcion = recursoActualizar.DescripcionRecurso;
+            recursoAnterior.idTipoRecurso = recursoActualizar.TipoRecurso.IdTipoRecurso;
+            recursoAnterior.idEmpresa = recursoActualizar.Empresa.IdEmpresa;
+                        
+            contextoRBV.SubmitChanges();            
+        }
+
+        public static void EliminarRecurso(short IdRecurso)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+            recursosEmpresa recursoEliminar = new recursosEmpresa();
+
+            recursoEliminar = contextoRBV.recursosEmpresas.SingleOrDefault(p => p.idRecursoEmpresa == IdRecurso);
+            contextoRBV.recursosEmpresas.DeleteOnSubmit(recursoEliminar);
+            contextoRBV.SubmitChanges();
+        }
+
+        public static List<RecursosEmpresa> ConsultarRecursos(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<RecursosEmpresa> recursos = new List<RecursosEmpresa>();
+
+            recursos = (from recursoC in contextoRBV.recursosEmpresas
+                        where recursoC.idEmpresa == IdEmpresa
+                        select new RecursosEmpresa
+                        {
+                            IdRecursoEmpresa = recursoC.idRecursoEmpresa,
+                            NombreRecurso = recursoC.recurso,
+                            DescripcionRecurso = recursoC.Descripcion,
+                            Empresa = new Empresa
+                                       {
+                                           IdEmpresa = recursoC.empresa.idEmpresa
+                                       },
+                            TipoRecurso = new TipoRecurso 
+                                        { 
+                                            IdTipoRecurso = recursoC.tipoRecurso.idTipoRecurso,
+                                            NombreTipoRecurso = recursoC.tipoRecurso.tipoRecurso1
+                                        }
+
+
+                        }).ToList();
+
+
+            return recursos;
+        }
+
+        #endregion
     }
 }
