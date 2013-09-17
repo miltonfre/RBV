@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="AjaxControlToolkit, Version=3.5.7.725, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=1.2.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -210,6 +211,7 @@
     <Compile Include="Shared\TituloPopupSubSeccion.ascx.designer.cs">
       <DependentUpon>TituloPopupSubSeccion.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebClientApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Default\Calendar.CERO.css" />
@@ -390,6 +392,10 @@
       <Project>{A86B2494-49F3-4817-A413-BF9AFA9734B1}</Project>
       <Name>RBV_Negocio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{6ABAD527-845A-46B6-B38F-232F1D7FB03C}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\RBV.es.resx">
@@ -413,6 +419,7 @@
     <Content Include="Maestros\TipoRecurso.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="Maestros\Recursos.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>

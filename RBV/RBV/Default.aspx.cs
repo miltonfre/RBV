@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Utilidades;
 
 namespace RBV
 {
@@ -31,6 +32,9 @@ namespace RBV
             Response.Write("<br/>IssueDate: " + ticket.IssueDate.ToString());
             Response.Write("<br/>UserData: " + ticket.UserData);
             Response.Write("<br/>Version: " + ticket.Version.ToString());
+
+            UtilidadLogs.RegistrarInfo("No se ha podido desasociar el rol", this.GetType());
+            //UtilidadLogs.RegistrarError("No se ha podido desasociar el rol", ex, this.GetType());
         }
     }
 }

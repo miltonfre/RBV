@@ -94,6 +94,10 @@
       <Project>{0EE639C2-8E50-4835-BE74-641011633706}</Project>
       <Name>RBV_Clases</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{6ABAD527-845A-46B6-B38F-232F1D7FB03C}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
