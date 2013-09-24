@@ -10,5 +10,6 @@ namespace RBV_Clases
         public string NombreEmpresa { get; set; }
         public string RepresetanteLegal { get; set; }
         public List<SectorEmpresa> SectoresEmpresas { get; set; }
+        public EmpresaUsuario EmpresasUsuarios { get; set; }
     }
 }

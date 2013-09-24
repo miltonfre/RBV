@@ -264,6 +264,11 @@ namespace RBV_AccesoDatos
             contextoRBV.SubmitChanges();
             (from sectorC in empresaInsertar.SectoresEmpresas select sectorC.IdEmpresa = empresa.idEmpresa).ToList();
             InsertarEmpresaSector(empresaInsertar.SectoresEmpresas);
+
+            empresaInsertar.EmpresasUsuarios.UserId = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == empresaInsertar.EmpresasUsuarios.UserName).UserId;
+
+            empresaInsertar.EmpresasUsuarios.IdEmpresa = empresa.idEmpresa;
+            InsertarEmpresaUsuario(empresaInsertar.EmpresasUsuarios);
         }
 
         public static void ActualizarEmpresa(Empresa empresaActualizar)
@@ -449,6 +454,21 @@ namespace RBV_AccesoDatos
                                 }).ToList();
 
             return sectoresEmpresas;
+        }
+        #endregion
+
+        #region EmpresaUsuario
+        private static void InsertarEmpresaUsuario(EmpresaUsuario empresasUsuarios)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            contextoRBV.empresaUsuarios.InsertOnSubmit(new empresaUsuario
+                                                          {
+                                                              UserId = empresasUsuarios.UserId,
+                                                              idEmpresa = empresasUsuarios.IdEmpresa
+                                                          });
+
+            contextoRBV.SubmitChanges();
         }
         #endregion
 

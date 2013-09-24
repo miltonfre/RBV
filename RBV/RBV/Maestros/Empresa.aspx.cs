@@ -88,6 +88,9 @@ namespace RBV.Maestros
 	        }
             empresa.SectoresEmpresas = SectorEmpresas;
 
+            empresa.EmpresasUsuarios = new Entidades.EmpresaUsuario();
+            empresa.EmpresasUsuarios.UserName = User.Identity.Name;
+
             if (Actualizar)
             {
                 empresa.IdEmpresa = IdEmpresa;
