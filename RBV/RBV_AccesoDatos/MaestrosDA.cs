@@ -263,8 +263,12 @@ namespace RBV_AccesoDatos
             
             contextoRBV.SubmitChanges();
             (from sectorC in empresaInsertar.SectoresEmpresas select sectorC.IdEmpresa = empresa.idEmpresa).ToList();
-            InsertarEmpresaSector(empresaInsertar.SectoresEmpresas);
 
+            if (empresaInsertar.SectoresEmpresas.Count > 0)
+            {
+                InsertarEmpresaSector(empresaInsertar.SectoresEmpresas);
+            }
+            
             empresaInsertar.EmpresasUsuarios.UserId = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == empresaInsertar.EmpresasUsuarios.UserName).UserId;
 
             empresaInsertar.EmpresasUsuarios.IdEmpresa = empresa.idEmpresa;
