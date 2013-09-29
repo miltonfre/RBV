@@ -14,9 +14,5 @@ namespace RBV
               XmlConfigurator.Configure();
 
         }
-        //protected void Application_Start(object sender, EventArgs e)
-        //{
-        //    XmlConfigurator.Configure();
-        //}
-    }
+     }
 }
