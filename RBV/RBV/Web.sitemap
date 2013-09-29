@@ -11,6 +11,10 @@
       <siteMapNode url="Maestros/TipoRecurso.aspx" title="Tipo de Recurso"  description="" />
       <siteMapNode url="Maestros/Empresa.aspx" title="Empresa"  description="" />
       <siteMapNode url="Maestros/EscalaCalificacion.aspx" title="Escala de Calificación"  description="" />
+      <siteMapNode url="Maestros/Recursos.aspx" title="Recursos"  description="" />
+    </siteMapNode>
+    <siteMapNode url="" title="Recursos Valiosos"  description="">
+      <siteMapNode url="Matriz/RecursosValiosos.aspx" title="Recursos Valiosos"  description="" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>

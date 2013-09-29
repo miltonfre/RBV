@@ -150,6 +150,15 @@ namespace RBV_Negocio
 
         #endregion
 
+        #region EscalaValoracion
+        
+        public static List<EscalaValoracion> ConsultarEscalaValoracion(short IdEmpresa)
+        {
+            return Datos.MaestrosDA.ConsultarEscalaValoracion(IdEmpresa);
+        }
+
+        #endregion
+
         #region SectorEmpresa
 
         public static List<SectorEmpresa> ConsultarSectorEmpresa(short IdEmpresa)

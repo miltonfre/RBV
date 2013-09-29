@@ -1,0 +1,576 @@
+/*-------------------------
+	Estilos generales
+--------------------------*/
+
+html{
+	min-height:100%;
+	background-size:cover;
+}
+
+body
+{
+	background:url('../../img/wild_oliva.png') repeat;
+	font:15px/1.3 'Open Sans', sans-serif;
+	min-height:100%;
+}
+
+a, a:visited {
+	outline:none;
+	color:#389dc1;
+}
+
+a:hover{
+	text-decoration:none;
+}
+
+section, footer, header, aside{
+	display: block;
+}
+
+
+/*-------------------------
+	Inicio de sesión
+--------------------------*/
+
+#space
+{
+	margin-top:20px;
+}
+
+#login-background
+{
+	background:url('../../img/Login/1.png') no-repeat center fixed;
+	position:fixed;
+	z-index:-1;
+	width:100%;
+	height:100%;
+	padding: -10px 0 0 0;
+	margin:-10px 0 0 -10px;
+}
+
+#login-register 
+{
+	background-color:#242424;
+	/*background:url('../../img/1.jpg') no-repeat center fixed;*/
+	padding: 5px 75px;
+	width:400px;
+	height:450px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	color:White;
+	margin:-235px 0 0 -325px;
+	border-radius:2px 2px 2px 2px;
+	box-shadow: 0 -1px 5px rgba(1,1,1,1);
+}
+
+.login-table
+{
+	/*background-color:#242424;*/
+	width:400px;
+	height:320px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-235px 0 0 -325px;
+	color: White;
+}
+
+#login-register h1{
+	font-size:36px;
+}
+
+#RememberMe
+{
+	font-size:18px;
+	line-height:20px;
+}
+
+.input{
+	font: inherit;
+	font-size: 18px;
+	/*line-height: 30px;*/
+	background-color: #363636;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	display: block;
+	width: 350px;
+	/*margin: 45px 0 15px;*/
+	outline: none;
+}
+
+#login-register p{
+	line-height:1.4;
+}
+
+.label{
+	line-height:1.5;
+	font-size:20px;
+	padding:0 0 -10px 0;
+}
+
+.butt{
+	display:inline-block;
+	margin-top:20px;
+	font:inherit;
+	font-weight:bold;
+	font-size:20px;
+	cursor:pointer;
+	background-color:#5ca1cd;
+	color:#fff;
+	padding:10px 45px;
+	border:none;
+	border-bottom:3px solid #3f84b0;
+	border-radius:2px 2px 2px 2px;
+	box-shadow: 0 -1px 5px rgba(1,1,1,1);
+}
+
+.butt:hover{
+	background-color:#61a8d5;
+}
+
+.login-register span{
+	line-height:1.4;
+	font-size: 12px;
+	position: absolute;
+	bottom: 95px;
+	width: 225px;
+	height: 20px;
+	right: 80px;
+	color: #85bb2f;
+	background:url('img/preloader.gif') no-repeat 0 -1000px;
+}
+
+
+/*-------------------------
+	Página principal
+--------------------------*/
+
+#main-master-container
+{
+	position:static;
+	z-index:-3;
+	padding: 20px;
+	margin: 10px;
+	
+}
+
+#main-master-container .butt{
+	display:inline-block;
+	margin-top:20px;
+	font-weight:bold;
+	font-size:13px;
+	cursor:pointer;
+	background-color:#545454;
+	color:#fff;
+	padding:8px 35px;
+	border:none;
+	border-bottom:3px solid #3f84b0;
+	border-radius:3px 3px 3px 3px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+}
+
+/*
+#header-Container{position:absolute; top:50px; left:0px; z-index:9999; width:150px; height:50px;}
+#header-Container .label{padding-left:20px; line-height:50px; font-family:"Arial Black", Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; background:#000; color:#fff; letter-spacing:7px;}
+#header-Container .menu{display:none;}
+#header-Container .menu .menu_item{display:block; background:#000; color:#bbb; border-top:1px solid #333; padding:10px 20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; text-decoration:none;}
+#header-Container .menu a.menu_item:hover{background:#333; color:#fff;}*/
+
+#head-image
+{
+	width:900px;
+	text-align:center;
+	z-index:3;
+	background-color:#242424;
+	position:absolute;
+	color:#727272;
+	font-size:20px;
+	/*top:25%;*/
+	left:50%;
+	margin:10px 0 0 -425px;
+	padding: 0 15px 0 15px;
+	border-radius:2px 2px 2px 2px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+	font-family: 'Pathway Gothic One', sans-serif;
+	height:180px;
+	background:url('../../img/4.jpg');
+}
+
+
+#header-Container {
+  /*position: fixed;
+  left: 15px;
+  top: 25%;*/
+  width:250px;
+  margin-top: 15px;
+  z-index:9999;	
+  background-color:#242424;
+  padding:15px;
+  border-radius:2px 2px 2px 2px;
+  box-shadow: 0 -1px 4px rgba(1,1,1,1);
+}
+
+#info-container
+{
+	width:250px;
+	color:Black;
+  margin-top: 30px;
+  z-index:9999;	
+  background-color:#fff;
+  padding:15px;
+  font-size:smaller;
+  border-radius:2px 2px 2px 2px;
+  box-shadow: 0 -1px 4px rgba(1,1,1,1);
+}
+
+.separator
+{
+	width:1px;
+	height:650px;
+	background-color:#dedede;
+	position:absolute;
+	top:200px;
+	left:320px;
+	z-index:10;
+	border-radius:1px 1px 1px 1px;
+}
+
+#sitemap
+{
+	font-family: 'Oxygen', sans-serif;
+	color:Black;
+	font-size:x-small;
+}
+
+#topmenu
+{
+    color:Green;
+    font-family:Arial;
+}
+#topmenu a.static.highlighted
+{
+    color:Red !important;
+}
+#topmenu a.static.selected
+{
+    color:Blue !important;
+}
+
+#welcome-span
+{
+	font-size:medium;
+	text-align:left;
+	color:White;
+}
+
+#name-span
+{
+	font-size:small;
+	text-align:left;
+	color:White;
+}
+
+#content-container
+{
+	width:80%;
+	text-align:center;
+	z-index:2;
+	background-color:White;
+	position:absolute;
+	left:50%;
+	margin:50px 0 0 -43%;
+	padding:150px 50px 50px 20px;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+	font-family: 'Oxygen', sans-serif;
+}
+
+#content-container .labels
+{
+	color:Black;
+}
+
+#company-page h1{
+	font-size:40px;
+	margin:20px 0 50px;
+}
+
+#company-page p{
+	line-height: 1.5;
+}
+
+#company-page a{
+	
+	/* The logout button */
+
+	display:inline-block;
+	padding:10px 30px;
+	margin-top:50px;
+	text-decoration: none !important;
+	color:#222 !important;
+	background-color:#b9b9e2;
+	
+	font-weight:bold;
+	font-size:16px;
+
+	border-bottom:3px solid #9f9fc2;
+}
+
+#company-page a:hover{
+	background-color:#c3c3ea;
+}
+
+#company-page
+{
+	color:Black;
+}
+
+/*----------------------------
+	GridView
+-----------------------------*/
+
+.GridViewStyle
+{    
+    border-right: 2px solid #A7A6AA;
+    border-bottom: 2px solid #A7A6AA;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    padding: 4px;
+    margin: 15px 0 0 0;  
+    width:650px; 
+}
+
+.GridViewStyle a
+{
+    color: #FFFFFF;
+}
+
+.GridViewHeaderStyle th
+{
+    border-left: 1px solid #EBE9ED;
+    border-right: 1px solid #EBE9ED;
+    font-size:17px;
+    padding:7px;
+    
+}
+
+.GridViewHeaderStyle
+{
+    background-color: #242424;
+    font-weight: bold;
+    color: White;
+}
+
+.GridViewFooterStyle
+{
+    background-color: #5D7B9D;
+    font-weight: bold;
+    color: White;
+}
+
+.GridViewRowStyle
+{
+    background-color: #F7F6F3;
+    color: #333333;
+}
+
+.GridViewAlternatingRowStyle 
+{
+    background-color: #FFFFFF;
+    color: #284775;
+}
+
+.GridViewRowStyle td, .GridViewAlternatingRowStyle td
+{
+    border: 1px solid #EBE9ED;
+    font-size:14px;
+     padding:7px;
+}
+
+.GridViewSelectedRowStyle
+{
+    background-color: #E2DED6;
+    font-weight: bold;
+    color: #333333;
+}
+
+.GridViewPagerStyle
+{
+    background-color: #284775;
+    color: #FFFFFF;
+}
+
+.GridViewPagerStyle table /* to center the paging links*/
+{
+    margin: 0 auto 0 auto;
+}
+
+/*----------------------------
+	Matriz
+-----------------------------*/
+
+.MatrizStyle
+{    
+    border-right: 2px solid #A7A6AA;
+    border-bottom: 2px solid #A7A6AA;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    padding: 4px;
+    margin: 15px 0 0 0;  
+    
+}
+
+.MatrizStyle a
+{
+    color: #FFFFFF;
+}
+
+.MatrizStyle th
+{
+    border-left: 1px solid #EBE9ED;
+    border-right: 1px solid #EBE9ED;
+    font-size:17px;
+    padding:7px;
+    
+}
+
+.MatrizHeaderStyle
+{
+    background-color: #242424;
+    font-weight: bold;
+    color: White;        
+}
+
+.MatrizFooterStyle
+{
+    background-color: #5D7B9D;
+    font-weight: bold;
+    color: White;
+}
+
+.MatrizRowStyle
+{
+    background-color: #F7F6F3;
+    color: #333333;
+}
+
+.MatrizAlternatingRowStyle 
+{
+    background-color: #FFFFFF;
+    color: #284775;
+}
+
+.MatrizRowStyle td, .MatrizAlternatingRowStyle td
+{
+    border: 1px solid #EBE9ED;
+    font-size:14px;
+     padding:7px;
+}
+
+.MatrizSelectedRowStyle
+{
+    background-color: #E2DED6;
+    font-weight: bold;
+    color: #333333;
+}
+
+.MatrizPagerStyle
+{
+    background-color: #284775;
+    color: #FFFFFF;
+}
+
+.MatrizPagerStyle table /* to center the paging links*/
+{
+    margin: 0 auto 0 auto;
+}
+
+/*----------------------------
+	Footer
+-----------------------------*/
+
+
+#footer{
+
+	width: 900px;
+	font: normal 9px Arial, Helvetica, sans-serif;
+	padding:5px;
+	position: fixed;
+	text-align:center;
+	bottom: 0;
+	left: 50%;
+	margin:-185px 0 0 -425px;
+	background-color:#1f1f1f;
+	background-image:-webkit-linear-gradient(top, #1f1f1f, #101010);
+	background-image:-moz-linear-gradient(top, #1f1f1f, #101010);
+	background-image:linear-gradient(top, #1f1f1f, #101010);
+	border-radius:2px 2px 0 0;
+	box-shadow: 0 -1px 4px rgba(0,0,0,0.4);
+	z-index:5;
+	color:White;
+}
+
+#footer a.tz{
+	font-weight:normal;
+	font-size:16px !important;
+	text-decoration:none !important;
+	display:block;
+	margin-right: 300px;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	color:#bfbfbf !important;
+	z-index:1;
+}r
+
+
+/*
+Menú
+*/
+
+#cssmenu ul 
+{
+	position:absolute;
+	font-size:20px;
+	/*top:25%;*/
+	left:50%;
+	margin:0px 0 30px -425px;
+	list-style-type: none;
+	width: 700px;
+	position: relative;
+	display: block;
+	height: 30px;
+	font-size: 12px;
+	font-weight: bold;
+	background: transparent url('../../nav_bg.png') repeat-x top left;
+	font-family: Arial, Helvetica, sans-serif;
+	border-bottom: 1px solid #000000;
+	border-top: 1px solid #000000;
+}
+#cssmenu li {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu li a {
+  display: block;
+  float: left;
+  color: #999999;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 20px 0 20px;
+}
+#cssmenu li a:hover {
+  color: #FFFFFF;
+  height: 22px;
+  background: transparent url('../../nav_bg.png') 0px -30px no-repeat;
+}
+#cssmenu li.active a {
+  display: inline;
+  height: 22px;
+  background: transparent url('../../nav_bg.png') 0px -30px no-repeat;
+  float: left;
+  margin: 0;
+}

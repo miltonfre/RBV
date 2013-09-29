@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EscalaCalificacion.aspx.cs" Inherits="RBV.Maestros.EscalaCalificacion" MasterPageFile="~/Shared/Master.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EscalaCalificacion.aspx.cs" Inherits="RBV.Maestros.EscalaCalificacion" 
+    MasterPageFile="~/Shared/Master.Master" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
-    <div>
+    <div id="company-page" class="page">
     <table>
             <tr>
                 <td>

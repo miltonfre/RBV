@@ -1,59 +1,98 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.Master.cs" Inherits="RBV.Site1" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
     <title>Visión de la empresa Basada en los recursos valiosos</title>
-    
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:Panel ID="AccessKeyPanel" runat="server" />
-
-
-        <div><img src="../../images/rompecabezas.jpg" alt="10"/></div>
-         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-             <td valign="middle"  style="width:200px">                </td>
-                <td align="center">
-                    <asp:Button ID="Button1" runat="server" Enabled="False" Text="Button" Visible="False" />
-                    <span >Bienvenido(a) :<asp:Label ID="lblUsuario" runat="server"
-                       ></asp:Label>
-                    </span>
-                </td>                
-             </tr>
-             
-             <tr >
-             <td valign="middle" style="width:200px">   
-          
-                 <asp:Menu ID="Menu1" runat="server" BackColor="#E3EAEB" 
-                     DataSourceID="SiteMapDataSource1" DynamicHorizontalOffset="2" 
-                     Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" 
-                     StaticSubMenuIndent="10px">
-                     <StaticSelectedStyle BackColor="#1C5E55" />
-                     <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px"  />
-                     
-                     <DataBindings>
-                         <asp:MenuItemBinding DataMember="SiteMapNode" 
-                             ImageUrl="~/images/menu_li_link.gif"
-                             NavigateUrlField="Url" TextField="Title" ValueField="Title" />
-                     </DataBindings>
-                    
-                     
-                 </asp:Menu>
-                 <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-          
-                </td>
-                 <td align="center">
-                   <asp:ContentPlaceHolder ID="cphContenidoPaginas" runat="server">        
-                    </asp:ContentPlaceHolder>
-                </td>
-             </tr>
-          </table>
-    <div>
+    <div id="main-master-container">
+        <div id="head-image">
+        </div>
+        <div id="content-container">
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+            <table style="width: 100%;">
+                <tr>
+                    <td rowspan="3" valign="top">
+                        <div id="header-Container">
+                            <asp:Panel ID="AccessKeyPanel" runat="server" />
+                            <asp:Button ID="Button1" runat="server" Enabled="False" Text="Button" Visible="False" />
+                            <span id="welcome-span">Bienvenido(a) :</span>
+                            <br />
+                            <span id="name-span"><asp:Label ID="lblUsuario" runat="server"></asp:Label></span>
+                            <asp:Menu ID="topmenu" runat="server" DataSourceID="SiteMapDataSource1">
+                                <StaticSelectedStyle BackColor="" />
+                                <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                                <DynamicItemTemplate>
+                                    <%# Eval("Text") %>
+                                </DynamicItemTemplate>
+                                <DataBindings>
+                                    <asp:MenuItemBinding DataMember="SiteMapNode" ImageUrl="~/images/menu_li_link.gif"
+                                        NavigateUrlField="Url" TextField="Title" ValueField="Title" />
+                                </DataBindings>
+                                <StaticItemTemplate>
+                                    <%# Eval("Text") %>
+                                </StaticItemTemplate>
+                            </asp:Menu>
+                        </div>
+                        <div id="info-container">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien et est vestibulum
+                            placerat. Nulla accumsan diam id bibendum accumsan. Sed bibendum ullamcorper mattis.
+                            Nam at dui a lacus rhoncus porta id quis sem. Duis porttitor facilisis arcu. Curabitur
+                            in euismod metus, id luctus lectus. Vivamus nec consectetur dui. Vestibulum id ullamcorper
+                            felis, eget rhoncus erat. Vivamus malesuada tortor nec libero venenatis blandit
+                            eu sit amet sem. Aliquam turpis mi, rutrum viverra volutpat non, volutpat in massa.
+                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                            himenaeos. Nunc eu velit elementum, blandit sapien et, ullamcorper libero. Pellentesque
+                            congue pellentesque sapien. Suspendisse rhoncus fringilla est, eu viverra ante sodales
+                            ut. Duis condimentum dignissim metus nec rutrum. Proin varius egestas mi id tempor.
+                        </div>
+                    </td>
+                    <td rowspan="3" valign="top">
+                        <div class="separator">&nbsp;</div>
+                    </td>
+                    <td>
+                        <div id="sitemap">
+                            <span>Mapa del sitio </span>
+                            <br />
+                            <asp:SiteMapPath ID="sitemap" CssClass="sitemap" runat="server">
+                            </asp:SiteMapPath>
+                        </div>
+                        <div id="cssmenu">
+                            <ul>
+                                <li class='active'><a href='index.html'><span>Home</span></a></li>
+                                <li><a href='#'><span>Products</span></a></li>
+                                <li><a href='#'><span>About</span></a></li>
+                                <li class='last'><a href='#'><span>Contact</span></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h1>&nbsp;</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:ContentPlaceHolder ID="cphContenidoPaginas" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="footer">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien et est vestibulum placerat. @2013
+        </div>
         
     </div>
     </form>
 </body>
 </html>
-

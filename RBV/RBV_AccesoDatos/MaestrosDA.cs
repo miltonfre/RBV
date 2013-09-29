@@ -472,7 +472,6 @@ namespace RBV_AccesoDatos
         }
         #endregion
 
-
         #region Recursos
 
         public static void InsertarRecurso(RecursosEmpresa recursoInsertar)
@@ -546,5 +545,27 @@ namespace RBV_AccesoDatos
         }
 
         #endregion
+
+        public static List<EscalaValoracion> ConsultarEscalaValoracion(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
+
+            escalaValoracion = (from escalaC in contextoRBV.escalaValoracions
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+                                on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
+                                  where (escalaC.idEmpresa == IdEmpresa)
+                                  select new EscalaValoracion
+                                  {
+                                      IdEmpresa = escalaC.idEmpresa,
+                                      IdCaracteristica = escalaC.idCaracteristicaRV,
+                                      Caracteristica = caracteristicaC.caracteristicaRV,
+                                      Valor = escalaC.Valor
+                                  }).ToList();
+
+
+            return escalaValoracion;
+        }
     }
 }
