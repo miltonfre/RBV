@@ -20,5 +20,24 @@ namespace RBV_AccesoDatos
             
             return matriz;
         }
+
+        public static void InsertarMatriz(List<MatrizValoracion> Matriz)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<matrizValoracion> matrizInsertar = new List<matrizValoracion>();
+
+            matrizInsertar = (from mat in Matriz
+                              select new matrizValoracion
+                              {
+                                  idCaracteristicaRV = mat.IdCaracteristica,
+                                  idRecursoEmpresa = mat.IdRecurso,
+                                  valor = mat.Valor
+
+                              }).ToList();
+
+            contextoRBV.matrizValoracions.InsertAllOnSubmit(matrizInsertar);
+            contextoRBV.SubmitChanges();
+        }
     }
 }

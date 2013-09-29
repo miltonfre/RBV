@@ -13,5 +13,10 @@ namespace RBV_Negocio
         {
             return MatrizDA.ConsultarCaracteristicasRecursos(IdEmpresa);
         }
+
+        public static void InsertarMatriz(List<MatrizValoracion> Matriz)
+        {
+            MatrizDA.InsertarMatriz(Matriz);
+        }
     }
 }

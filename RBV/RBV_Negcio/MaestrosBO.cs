@@ -114,9 +114,9 @@ namespace RBV_Negocio
             Datos.MaestrosDA.ActualizarEmpresa(empresaActualizar);
         }
 
-        public static void EliminarEmpresa(short IdEmpresa)
+        public static void EliminarEmpresa(short IdEmpresa, string Usuario)
         {
-            Datos.MaestrosDA.EliminarEmpresa(IdEmpresa);
+            Datos.MaestrosDA.EliminarEmpresa(IdEmpresa, Usuario);
         }
 
         public static List<Empresa> ConsultarEmpresas()

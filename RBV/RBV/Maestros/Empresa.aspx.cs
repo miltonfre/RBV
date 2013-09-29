@@ -123,6 +123,7 @@ namespace RBV.Maestros
 
         protected void grdEmpresas_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            Actualizar = true;
             txtEmpresa.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[0].Text;
             txtNIT.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[1].Text;
             txtRepresentante.Text = grdEmpresas.Rows[e.NewEditIndex].Cells[2].Text;
@@ -147,8 +148,8 @@ namespace RBV.Maestros
         protected void grdEmpresas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //TODO: Mostra mensaje de confirmacion
-            IdEmpresa = Convert.ToInt16(grdEmpresas.Rows[e.RowIndex].Cells[0].Text);
-            RBV_Negocio.MaestrosBO.EliminarEmpresa(IdEmpresa);
+            IdEmpresa = Convert.ToInt16(grdEmpresas.DataKeys[e.RowIndex].Value);
+            RBV_Negocio.MaestrosBO.EliminarEmpresa(IdEmpresa, User.Identity.Name);
 
             ConsultarEmpresas();
             LimpiarPagina();

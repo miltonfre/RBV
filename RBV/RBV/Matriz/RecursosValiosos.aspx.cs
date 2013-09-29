@@ -13,6 +13,7 @@ namespace RBV.Matriz
     {
         public List<Titulo> Titulos = new List<Titulo>();
         public List<TituloFilas> TitulosFilas = new List<TituloFilas>();
+        public List<RBV_Clases.EscalaCalificacion> Calificacion = new List<RBV_Clases.EscalaCalificacion>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,7 @@ namespace RBV.Matriz
                 {
                     TitulosFilas.Add(new TituloFilas { NombreFilas = item.NombreRecurso, IdFilas = item.IdRecursoEmpresa.ToString() });
                 }
+                Calificacion = RBV_Negocio.MaestrosBO.ConsultarEscalaCalificaciones(5);
             
         }
 
@@ -47,6 +49,19 @@ namespace RBV.Matriz
         public static string Save(string info)
         {
             string[] datos = info.Split(';');
+
+            List<RBV_Clases.MatrizValoracion> MatrizValoracion = new List<RBV_Clases.MatrizValoracion>();
+
+            foreach (string item in datos)
+            {
+                if (!item.ToString().Equals(string.Empty))
+                {
+                    string[] valores = item.Split(',');
+                    MatrizValoracion.Add(new RBV_Clases.MatrizValoracion { IdRecurso = Convert.ToInt16(valores[0]), IdCaracteristica = Convert.ToInt16(valores[1]), Valor = Convert.ToDecimal(valores[2]) });
+                }                
+            }
+
+            RBV_Negocio.MatrizBO.InsertarMatriz(MatrizValoracion);
 
             return string.Join("\u000a",datos).ToString();
         }

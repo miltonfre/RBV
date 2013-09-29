@@ -24,7 +24,7 @@
 
                 $(".textbox").each(function(index) {
 
-                    info += $(this).attr("id") + ":" + $(this).val() + ";"
+                    info += $(this).attr("id") + "," + $(this).val() + ";"
                 });
 
                 //console.log("info: " + info);
@@ -77,9 +77,22 @@
                         else
                         {
                             %>
-                            <td style="text-align :center" colspan="2">
-                                <input id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' type="text"
-                                    class="textbox" style="width:100px" />
+                            <td colspan="2">
+                            <select id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' class="textbox">
+                                   <% 
+                            
+                                    foreach(var item in Calificacion)
+                                    {       
+                                        %>
+                                    
+                                        <option id='<%= item.Valor %>' value='<%= item.Valor %>'>
+                                        <%=item.Valor %>
+                                        </option>
+                                    
+                                        <%
+                                    }
+                                        %>
+                                    </select>
                             </td>
                             <%
                         }

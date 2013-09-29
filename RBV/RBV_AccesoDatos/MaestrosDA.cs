@@ -293,14 +293,20 @@ namespace RBV_AccesoDatos
             ActualizarEmpresaSector(empresaActualizar.SectoresEmpresas);
         }
 
-        public static void EliminarEmpresa(short IdEmpresa)
+        public static void EliminarEmpresa(short IdEmpresa, string Usuario)
         {
             RBVDataContext contextoRBV = new RBVDataContext();
             empresa empresaEliminar = new empresa();
-
+            empresaUsuario empresaUsuarioEliminar = new empresaUsuario();
             EliminarEmpresaSector(IdEmpresa);
             
             empresaEliminar = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
+
+            Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
+
+            empresaUsuarioEliminar = contextoRBV.empresaUsuarios.SingleOrDefault(p => p.idEmpresa == IdEmpresa && p.UserId == idUsuario);
+
+            contextoRBV.empresaUsuarios.DeleteOnSubmit(empresaUsuarioEliminar);
             contextoRBV.empresas.DeleteOnSubmit(empresaEliminar);
             contextoRBV.SubmitChanges();
         }
