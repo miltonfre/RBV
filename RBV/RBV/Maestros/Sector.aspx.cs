@@ -52,6 +52,7 @@ namespace RBV.Maestros
         {
             if (!IsPostBack)
             {
+                txtSector.Focus();
                 ConsultarSectores();
             }
         }

@@ -237,6 +237,12 @@ section, footer, header, aside{
 	border-radius:1px 1px 1px 1px;
 }
 
+.fondoTitulo
+{
+	background-color:#dedede;
+    border-radius:1px 1px 1px 1px;
+}
+
 #sitemap
 {
 	font-family: 'Oxygen', sans-serif;

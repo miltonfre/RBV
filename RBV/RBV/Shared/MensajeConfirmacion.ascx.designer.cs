@@ -35,7 +35,7 @@ namespace WebApplication.Shared {
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PopupMensajePersonalizado;
+        
         
         /// <summary>
         /// Control PanelMensaje.
@@ -73,13 +73,6 @@ namespace WebApplication.Shared {
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNo;
         
-        /// <summary>
-        /// Control Movedor.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.DragPanelExtender Movedor;
+        
     }
 }
