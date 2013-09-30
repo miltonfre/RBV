@@ -14,8 +14,6 @@
 
                     send();
                 });
-
-
             });
 
             function send() {
@@ -54,10 +52,10 @@
                 {
             %>
             <tr  >
-                <td class="MatrizHeaderStyle"  style="width:100%; visibility:visible" visible="false">
+                <td class=""  style="visibility:hidden" visible="false">
                     <%= fila.IdFilas%>
                 </td>
-                <td class="MatrizHeaderStyle"  style="width:100%;">
+                <td class=""  style="width:100%;color:White">
                     <%= fila.NombreFilas %>
                 </td>
                 <%
@@ -66,10 +64,10 @@
                         if (showColumn)
                         {
                             %>
-                            <td class="MatrizHeaderStyle" style="width:100%;text-align :center;visibility:visible" visible="false">
+                            <td class="" style="text-align :center;visibility:hidden" visible="false">
                                 <%= columna.Id%>
                             </td>
-                            <td class="MatrizHeaderStyle" style="width:100%;text-align :center">
+                            <td class="" style="width:100%;text-align :center;color:White">
                                 <%= columna.Nombre%>
                             </td>
                             <%
@@ -77,7 +75,7 @@
                         else
                         {
                             %>
-                            <td colspan="2">
+                            <td colspan="2" style="text-align:center">
                             <select id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' class="textbox" >
                                    <% 
                             
