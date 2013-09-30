@@ -222,7 +222,7 @@ namespace RBV_AccesoDatos
             List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
             caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
-
+                               
                                select new Caracteristica
                                {
                                    IdCaracteristica = caracteristicaC.idCaracteristicaRV,

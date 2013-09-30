@@ -37,7 +37,7 @@
                     dataType: "json",
                     success: function(msg) {
 
-                        alert(msg.d);
+                        //alert(msg.d);
                     }
                 });
 
@@ -54,7 +54,7 @@
                 {
             %>
             <tr  >
-                <td class="MatrizHeaderStyle"  style="width:100%; visibility:hidden" visible="false">
+                <td class="MatrizHeaderStyle"  style="width:100%; visibility:visible" visible="false">
                     <%= fila.IdFilas%>
                 </td>
                 <td class="MatrizHeaderStyle"  style="width:100%;">
@@ -66,7 +66,7 @@
                         if (showColumn)
                         {
                             %>
-                            <td class="MatrizHeaderStyle" style="width:100%;text-align :center;visibility:hidden" visible="false">
+                            <td class="MatrizHeaderStyle" style="width:100%;text-align :center;visibility:visible" visible="false">
                                 <%= columna.Id%>
                             </td>
                             <td class="MatrizHeaderStyle" style="width:100%;text-align :center">
@@ -78,21 +78,43 @@
                         {
                             %>
                             <td colspan="2">
-                            <select id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' class="textbox">
+                            <select id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' class="textbox" >
                                    <% 
                             
                                     foreach(var item in Calificacion)
-                                    {       
-                                        %>
-                                    
-                                        <option id='<%= item.Valor %>' value='<%= item.Valor %>'>
-                                        <%=item.Valor %>
-                                        </option>
-                                    
-                                        <%
+                                    {
+                                        string valor = "1";
+                                        foreach (var valorMat in MatrizValoracion)
+	                                    {
+                                            if (valorMat.IdCaracteristica.ToString() == columna.Id && valorMat.IdRecurso.ToString() == fila.IdFilas)
+	                                        {
+                                                valor = valorMat.Valor.ToString();
+	                                        }
+	                                    }
+                                        
+                                        if (item.Valor.ToString().Equals(valor))
+                                        {
+                                         %>
+                                             <option id='Option1' value='<%= item.Valor %>' selected="selected">
+                                            <%=item.Valor %>
+                                            </option>
+                                         <%   
+                                        }
+                                        else
+                                        {
+                                        %>                                     
+                                            <option id='<%= item.Valor %>' value='<%= item.Valor %>' >
+                                            <%=item.Valor %>
+                                            </option>
+                                         <% 
+                                        }
+                                         
+                                        
                                     }
+                            
                                         %>
                                     </select>
+                                    
                             </td>
                             <%
                         }
