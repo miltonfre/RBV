@@ -1,0 +1,23 @@
+
+
+
+
+<asp:SiteMapPath runat="server" PathSeparator="|" >
+    <NodeStyle CssClass="texRuta" />
+    <PathSeparatorStyle CssClass="texRuta" />
+</asp:SiteMapPath>
+
+<asp:GridView runat="server">
+   <FooterStyle CssClass="GridViewFooterStyle" />
+                        <RowStyle CssClass="GridViewRowStyle" />    
+                        <SelectedRowStyle CssClass="GridViewSelectedRowStyle" />
+                        <PagerStyle CssClass="GridViewPagerStyle" />
+                        <AlternatingRowStyle CssClass="GridViewAlternatingRowStyle" />
+                        <HeaderStyle CssClass="GridViewHeaderStyle" />   
+    <EmptyDataTemplate>No se encontraron datos</EmptyDataTemplate>   
+    <PagerStyle HorizontalAlign="Center" />
+    <HeaderStyle HorizontalAlign="Center" />
+</asp:GridView>
+
+
+

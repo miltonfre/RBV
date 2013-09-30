@@ -310,7 +310,7 @@
     <Content Include="App_Themes\Default\ComboBox\rcbDropDownBg.gif" />
     <Content Include="App_Themes\Default\ComboBox\rcbMoreResults.gif" />
     <Content Include="App_Themes\Default\DatePicker\Default.gif" />
-    <Content Include="App_Themes\Default\Default.skin" />
+    <Content Include="App_Themes\Style\Default.skin" />
     <Content Include="App_Themes\Default\Dock\Close.gif" />
     <Content Include="App_Themes\Default\Dock\Collapse.gif" />
     <Content Include="App_Themes\Default\Dock\Custom.gif" />
@@ -448,6 +448,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\jquery.easing.1.3.js" />
     <Content Include="Maestros\App_LocalResources\EscalaValoracion.aspx.resx">
     </Content>
   </ItemGroup>

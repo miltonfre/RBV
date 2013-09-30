@@ -100,6 +100,16 @@ namespace RBV_Negocio
             return Datos.MaestrosDA.ConsultarCaracteristicas();
         }
 
+          /// <summary>
+        /// Método que devuelve las características de una misma clasificación
+        /// </summary>
+        /// <param name="caracteristica">clasificación a consultar</param>
+        /// <returns></returns>
+        public static List<Caracteristica> ConsultarCaracteristicasxClasificacion(Clasificacion clasificacion)
+        {
+            return Datos.MaestrosDA.ConsultarCaracteristicasxClasificacion(clasificacion);
+        }
+
         #endregion
 
         #region Empresa
@@ -151,7 +161,11 @@ namespace RBV_Negocio
         #endregion
 
         #region EscalaValoracion
-        
+        public static void InsertarEscalaValoracion(List<EscalaValoracion> escala)
+        {
+            Datos.MaestrosDA.InsertarEscalaValoracion(escala);
+        }
+
         public static List<EscalaValoracion> ConsultarEscalaValoracion(short IdEmpresa)
         {
             return Datos.MaestrosDA.ConsultarEscalaValoracion(IdEmpresa);

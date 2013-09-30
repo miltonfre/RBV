@@ -239,6 +239,34 @@ namespace RBV_AccesoDatos
             return caracteristicas;
         }
 
+        /// <summary>
+        /// Método que devuelve las características de una misma clasificación
+        /// </summary>
+        /// <param name="caracteristica">clasificación a consultar</param>
+        /// <returns></returns>
+        public static List<Caracteristica> ConsultarCaracteristicasxClasificacion(Clasificacion clasificacion)
+        {
+           RBVDataContext contextoRBV = new RBVDataContext();
+
+                        List<Caracteristica> caracteristicas = new List<Caracteristica>();
+
+                        caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+                                           where caracteristicaC.idClasificacionRV == clasificacion.IdClasificacionRV
+                            select new Caracteristica
+                            {
+                            IdCaracteristica = caracteristicaC.idCaracteristicaRV,
+                            NombreCaracteristica = caracteristicaC.caracteristicaRV,
+                            IdClasificacionRV = caracteristicaC.idClasificacionRV,
+                            ClasificacionAsociada = new Clasificacion
+                            {
+                            IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
+                            ClasificacionRV = caracteristicaC.clasificacionRecursoValioso.clasificacionRV
+                            }
+                            }).ToList();
+
+                        return caracteristicas;
+        }
+
         #endregion
 
         #region Empresa
@@ -576,6 +604,35 @@ namespace RBV_AccesoDatos
 
 
             return escalaValoracion;
+        }
+
+        public static void InsertarEscalaValoracion(List<EscalaValoracion> escala)
+        {
+            //RBVDataContext contextoRBV = new RBVDataContext();
+
+            //contextoRBV.escalaValoracions.InsertOnSubmit(new EscalaValoracion
+            //{
+            //    IdEmpresa = escala.IdEmpresa,
+            //    Valor = escala.Valor,
+            //    IdCaracteristica = escala.IdCaracteristica,
+            //});
+
+            //contextoRBV.SubmitChanges();
+
+
+            //List<EscalaValoracion> escalaInsertar = new List<EscalaValoracion>();
+
+            //escalaInsertar = (from esc in escala
+            //                  select new EscalaValoracion
+            //                  {
+            //                      IdCaracteristica = esc.IdCaracteristica,
+            //                      IdEmpresa = esc.IdEmpresa,
+            //                      Valor = esc.Valor
+
+            //                  }).ToList();
+
+            //contextoRBV.escalaValoracions.InsertAllOnSubmit(escalaInsertar);
+            //contextoRBV.SubmitChanges();
         }
     }
 }

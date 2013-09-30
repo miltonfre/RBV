@@ -50,21 +50,30 @@ namespace RBV.Maestros {
         protected global::Utilidades.ValidationSummary ValidationSummary1;
         
         /// <summary>
-        /// Control rptValoracion.
+        /// Control rptClasificaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptValoracion;
+        protected global::System.Web.UI.WebControls.Repeater rptClasificaciones;
         
         /// <summary>
-        /// Control enviar.
+        /// Control btnEnviar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button enviar;
+        protected global::System.Web.UI.WebControls.Button btnEnviar;
+        
+        /// <summary>
+        /// Control btnCancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
     }
 }

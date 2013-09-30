@@ -3,12 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Visión de la empresa Basada en los recursos valiosos</title>
-
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-
     <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
-
-    <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -19,7 +16,7 @@
             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
             <table style="width: 100%;">
                 <tr>
-                    <td rowspan="3" valign="top">
+                    <td rowspan="4" valign="top">
                         <div id="header-Container">
                             <asp:Panel ID="AccessKeyPanel" runat="server" />
                             <asp:Button ID="Button1" runat="server" Enabled="False" Text="Button" Visible="False" />
@@ -42,26 +39,18 @@
                             </asp:Menu>
                         </div>
                         <div id="info-container">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien et est vestibulum
-                            placerat. Nulla accumsan diam id bibendum accumsan. Sed bibendum ullamcorper mattis.
-                            Nam at dui a lacus rhoncus porta id quis sem. Duis porttitor facilisis arcu. Curabitur
-                            in euismod metus, id luctus lectus. Vivamus nec consectetur dui. Vestibulum id ullamcorper
-                            felis, eget rhoncus erat. Vivamus malesuada tortor nec libero venenatis blandit
-                            eu sit amet sem. Aliquam turpis mi, rutrum viverra volutpat non, volutpat in massa.
-                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                            himenaeos. Nunc eu velit elementum, blandit sapien et, ullamcorper libero. Pellentesque
-                            congue pellentesque sapien. Suspendisse rhoncus fringilla est, eu viverra ante sodales
-                            ut. Duis condimentum dignissim metus nec rutrum. Proin varius egestas mi id tempor.
+                           La visión de la empresa basada en los recursos valiosos permite a las empresas identificar cuales son sus
+                           ventajas competitivas desde las capacidades internas de la empresa.
                         </div>
                     </td>
-                    <td rowspan="3" valign="top">
+                    <%--<td rowspan="3" valign="top" align="left">
                         <div class="separator">&nbsp;</div>
-                    </td>
+                    </td>--%>
                     <td>
-                        <div id="sitemap">
-                            <span>Mapa del sitio </span>
+                        <div id="dvsitemap">
+                           <%-- <span>Mapa del sitio </span>--%>
                             <br />
-                            <asp:SiteMapPath ID="sitemap" CssClass="sitemap" runat="server">
+                            <asp:SiteMapPath ID="sitemap" CssClass="#sitemap" runat="server" >
                             </asp:SiteMapPath>
                         </div>
                         <%--<div id="cssmenu">
@@ -76,7 +65,9 @@
                 </tr>
                 
                 <tr>
-                    <td valign="top">
+                    <td align="left">
+                    <br />
+                    <br />
                         <asp:ContentPlaceHolder ID="cphContenidoPaginas" runat="server">
                         </asp:ContentPlaceHolder>
                     </td>
@@ -85,7 +76,7 @@
         </div>
         
         <div id="footer">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at sapien et est vestibulum placerat. @2013
+           Todos los derechos reservados. @2013
         </div>
         
     </div>

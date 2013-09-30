@@ -68,6 +68,15 @@ namespace RBV.Maestros {
         protected global::System.Web.UI.WebControls.TextBox txtSector;
         
         /// <summary>
+        /// Control rfvSector.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSector;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>

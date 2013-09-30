@@ -31,15 +31,6 @@ public partial class Shared_Titulo {
     protected global::System.Web.UI.WebControls.TableRow TableRow6;
     
     /// <summary>
-    /// Control TableCell10.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TableCell TableCell10;
-    
-    /// <summary>
     /// Control TableCell11.
     /// </summary>
     /// <remarks>
@@ -56,13 +47,4 @@ public partial class Shared_Titulo {
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Label lblTitulo;
-    
-    /// <summary>
-    /// Control TableCell2.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TableCell TableCell2;
 }
