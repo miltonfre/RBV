@@ -608,31 +608,20 @@ namespace RBV_AccesoDatos
 
         public static void InsertarEscalaValoracion(List<EscalaValoracion> escala)
         {
-            //RBVDataContext contextoRBV = new RBVDataContext();
+            RBVDataContext contextoRBV = new RBVDataContext();
 
-            //contextoRBV.escalaValoracions.InsertOnSubmit(new EscalaValoracion
-            //{
-            //    IdEmpresa = escala.IdEmpresa,
-            //    Valor = escala.Valor,
-            //    IdCaracteristica = escala.IdCaracteristica,
-            //});
+            List<escalaValoracion> escalasValoracion = new List<escalaValoracion>();
 
-            //contextoRBV.SubmitChanges();
+            escalasValoracion = (from escal in escala
+                                 select new escalaValoracion
+                                 {
+                                     idCaracteristicaRV = escal.IdCaracteristica,
+                                     idEmpresa = escal.IdEmpresa,
+                                     Valor = escal.Valor
+                                 }).ToList();
 
-
-            //List<EscalaValoracion> escalaInsertar = new List<EscalaValoracion>();
-
-            //escalaInsertar = (from esc in escala
-            //                  select new EscalaValoracion
-            //                  {
-            //                      IdCaracteristica = esc.IdCaracteristica,
-            //                      IdEmpresa = esc.IdEmpresa,
-            //                      Valor = esc.Valor
-
-            //                  }).ToList();
-
-            //contextoRBV.escalaValoracions.InsertAllOnSubmit(escalaInsertar);
-            //contextoRBV.SubmitChanges();
+            contextoRBV.escalaValoracions.InsertAllOnSubmit(escalasValoracion);
+            contextoRBV.SubmitChanges();
         }
     }
 }

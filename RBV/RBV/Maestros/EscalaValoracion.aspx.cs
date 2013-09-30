@@ -77,7 +77,7 @@ namespace RBV.Maestros
             List<Entidades.EscalaValoracion> listEscalaValoracion = new List<RBV_Clases.EscalaValoracion>();
             foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
             {
-                Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptItemClasificaciones");
+                Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
                 foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
                 {
                     TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");                   
@@ -89,6 +89,7 @@ namespace RBV.Maestros
                     listEscalaValoracion.Add(escala);
                 }
             }
+            RBV_Negocio.MaestrosBO.InsertarEscalaValoracion(listEscalaValoracion);
         }
         protected void cancelar_Click(object sender, EventArgs e)
         {
