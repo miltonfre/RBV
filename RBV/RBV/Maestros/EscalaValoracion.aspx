@@ -30,10 +30,11 @@
                                             <asp:Label ID="lblCaracteristica" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"NombreCaracteristica") %>'></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtValor" runat="server" class="textbox" Columns="2" MaxLength="3" OnTextChanged="txtValor_Changed" AutoPostBack="true" ></asp:TextBox>
+                                        <asp:Label ID="lblIdCaracteristica" Visible="false" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"IdCaracteristica") %>'></asp:Label>
+                                            <asp:TextBox ID="txtValor" runat="server" Text="12" class="textbox" Columns="2" MaxLength="3" OnTextChanged="txtValor_Changed" AutoPostBack="true" ></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvEscalaval" runat="server" ErrorMessage="" Text="*" ValidationGroup="CrearEscala" ControlToValidate="txtValor">
-                        </asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidaTalla" runat="server" ControlToValidate="txtValor" Text="*" Display="Dynamic" ErrorMessage="Por favor ingrese un porcentaje correcto" ValidationExpression="^\d+$" ValidationGroup="CrearEscala"></asp:RegularExpressionValidator>
+                                            </asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidaTalla" runat="server" ControlToValidate="txtValor" Text="*" Display="Dynamic" ErrorMessage="Por favor ingrese un porcentaje correcto" ValidationExpression="^\d+$" ValidationGroup="CrearEscala"></asp:RegularExpressionValidator>
                                             <asp:Label ID="lblPorcentaje" runat="server" Text='%'></asp:Label>
                                         </td>
                                     </tr>
