@@ -170,6 +170,10 @@ namespace RBV_Negocio
         {
             return Datos.MaestrosDA.ConsultarEscalaValoracion(IdEmpresa);
         }
+        public static List<EscalaValoracion> ConsultarEscalaValoracion(short IdEmpresa, short idCaracteristicaRV)
+        {
+            return Datos.MaestrosDA.ConsultarEscalaValoracion(IdEmpresa, idCaracteristicaRV);
+        }
 
         #endregion
 

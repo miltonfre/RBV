@@ -607,22 +607,58 @@ namespace RBV_AccesoDatos
             return escalaValoracion;
         }
 
-        public static void InsertarEscalaValoracion(List<EscalaValoracion> escala)
+        public static List<EscalaValoracion> ConsultarEscalaValoracion(short IdEmpresa, short idCaracteristicaRV)
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            List<escalaValoracion> escalasValoracion = new List<escalaValoracion>();
+            List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
 
-            escalasValoracion = (from escal in escala
-                                 select new escalaValoracion
-                                 {
-                                     idCaracteristicaRV = escal.IdCaracteristica,
-                                     idEmpresa = escal.IdEmpresa,
-                                     Valor = escal.Valor
-                                 }).ToList();
+            escalaValoracion = (from escalaC in contextoRBV.escalaValoracions
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+                                on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
+                                where (escalaC.idEmpresa == IdEmpresa && escalaC.idCaracteristicaRV == idCaracteristicaRV)
+                                select new EscalaValoracion
+                                {
+                                    IdEmpresa = escalaC.idEmpresa,
+                                    IdCaracteristica = escalaC.idCaracteristicaRV,
+                                    Caracteristica = caracteristicaC.caracteristicaRV,
+                                    Valor = escalaC.Valor
+                                }).ToList();
 
-            contextoRBV.escalaValoracions.InsertAllOnSubmit(escalasValoracion);
-            contextoRBV.SubmitChanges();
+
+            return escalaValoracion;
+        }
+
+        public static void InsertarEscalaValoracion(List<EscalaValoracion> escala)
+        {
+            try
+            {
+                RBVDataContext contextoRBV = new RBVDataContext();
+                //se borra todas las escalas de valoración de la empresa
+                foreach (EscalaValoracion escalaVal in escala)
+                {
+                    escalaValoracion escValEliminar = new escalaValoracion();
+                    escValEliminar = contextoRBV.escalaValoracions.SingleOrDefault(p => p.idCaracteristicaRV == escalaVal.IdCaracteristica && p.idEmpresa == escalaVal.IdEmpresa);
+                    contextoRBV.escalaValoracions.DeleteOnSubmit(escValEliminar);
+                    contextoRBV.SubmitChanges();
+                }
+                List<escalaValoracion> escalasValoracion = new List<escalaValoracion>();
+                escalasValoracion = (from escal in escala
+                                     select new escalaValoracion
+                                     {
+                                         idCaracteristicaRV = escal.IdCaracteristica,
+                                         idEmpresa = escal.IdEmpresa,
+                                         Valor = escal.Valor
+                                     }).ToList();
+
+                contextoRBV.escalaValoracions.InsertAllOnSubmit(escalasValoracion);
+                contextoRBV.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Utilidades.UtilidadLogs.RegistrarError("Error insertando escalas de Valoración", ex, ex.GetType());
+                throw new Exception("Error insertando escalas de Valoración", ex);
+            }
         }
     }
 }
