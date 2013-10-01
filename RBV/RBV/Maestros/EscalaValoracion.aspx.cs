@@ -82,7 +82,7 @@ namespace RBV.Maestros
                 {
                     TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");                   
                     Entidades.EscalaValoracion escala = new Entidades.EscalaValoracion();
-                    escala.IdCaracteristica = ((Entidades.EscalaValoracion)rptItemCaracteristicaxClasificacion.DataItem).IdCaracteristica;
+                    escala.IdCaracteristica = short.Parse(((Label)rptItemCaracteristicaxClasificacion.FindControl("lblIdCaracteristica")).Text);
                     escala.Valor = decimal.Parse(txtValor.Text);
                     //TODO: Cambiar empresa
                     escala.IdEmpresa = 5;
