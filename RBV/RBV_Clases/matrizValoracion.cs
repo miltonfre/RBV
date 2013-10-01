@@ -8,6 +8,7 @@ namespace RBV_Clases
         public List<Caracteristica> Caracteristicas { get; set; }
         public List<RecursosEmpresa> Recursos { get; set; }
 
+        public short IdClasificacion { get; set; }
         public short IdCaracteristica { get; set; }
         public short IdRecurso { get; set; }
         public decimal Valor { get; set; }

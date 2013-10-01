@@ -2,7 +2,7 @@
     Inherits="RBV.Matriz.RecursosValiosos" MasterPageFile="~/Master.Master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
-    <div style="margin-top:10px; margin-left: 50px">
+    <div style="margin-top:10px; margin-left: 30px">
 
         <script src="../js/jquery-1.10.2.js" type="text/javascript"></script>
 
@@ -35,7 +35,7 @@
                     dataType: "json",
                     success: function(msg) {
 
-                        //alert(msg.d);
+                        alert(msg.d);
                     }
                 });
 
@@ -43,19 +43,32 @@
         
         </script>
 
-        <table class="MatrizStyle" rules="rows" style="width:1400px" >
+        <table class="MatrizStyle" rules="rows" style="width:1350px" >
             <% 
             
                 bool showColumn = true;
-
+                int IndiceFila = 0;
                 foreach (var fila in TitulosFilas)
                 {
             %>
-            <tr  >
+            <%
+                if (recursosValiosos[IndiceFila].Valor >= ValorTotal)
+                {
+                    %>    
+                    <tr style="color:Lime;border-bottom-style:double;border-top-color:Lime;border-top-style:double;font-weight:bold" >
+                    <%
+                }
+                else
+                { 
+                %>
+                    <tr>
+                <%
+                }
+                 %>
                 <td class=""  style="visibility:hidden" visible="false">
                     <%= fila.IdFilas%>
                 </td>
-                <td class=""  style="width:100%;color:White">
+                <td class=""  style="width:80%;color:White">
                     <%= fila.NombreFilas %>
                 </td>
                 <%
@@ -76,7 +89,7 @@
                         {
                             %>
                             <td colspan="2" style="text-align:center">
-                            <select id='<%= string.Format("{0},{1}", fila.IdFilas, columna.Id) %>' class="textbox" >
+                            <select id='<%= string.Format("{0},{1},{2}", fila.IdFilas, columna.Id, columna.IdClasificacion) %>' class="textbox" >
                                    <% 
                             
                                     foreach(var item in Calificacion)
@@ -114,10 +127,32 @@
                                     </select>
                                     
                             </td>
+                            
                             <%
                         }
                      }
-
+                    %>
+                    
+                        <td style="color:White;width:150px;text-align:center">
+                        <%  if (!showColumn)
+                            {   
+                        %>
+                                <%= recursosValiosos[IndiceFila].Valor%>                       
+                                
+	                    <%
+                            IndiceFila++;
+                            }
+                            else
+                            { 
+                                %>
+                                <%= "Resultado" %>
+                                <%
+                            }
+                        %>                            
+                             
+                        </td>
+                            
+                    <%
                 showColumn = false;
             
            %></tr>
@@ -125,8 +160,12 @@
                 } 
             %>
         </table>
+        <div style="text-align:right;color:White;font-weight:bold">
+        <%=ValorTotal.ToString().Substring(0,5) %>
+        </div>
         <div>
             <input id="enviar" type="button" value="Enviar" />
         </div>
+        
     </div>
 </asp:Content>

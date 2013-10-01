@@ -599,6 +599,7 @@ namespace RBV_AccesoDatos
                                       IdEmpresa = escalaC.idEmpresa,
                                       IdCaracteristica = escalaC.idCaracteristicaRV,
                                       Caracteristica = caracteristicaC.caracteristicaRV,
+                                      IdClasificacion = caracteristicaC.idClasificacionRV,
                                       Valor = escalaC.Valor
                                   }).ToList();
 

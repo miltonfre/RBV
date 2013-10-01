@@ -27,12 +27,15 @@ namespace RBV_AccesoDatos
             MatrizValoracionEmpresa = (from mat in contextoRBV.matrizValoracions
                                        join rec in contextoRBV.recursosEmpresas
                                        on mat.idRecursoEmpresa equals rec.idRecursoEmpresa
+                                       join car in contextoRBV.caracteristicaRecursoValiosos
+                                       on mat.idCaracteristicaRV equals car.idCaracteristicaRV
                                        where rec.idEmpresa == IdEmpresa
                                        select new MatrizValoracion
                                        {
                                            IdCaracteristica = mat.idCaracteristicaRV,
                                            IdRecurso = mat.idRecursoEmpresa,
-                                           Valor = mat.valor
+                                           Valor = mat.valor,
+                                           IdClasificacion = car.idClasificacionRV
 
                                        }).ToList();
 

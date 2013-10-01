@@ -65,6 +65,7 @@
     <Compile Include="MatrizValoracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursosEmpresa.cs" />
+    <Compile Include="RecursoValioso.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="SectorEmpresa.cs" />
     <Compile Include="TipoRecurso.cs" />
