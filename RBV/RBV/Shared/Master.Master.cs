@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Utilidades;
 
 namespace RBV
 {
@@ -17,6 +18,9 @@ namespace RBV
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           //lblUsuario.Text= HttpContext.Current.User.Identity.Name;
+
                 //if (NavigationMenu== null)
                 //{
                 //    NavigationMenu = new Menu();

@@ -21,8 +21,8 @@
                             <asp:Panel ID="AccessKeyPanel" runat="server" />
                             <asp:Button ID="Button1" runat="server" Enabled="False" Text="Button" Visible="False" />
                             <span id="welcome-span">Bienvenido(a) :</span>
-                            <br />
                             <span id="name-span"><asp:Label ID="lblUsuario" runat="server"></asp:Label></span>
+                            <br/>
                             <asp:Menu ID="topmenu" runat="server" DataSourceID="SiteMapDataSource1">
                                 <StaticSelectedStyle BackColor="" />
                                 <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

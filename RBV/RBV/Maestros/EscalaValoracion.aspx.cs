@@ -10,12 +10,29 @@ namespace RBV.Maestros
 {
     public partial class EscalaValoracion : System.Web.UI.Page
     {
+        public short idEmpresa
+        {
+            set { Session["idEmpresa"] = value; }
+            get { return (short)Session["idEmpresa"]; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                //TODO: Cambiar empresa
+                this.idEmpresa = 5;
                 rptClasificaciones.DataSource = RBV_Negocio.MaestrosBO.ConsultarClasificaciones();
                 rptClasificaciones.DataBind();
+
+                foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
+                {
+                    Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
+                    foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
+                    {
+                        TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");
+                        CalcularClasificacion(txtValor);
+                    }
+                }
             }
         }
 
@@ -28,8 +45,7 @@ namespace RBV.Maestros
                 Entidades.Clasificacion clasific = new Entidades.Clasificacion();
                 clasific = (Entidades.Clasificacion)(e.Item.DataItem);
                 rptCaracteristicaxClasificacion.DataSource = RBV_Negocio.MaestrosBO.ConsultarCaracteristicasxClasificacion(clasific);
-                rptCaracteristicaxClasificacion.DataBind();
-               
+                rptCaracteristicaxClasificacion.DataBind();                
             }
         }
         public void LlenarEscalaValoracion(Object obj, RepeaterItemEventArgs e)
@@ -41,12 +57,24 @@ namespace RBV.Maestros
                 caracteristica=(Entidades.Caracteristica)(e.Item.DataItem);
                 RequiredFieldValidator rfvEscalaval = (RequiredFieldValidator)e.Item.FindControl("rfvEscalaval");
                 rfvEscalaval.ErrorMessage = caracteristica.NombreCaracteristica +" Es requerida";
+                List<Entidades.EscalaValoracion> lstEscalaxEmpresa = RBV_Negocio.MaestrosBO.ConsultarEscalaValoracion(this.idEmpresa, caracteristica.IdCaracteristica);
+                if (lstEscalaxEmpresa.Count > 0)
+                {
+                    TextBox txtValor = (TextBox)e.Item.FindControl("txtValor");
+                    txtValor.Text = lstEscalaxEmpresa[0].Valor.ToString();
+                }
             }
         }
 
         protected void txtValor_Changed(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
+            CalcularClasificacion(textBox);
+        }
+
+        private static void CalcularClasificacion(TextBox textBox)
+        {
+           
             int suma = 0;
             Label lblValorSumaCaracteristica = new Label();
             if (textBox != null)
@@ -66,30 +94,39 @@ namespace RBV.Maestros
                         {
                             txtValor.Text = string.Empty;
                         }
-                     }
+                    }
                 }
                 lblValorSumaCaracteristica = (Label)rptCaracteristicaxClasificacion.Parent.FindControl("lblValorSumaCaracteristica");
-                lblValorSumaCaracteristica.Text = suma.ToString()+"%";
+                lblValorSumaCaracteristica.Text = suma.ToString() + "%";
             }
         }
         protected void enviar_Click(object sender, EventArgs e)
         {
-            List<Entidades.EscalaValoracion> listEscalaValoracion = new List<RBV_Clases.EscalaValoracion>();
-            foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
+            try
             {
-                Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
-                foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
+                List<Entidades.EscalaValoracion> listEscalaValoracion = new List<RBV_Clases.EscalaValoracion>();
+                foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
                 {
-                    TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");                   
-                    Entidades.EscalaValoracion escala = new Entidades.EscalaValoracion();
-                    escala.IdCaracteristica = short.Parse(((Label)rptItemCaracteristicaxClasificacion.FindControl("lblIdCaracteristica")).Text);
-                    escala.Valor = decimal.Parse(txtValor.Text);
-                    //TODO: Cambiar empresa
-                    escala.IdEmpresa = 5;
-                    listEscalaValoracion.Add(escala);
+                    Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
+                    foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
+                    {
+                        TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");
+                        Entidades.EscalaValoracion escala = new Entidades.EscalaValoracion();
+                        escala.IdCaracteristica = short.Parse(((Label)rptItemCaracteristicaxClasificacion.FindControl("lblIdCaracteristica")).Text);
+                        escala.Valor = decimal.Parse(txtValor.Text);                       
+                        escala.IdEmpresa = this.idEmpresa;
+                        listEscalaValoracion.Add(escala);
+                    }
                 }
+                RBV_Negocio.MaestrosBO.InsertarEscalaValoracion(listEscalaValoracion);
+                ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "MensajeValidaciones", "ALERT('Escala de valoración guardada satisfactoriamente')", true);
             }
-            RBV_Negocio.MaestrosBO.InsertarEscalaValoracion(listEscalaValoracion);
+            catch (Exception ex)
+            {
+                Utilidades.UtilidadLogs.RegistrarError(ex, this.GetType());
+                ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "MensajeValidaciones", "ALERT('Ocurrió un error guardando la escala de valoración')", true);
+            }
+          
         }
         protected void cancelar_Click(object sender, EventArgs e)
         {
