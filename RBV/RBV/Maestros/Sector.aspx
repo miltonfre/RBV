@@ -9,7 +9,7 @@
             <cc2:validationsummary ID="ValidationSummary1" runat="server" MensajeDeIntroduccion="<%$ Resources:vsCorregirErrores %>"
                 ValidationGroup="CrearROl" ShowMessageBox="true" ShowSummary="false"
                 UpdatePanel="UpdatePanel6" />
-    <div>
+    <div id="company-page" class="page">
     <br />     
         <table style="width: 100%;">         
             <tr>
