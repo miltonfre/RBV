@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RBV.Matriz {
+namespace RBV.MemberPages {
     
     
-    public partial class RecursosValiosos {
+    public partial class Default {
     }
 }

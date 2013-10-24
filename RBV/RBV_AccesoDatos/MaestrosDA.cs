@@ -639,8 +639,11 @@ namespace RBV_AccesoDatos
                 {
                     escalaValoracion escValEliminar = new escalaValoracion();
                     escValEliminar = contextoRBV.escalaValoracions.SingleOrDefault(p => p.idCaracteristicaRV == escalaVal.IdCaracteristica && p.idEmpresa == escalaVal.IdEmpresa);
-                    contextoRBV.escalaValoracions.DeleteOnSubmit(escValEliminar);
-                    contextoRBV.SubmitChanges();
+                    if (escValEliminar != null)
+                    {
+                        contextoRBV.escalaValoracions.DeleteOnSubmit(escValEliminar);
+                        contextoRBV.SubmitChanges();
+                    }                    
                 }
                 List<escalaValoracion> escalasValoracion = new List<escalaValoracion>();
                 escalasValoracion = (from escal in escala

@@ -20,6 +20,11 @@ namespace RBV.Matriz
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO: Cambiar empresa
+            ConsultarMatrizConValoresCalculados();
+        }
+
+        private void ConsultarMatrizConValoresCalculados()
+        {
             MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(5).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
 
             if (MatrizValoracion.Count > 0)
@@ -30,7 +35,7 @@ namespace RBV.Matriz
             }
             //TODO: Cambiar empresa
             Entidades.MatrizValoracion Matriz = RBV_Negocio.MatrizBO.ConsultarCaracteristicasRecursos(5);
-            foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p=> p.IdCaracteristica))
+            foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p => p.IdCaracteristica))
             {
                 Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica, Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
             }

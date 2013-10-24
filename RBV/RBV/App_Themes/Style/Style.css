@@ -196,6 +196,7 @@ section, footer, header, aside{
 	font-family: 'Pathway Gothic One', sans-serif;
 	height:180px;
 	background:url('../../img/4.jpg');
+	
 }
 
 
@@ -344,6 +345,108 @@ section, footer, header, aside{
 	color:Black;
 }
 
+#matrix-content
+{
+	width: 90%;
+	background-color:White;
+	position:absolute;
+	left:50%;
+	margin:120px 0 15px -48%;
+	padding:40px 50px 30px 20px;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+	overflow-x: scroll;
+    overflow-y: hidden;
+
+}
+
+#main-container .header-Container
+{
+	position:absolute;
+	left:50%;
+	margin:120px 0 15px -48%;
+	  width:250px;
+  margin-top: 15px;
+  z-index:9999;	
+  background-color:#242424;
+  padding:15px;
+  border-radius:2px 2px 2px 2px;
+  box-shadow: 0 -1px 4px rgba(1,1,1,1);
+}
+
+#matrix-container
+{
+	margin-top:95px;	
+}
+
+#matrix-text
+{
+	margin-bottom:15px;
+	width:400px;
+	position:absolute;
+	left:50%;
+	margin:50px 0 0 -43%;
+	padding: 10px 10px 10px 10px;
+	font-size:13px;
+	font-family: 'Oxygen', sans-serif;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+}
+
+#default-text
+{
+	margin-bottom:15px;
+	width:400px;
+	position:absolute;
+	left:50%;
+	margin:0 0 0 -19%;
+	padding: 10px 10px 10px 10px;
+	font-size:13px;
+	font-family: 'Oxygen', sans-serif;
+	border-radius:4px 4px 4px 4px;
+	box-shadow: 0 -1px 4px rgba(1,1,1,1);
+	color:Gray;
+	z-index:10;
+	font-weight:bold;
+}
+
+#main-container
+{
+	color:Black;
+	font-size:10px;
+	/*font-family: 'Oxygen', sans-serif;*/
+	
+}
+
+#matrix-content .title
+{
+	color:Gray;
+	font-size:10px;
+	text-align:center;
+}
+
+#matrix-content .columns
+{
+	text-align:center;
+}
+
+#matrix-content .colname
+{
+	text-align:center;
+}
+
+#matrix-content .option
+{
+	color:Green;
+}
+
+#matrix-content .textbox
+{
+	font-size:10px;
+	font-family: 'Pathway Gothic One', sans-serif;
+}
+
+
 /*----------------------------
 	GridView
 -----------------------------*/
@@ -436,12 +539,13 @@ section, footer, header, aside{
     border-top: 2px solid white;
     padding: 4px;
     margin: 15px 0 0 0;  
+    color:#AAA;
     
 }
 
 .MatrizStyle a
 {
-    color: #FFFFFF;
+    color: #AAA;
 }
 
 .MatrizStyle th
@@ -475,7 +579,7 @@ section, footer, header, aside{
 
 .MatrizAlternatingRowStyle 
 {
-    background-color: #FFFFFF;
+    background-color: #AAA;
     color: #284775;
 }
 
@@ -496,7 +600,7 @@ section, footer, header, aside{
 .MatrizPagerStyle
 {
     background-color: #284775;
-    color: #FFFFFF;
+    color: #AAA;
 }
 
 .MatrizPagerStyle table /* to center the paging links*/

@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="txtRecurso" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvRecurso" runat="server" ErrorMessage="<%$ Resources:rfvRecurso %>" Text="*" ValidationGroup="CrearROl" ControlToValidate="txtTipoRecurso">
+                            <asp:RequiredFieldValidator ID="rfvRecurso" runat="server" ErrorMessage="<%$ Resources:rfvRecurso %>" Text="*" ValidationGroup="CrearROl" ControlToValidate="txtRecurso">
                         </asp:RequiredFieldValidator>
                         </td>
                     </tr>

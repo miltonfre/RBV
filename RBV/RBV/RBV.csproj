@@ -154,6 +154,13 @@
     <Compile Include="MemberPages\CrearUsuario.aspx.designer.cs">
       <DependentUpon>CrearUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MemberPages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberPages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MemberPages\Logon.aspx.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -475,6 +482,7 @@
   <ItemGroup>
     <Content Include="Maestros\App_LocalResources\TipoRecurso.aspx.resx">
     </Content>
+    <Content Include="MemberPages\Default.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

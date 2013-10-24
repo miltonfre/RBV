@@ -20,7 +20,7 @@ namespace RBV {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        //protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// Control SiteMapDataSource1.
@@ -29,7 +29,7 @@ namespace RBV {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
+        //protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
         
         /// <summary>
         /// Control AccessKeyPanel.
@@ -83,6 +83,6 @@ namespace RBV {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphContenidoPaginas;
+        //protected global::System.Web.UI.WebControls.ContentPlaceHolder cphContenidoPaginas;
     }
 }
