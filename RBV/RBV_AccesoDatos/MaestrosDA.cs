@@ -222,7 +222,8 @@ namespace RBV_AccesoDatos
             List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
             caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
-                               
+                               orderby caracteristicaC.idClasificacionRV
+                               ,caracteristicaC.clasificacionRecursoValioso.clasificacionRV
                                select new Caracteristica
                                {
                                    IdCaracteristica = caracteristicaC.idCaracteristicaRV,
@@ -360,6 +361,27 @@ namespace RBV_AccesoDatos
                                                     IdEmpresa = sectorC.idEmpresa 
                                                 }).ToList()
 
+                        }).ToList();
+
+
+            return empresas;
+        }
+
+        public static List<Empresa> ConsultarEmpresas(string Usuario)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<Empresa> empresas = new List<Empresa>();
+            Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
+
+            empresas = (from empresaC in contextoRBV.empresas
+                        join empresaUsr in contextoRBV.empresaUsuarios
+                        on empresaC.idEmpresa equals empresaUsr.idEmpresa
+                        where empresaUsr.UserId == idUsuario
+                        select new Empresa
+                        {
+                            IdEmpresa = empresaC.idEmpresa,
+                            NombreEmpresa = empresaC.nombreEmpresa                            
                         }).ToList();
 
 

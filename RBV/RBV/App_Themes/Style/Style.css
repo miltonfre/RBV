@@ -425,6 +425,22 @@ section, footer, header, aside{
 	text-align:center;
 }
 
+#matrix-content .group
+{
+	color:gray;
+	
+	font-size:10px;
+	font-weight:bold; 
+	text-align:center;
+	border-style:dotted;
+	border-left: 0.5px dotted gray;
+	border-right: 0.5px dotted gray;
+	border-top: 0.5px dotted gray;
+	border-bottom: 0.5px dotted gray;
+	padding: 4px;
+    margin: 15px 0 0 0;  
+}
+
 #matrix-content .columns
 {
 	text-align:center;

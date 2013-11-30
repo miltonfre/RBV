@@ -126,6 +126,13 @@
     <Compile Include="Maestros\Sector.aspx.designer.cs">
       <DependentUpon>Sector.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Maestros\SeleccionEmpresa.ascx.cs">
+      <DependentUpon>SeleccionEmpresa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maestros\SeleccionEmpresa.ascx.designer.cs">
+      <DependentUpon>SeleccionEmpresa.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Maestros\TipoRecurso.aspx.cs">
       <DependentUpon>TipoRecurso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,6 +190,7 @@
       <DependentUpon>UserRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resultado.cs" />
     <Compile Include="Shared\AccessDenied.aspx.cs">
       <DependentUpon>AccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,6 +490,7 @@
   <ItemGroup>
     <Content Include="Maestros\App_LocalResources\TipoRecurso.aspx.resx">
     </Content>
+    <Content Include="Maestros\SeleccionEmpresa.ascx" />
     <Content Include="MemberPages\Default.aspx" />
   </ItemGroup>
   <ItemGroup>

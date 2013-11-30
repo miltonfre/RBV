@@ -32,6 +32,9 @@ namespace RBV_Negocio
             return CalcularResultadosMatriz(Matriz, IdEmpresa);
         }
 
+        
+        
+        
         public static List<RecursoValioso> CalcularResultadosMatriz(List<MatrizValoracion> Matriz, short IdEmpresa)
         {
             List<EscalaValoracion> escalaValoracion = MaestrosDA.ConsultarEscalaValoracion(IdEmpresa);

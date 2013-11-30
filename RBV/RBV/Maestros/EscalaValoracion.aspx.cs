@@ -10,30 +10,37 @@ namespace RBV.Maestros
 {
     public partial class EscalaValoracion : System.Web.UI.Page
     {
-        public short idEmpresa
-        {
-            set { Session["idEmpresa"] = value; }
-            get { return (short)Session["idEmpresa"]; }
-        }
+        public short idEmpresa { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                //TODO: Cambiar empresa
-                this.idEmpresa = 5;
-                rptClasificaciones.DataSource = RBV_Negocio.MaestrosBO.ConsultarClasificaciones();
-                rptClasificaciones.DataBind();
+                SeleccionEmpresa1.Usuario = User.Identity.Name;
+                SeleccionEmpresa1.ConsultarEmpresas();
+                ConsultarClasificaciones();
+            }
+        }
 
-                foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
+        private void ConsultarClasificaciones()
+        {
+            this.idEmpresa = SeleccionEmpresa1.IdEmpresa;
+            rptClasificaciones.DataSource = RBV_Negocio.MaestrosBO.ConsultarClasificaciones();
+            rptClasificaciones.DataBind();
+
+            foreach (RepeaterItem rptItemClasificaciones in rptClasificaciones.Items)
+            {
+                Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
+                foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
                 {
-                    Repeater rptCaracteristicaxClasificacion = (Repeater)rptItemClasificaciones.FindControl("rptCaracteristicaxClasificacion");
-                    foreach (RepeaterItem rptItemCaracteristicaxClasificacion in rptCaracteristicaxClasificacion.Items)
-                    {
-                        TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");
-                        CalcularClasificacion(txtValor);
-                    }
+                    TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");
+                    CalcularClasificacion(txtValor);
                 }
             }
+        }
+
+        protected void SeleccionEmpresa1_OnEmpresaIndexChange(object sender, EventArgs e)
+        {
+            ConsultarClasificaciones();            
         }
 
         public void LlenarEscala(Object obj, RepeaterItemEventArgs e)

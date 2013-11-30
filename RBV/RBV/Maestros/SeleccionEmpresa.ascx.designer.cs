@@ -8,18 +8,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RBV.Matriz {
+namespace RBV.Maestros {
     
     
-    public partial class RecursosValiosos {
+    public partial class SeleccionEmpresa {
         
         /// <summary>
-        /// SeleccionEmpresa1 control.
+        /// lblEmpresaUsr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RBV.Maestros.SeleccionEmpresa SeleccionEmpresa1;
+        protected global::System.Web.UI.WebControls.Label lblEmpresaUsr;
+        
+        /// <summary>
+        /// ddlEmpresaUsr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpresaUsr;
     }
 }

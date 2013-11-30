@@ -134,6 +134,11 @@ namespace RBV_Negocio
             return Datos.MaestrosDA.ConsultarEmpresas();
         }
 
+        public static List<Empresa> ConsultarEmpresas(string Usuario)
+        {
+            return Datos.MaestrosDA.ConsultarEmpresas(Usuario);
+        }
+
         #endregion
 
         #region EscalaCalificacion
