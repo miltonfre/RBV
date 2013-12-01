@@ -120,8 +120,8 @@ namespace RBV.Maestros
                         TextBox txtValor = (TextBox)rptItemCaracteristicaxClasificacion.FindControl("txtValor");
                         Entidades.EscalaValoracion escala = new Entidades.EscalaValoracion();
                         escala.IdCaracteristica = short.Parse(((Label)rptItemCaracteristicaxClasificacion.FindControl("lblIdCaracteristica")).Text);
-                        escala.Valor = decimal.Parse(txtValor.Text);                       
-                        escala.IdEmpresa = this.idEmpresa;
+                        escala.Valor = decimal.Parse(txtValor.Text);
+                        escala.IdEmpresa = SeleccionEmpresa1.IdEmpresa;
                         listEscalaValoracion.Add(escala);
                     }
                 }
