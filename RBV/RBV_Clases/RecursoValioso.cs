@@ -8,6 +8,7 @@ namespace RBV_Clases
     public class RecursoValioso
     {
         public short IdRecursoEmpresa { get; set; }
+        public string NombreRecurso { get; set; }
         public decimal Valor { get; set; }
     }
 }
