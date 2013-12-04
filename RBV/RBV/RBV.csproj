@@ -31,6 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.7.725, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocX, Version=1.0.1.13, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -58,6 +63,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -201,6 +209,21 @@
       <DependentUpon>UserRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Reportes\GenerarReporte.ascx.cs">
+      <DependentUpon>GenerarReporte.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\GenerarReporte.ascx.designer.cs">
+      <DependentUpon>GenerarReporte.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\GenerarReporte.aspx.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\GenerarReporte.aspx.designer.cs">
+      <DependentUpon>GenerarReporte.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Resultado.cs" />
     <Compile Include="Shared\AccessDenied.aspx.cs">
       <DependentUpon>AccessDenied.aspx</DependentUpon>
@@ -208,6 +231,13 @@
     </Compile>
     <Compile Include="Shared\AccessDenied.aspx.designer.cs">
       <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shared\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -223,12 +253,33 @@
     <Compile Include="Shared\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Popup.Master.cs">
+      <DependentUpon>Popup.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Popup.Master.designer.cs">
+      <DependentUpon>Popup.Master</DependentUpon>
+    </Compile>
     <Compile Include="Shared\RecursoNoExiste.aspx.cs">
       <DependentUpon>RecursoNoExiste.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Shared\RecursoNoExiste.aspx.designer.cs">
       <DependentUpon>RecursoNoExiste.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\SeleccionarEmpresa.ascx.cs">
+      <DependentUpon>SeleccionarEmpresa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\SeleccionarEmpresa.ascx.designer.cs">
+      <DependentUpon>SeleccionarEmpresa.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\SeleccionarEmpresas.aspx.cs">
+      <DependentUpon>SeleccionarEmpresas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\SeleccionarEmpresas.aspx.designer.cs">
+      <DependentUpon>SeleccionarEmpresas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shared\Titulo.ascx.cs">
       <DependentUpon>Titulo.ascx</DependentUpon>
@@ -477,6 +528,7 @@
     <Content Include="js\jquery.easing.1.3.js" />
     <Content Include="Maestros\App_LocalResources\EscalaValoracion.aspx.resx">
     </Content>
+    <Content Include="Shared\SeleccionarEmpresa.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Maestros\App_LocalResources\Clasificacion.aspx.resx">
@@ -506,8 +558,30 @@
     <Content Include="MemberPages\Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\Init.js" />
+    <Content Include="MiWord\data.xml" />
+    <Content Include="MiWord\document.xslt" />
+    <Content Include="Reportes\GenerarReporte.ascx" />
+    <Content Include="Reportes\GenerarReporte.aspx" />
+    <Content Include="Shared\Default.aspx" />
+    <Content Include="Shared\Popup.Master" />
+    <Content Include="Shared\SeleccionarEmpresas.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MiWord\Cursos.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reportes\App_LocalResources\GenerarReporte.ascx.resx">
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reportes\App_LocalResources\GenerarReporte.aspx.resx">
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Default\Grid\Img\" />
+    <Folder Include="InformesGenerados\" />
     <Folder Include="Shared\App_LocalResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

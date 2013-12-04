@@ -1,21 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="" title="Administración"  description="">
-    <siteMapNode url="" title="Usuarios"  description="">
+  
+  <siteMapNode url="" title="Recursos Valiosos"  description="">
+    <siteMapNode url="" title="Adminstración"  description="">
+    <siteMapNode url="" title="Administración de Usuarios"  description="">
       <siteMapNode url="MemberPages/CrearUsuario.aspx" title="Crear Usuario"  description="" />
     </siteMapNode>
-    <siteMapNode url="" title="Maestros"  description="">
-      <siteMapNode url="Maestros/Sector.aspx" title="Sector"  description="" />
-      <siteMapNode url="Maestros/Empresa.aspx" title="Empresa"  description="" />
+    <siteMapNode url="" title="Administración de Maestros"  description="">
+      <siteMapNode url="Maestros/Sector.aspx" title="Sectores"  description="" />
+      <siteMapNode url="Maestros/Empresa.aspx" title="Empresas"  description="" />
       <siteMapNode url="Maestros/Clasificacion.aspx" title="Clasificación"  description="" />
-      <siteMapNode url="Maestros/Caracteristica.aspx" title="Característica"  description="" /> 
-      <siteMapNode url="Maestros/TipoRecurso.aspx" title="Tipo de Recurso"  description="" />     
-      <siteMapNode url="Maestros/EscalaCalificacion.aspx" title="Escala de Calificación"  description="" />
-      <siteMapNode url="Maestros/Recursos.aspx" title="Recursos"  description="" />
+      <siteMapNode url="Maestros/Caracteristica.aspx" title="Características"  description="" /> 
+      <siteMapNode url="Maestros/TipoRecurso.aspx" title="Tipo de Recursos"  description="" />      
+    </siteMapNode>   
     </siteMapNode>
-    <siteMapNode url="" title="Recursos Valiosos"  description="">
+    <siteMapNode url="" title="Evaluar empresa"  description="">
+      <siteMapNode url="Maestros/EscalaCalificacion.aspx" title="Escala de Calificación"  description="" />
+      <siteMapNode url="Maestros/Recursos.aspx" title="Administración de Recursos"  description="" />
       <siteMapNode url="Maestros/EscalaValoracion.aspx" title="Escala de Valoración"  description="" />
-      <siteMapNode url="Matriz/RecursosValiosos.aspx" title="Recursos Valiosos"  description="" />
+      <siteMapNode url="Matriz/RecursosValiosos.aspx" title="Matriz de Evaluación"  description="" />
+      <siteMapNode url="Matriz/Reportes.aspx" title="Reportes"  description="" />
+      <siteMapNode url="Reportes/GenerarReporte.aspx" title="Generar Informe"  description="" />
     </siteMapNode>
   </siteMapNode>
+ 
+ 
+  
 </siteMap>

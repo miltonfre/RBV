@@ -9,7 +9,7 @@
             <asp:UpdatePanel ID="updatepanel1" RenderMode="Inline" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <asp:Login ID="Login1" runat="server" FailureText="<%$ Resources:Login1FailureText %>"
-                        CreateUserUrl="~/MemberPages/CrearUsuario.aspx" DestinationPageUrl="~/Default.aspx"
+                        CreateUserUrl="~/MemberPages/CrearUsuario.aspx"  OnAuthenticate="Login1_LoggedIn" DestinationPageUrl="~/Default.aspx"
                         CreateUserText="Crear nuevo usuario" LoginButtonText="<%$ Resources:Login1LoginButtonText %>"
                         PasswordLabelText="<%$ Resources:Login1PasswordLabelText %>" PasswordRequiredErrorMessage="<%$ Resources:Login1PasswordRequiredErrorMessage %>"
                         RememberMeText="<%$ Resources:Login1RememberMeText %>" TitleText="<%$ Resources:Login1TitleText %>"

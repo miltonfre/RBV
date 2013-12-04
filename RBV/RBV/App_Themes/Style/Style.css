@@ -304,6 +304,17 @@ section, footer, header, aside{
 	box-shadow: 0 -1px 4px rgba(1,1,1,1);
 	font-family: 'Oxygen', sans-serif;
 }
+#content-container-PopUp
+{
+	width:230px;	
+	z-index:2;
+	background-color:White;
+	position:absolute;
+	left:50%;
+	margin:50px 0 0 -43%;
+	padding:150px 50px 50px 20px;
+	font-family: 'Oxygen', sans-serif;
+}
 
 #content-container .labels
 {
