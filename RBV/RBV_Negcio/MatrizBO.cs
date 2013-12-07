@@ -60,7 +60,7 @@ namespace RBV_Negocio
                         ValorTotalRecurso += itemRecurso.Valor * (ValorCaracteristica / 100) * (ValorClasificacion / 100);
                     }
                 }
-                RecursosValiosos.Add(new RecursoValioso { IdRecursoEmpresa = item.IdRecursoEmpresa, NombreRecurso = item.NombreRecurso ,Valor = ValorTotalRecurso });
+                RecursosValiosos.Add(new RecursoValioso { IdRecursoEmpresa = item.IdRecursoEmpresa, NombreRecurso = item.NombreRecurso ,Valor = ValorTotalRecurso, IdTipoRecurso = item.TipoRecurso.IdTipoRecurso, TipoRecurso = item.TipoRecurso.NombreTipoRecurso });
             }
             return RecursosValiosos;
         }

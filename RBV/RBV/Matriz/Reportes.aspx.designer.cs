@@ -23,12 +23,39 @@ namespace RBV.Matriz {
         protected global::RBV.Maestros.SeleccionEmpresa SeleccionEmpresa1;
         
         /// <summary>
-        /// Chart1 control.
+        /// BarrasRecursos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart BarrasRecursos;
+        
+        /// <summary>
+        /// TortaRecursos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart TortaRecursos;
+        
+        /// <summary>
+        /// TipoRecValioso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart TipoRecValioso;
+        
+        /// <summary>
+        /// RecValiosoVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart RecValiosoVal;
     }
 }

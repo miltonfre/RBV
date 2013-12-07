@@ -10,5 +10,7 @@ namespace RBV_Clases
         public short IdRecursoEmpresa { get; set; }
         public string NombreRecurso { get; set; }
         public decimal Valor { get; set; }
+        public string TipoRecurso { get; set; }
+        public short IdTipoRecurso { get; set; }
     }
 }

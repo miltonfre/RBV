@@ -19,7 +19,7 @@ namespace RBV.Matriz
                 SeleccionEmpresa1.Usuario = User.Identity.Name;
                 SeleccionEmpresa1.ConsultarEmpresas();
                 ConsultarValoresPromedio();
-            }            
+            }
         }
 
         private void ConsultarValoresPromedio()
@@ -29,23 +29,69 @@ namespace RBV.Matriz
             List<RBV_Clases.RecursoValioso> recursosValiosos = new List<RBV_Clases.RecursoValioso>();
             decimal ValorTotal = 0;
             MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(SeleccionEmpresa1.IdEmpresa).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
-            
+
             if (MatrizValoracion.Count > 0)
             {
                 recursosValiosos = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(MatrizValoracion, SeleccionEmpresa1.IdEmpresa);
                 ValorTotal = recursosValiosos.Sum(p => p.Valor) / recursosValiosos.Count;
             }
-            string[] Titulos = recursosValiosos.Select(p=>p.NombreRecurso).ToArray();
-            decimal[] Valores = recursosValiosos.Select(p=>p.Valor).ToArray();
+            string[] Titulos = recursosValiosos.Select(p => p.NombreRecurso).ToArray();
+            decimal[] Valores = recursosValiosos.Select(p => p.Valor).ToArray();
             decimal[] Promedio = new decimal[Titulos.Length];
-            Chart1.Series["Series1"].Points.DataBindXY(Titulos, Valores);
+            BarrasRecursos.Series["Recursos"].Points.DataBindXY(Titulos, Valores);
             for (int i = 0; i < Titulos.Length; i++)
             {
                 Promedio[i] = ValorTotal;
             }
 
-            Chart1.Series["Promedio"].Points.DataBindXY(Titulos, Promedio);
+            BarrasRecursos.Series["Promedio"].Points.DataBindXY(Titulos, Promedio);
 
+            //Pie recurosos porcentaje
+            string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            decimal[] ValoresTipo = (from p in recursosValiosos group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+
+            TortaRecursos.Series["TipoRecursos"].Points.DataBindXY(TitulosTipo, ValoresTipo);
+            TortaRecursos.Series["TipoRecursos"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TortaRecursos.Series["TipoRecursos"].Points.Count; i++)
+            {
+                TortaRecursos.Series["TipoRecursos"].Points[i].LegendText = TitulosTipo[i].ToString();
+            }
+
+            //Pie recursos valiosos sobre total recursos
+            
+            string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+
+            Array.Resize(ref TitulosTipoVal, TitulosTipoVal.Length + 1);
+            TitulosTipoVal[TitulosTipoVal.Length - 1] = "No Valiosos";
+
+            Array.Resize(ref ValoresTipoVal, ValoresTipoVal.Length + 1);
+            ValoresTipoVal[ValoresTipoVal.Length - 1] = (100 - ValoresTipoVal.Sum());
+
+            TipoRecValioso.Series["TipoRecursosVal"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
+                        
+            TipoRecValioso.Series["TipoRecursosVal"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TipoRecValioso.Series["TipoRecursosVal"].Points.Count; i++)
+            {
+                TipoRecValioso.Series["TipoRecursosVal"].Points[i].LegendText = TitulosTipoVal[i].ToString();
+            }
+            
+            //Pie recursos valiosos sobre recursos valiosos
+            List<RBV_Clases.RecursoValioso> recursosVal= new List<RBV_Clases.RecursoValioso>();
+            string[] TitulosValVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
+            decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
+
+            RecValiosoVal.Series["RecursosValioVal"].Points.DataBindXY(TitulosValVal, ValoresValVal);
+
+            RecValiosoVal.Series["RecursosValioVal"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < RecValiosoVal.Series["RecursosValioVal"].Points.Count; i++)
+            {
+                RecValiosoVal.Series["RecursosValioVal"].Points[i].LegendText = TitulosTipo[i].ToString();
+            }
+
+            //BarrasRecursos.SaveImage(@"D:\Barras.jpg",ChartImageFormat.Jpeg);
         }
     }
+
 }
