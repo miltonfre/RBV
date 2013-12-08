@@ -90,12 +90,11 @@ namespace RBV.Matriz
                                group cla by new
                                {
                                     cla.ClasificacionAsociada.ClasificacionRV
-                                    
                                } into g
                                orderby g.Key.ClasificacionRV
                                select new TituloClasificaciones 
                                         { 
-                                            Nombre = g.Key.ClasificacionRV ,
+                                            Nombre = g.Key.ClasificacionRV + " " + g.Sum(p=> Convert.ToDecimal(p.ValorCaracteristica)).ToString() + "%",
                                             CantidadCaracteristica = g.Count(p=>p.ClasificacionAsociada.ClasificacionRV != null) *2
                                             
                                         }).Distinct().ToList();
@@ -119,7 +118,8 @@ namespace RBV.Matriz
         public struct TituloClasificaciones
         {
             public string Nombre { get; set; }
-            public int CantidadCaracteristica { get; set; } 
+            public int CantidadCaracteristica { get; set; }
+//            public string ValorCla { get; set; }
         }
 
         [WebMethod]
