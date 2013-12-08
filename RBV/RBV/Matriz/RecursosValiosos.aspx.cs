@@ -75,7 +75,7 @@ namespace RBV.Matriz
             Entidades.MatrizValoracion Matriz = RBV_Negocio.MatrizBO.ConsultarCaracteristicasRecursos(this.idEmpresa);
             foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p => p.ClasificacionAsociada.ClasificacionRV))
             {
-                Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica, Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
+                Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica + " " +item.ValorCaracteristica + "%", Descripcion=item.Descripcion,Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
             }
             TitulosFilas.Add(new TituloFilas { NombreFilas = "" });
             foreach (Entidades.RecursosEmpresa item in Matriz.Recursos.OrderBy(p => p.IdRecursoEmpresa))
@@ -89,7 +89,8 @@ namespace RBV.Matriz
             Clasificaciones = (from cla in Matriz.Caracteristicas
                                group cla by new
                                {
-                                    cla.ClasificacionAsociada.ClasificacionRV                               
+                                    cla.ClasificacionAsociada.ClasificacionRV
+                                    
                                } into g
                                orderby g.Key.ClasificacionRV
                                select new TituloClasificaciones 
@@ -104,6 +105,7 @@ namespace RBV.Matriz
         public struct Titulo
         {
             public string Nombre { get; set; }
+            public string Descripcion { get; set; }
             public string Id { get; set; }
             public string IdClasificacion { get; set; }
         }

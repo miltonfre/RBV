@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RBV" Class="RBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=False;User ID=USR_RBV;Context Connection=False" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=290dpineda_p\sqlexpress;Initial Catalog=RBV;Persist Security Info=False;User ID=USR_RBV;Context Connection=False" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.empresaUsuario" Member="empresaUsuarios">
     <Type Name="empresaUsuario">
       <Column Name="idUsuarioEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -20,13 +20,6 @@
       <Association Name="aspnet_Application_aspnet_Path" Member="aspnet_Paths" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Path" />
       <Association Name="aspnet_Application_aspnet_Role" Member="aspnet_Roles" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Role" />
       <Association Name="aspnet_Application_aspnet_User" Member="aspnet_Users" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_User" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tipoRecurso" Member="tipoRecursos">
-    <Type Name="tipoRecurso">
-      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tipoRecurso" Member="tipoRecurso1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="tipoRecurso_recursosEmpresa" Member="recursosEmpresas" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="recursosEmpresa" />
     </Type>
   </Table>
   <Table Name="dbo.aspnet_Membership" Member="aspnet_Memberships">
@@ -158,16 +151,6 @@
       <Column Name="Details" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
-  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos">
-    <Type Name="caracteristicaRecursoValioso">
-      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
-      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
-      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.clasificacionRecursoValioso" Member="clasificacionRecursoValiosos">
     <Type Name="clasificacionRecursoValioso">
       <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -189,8 +172,8 @@
       <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
       <Association Name="empresa_escalaValoracion" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.matrizValoracion" Member="matrizValoracions">
@@ -198,8 +181,8 @@
       <Column Name="idRecursoEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
       <Association Name="recursosEmpresa_matrizValoracion" Member="recursosEmpresa" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="recursosEmpresa" IsForeignKey="true" />
+      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.recursosEmpresa" Member="recursosEmpresas">
@@ -210,8 +193,8 @@
       <Column Name="recurso" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="recursosEmpresa_matrizValoracion" Member="matrizValoracions" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="matrizValoracion" />
-      <Association Name="tipoRecurso_recursosEmpresa" Member="tipoRecurso" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="tipoRecurso" IsForeignKey="true" />
       <Association Name="empresa_recursosEmpresa" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+      <Association Name="tipoRecurso_recursosEmpresa" Member="tipoRecurso" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="tipoRecurso" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.sector" Member="sectors">
@@ -240,6 +223,25 @@
       <Association Name="empresa_escalaValoracion" Member="escalaValoracions" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="escalaValoracion" />
       <Association Name="empresa_recursosEmpresa" Member="recursosEmpresas" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="recursosEmpresa" />
       <Association Name="empresa_sectorEmpresa" Member="sectorEmpresas" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="sectorEmpresa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tipoRecurso" Member="tipoRecursos">
+    <Type Name="tipoRecurso">
+      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tipoRecurso" Member="tipoRecurso1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="tipoRecurso_recursosEmpresa" Member="recursosEmpresas" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="recursosEmpresa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos">
+    <Type Name="caracteristicaRecursoValioso">
+      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
+      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
+      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_GetPassword" Method="aspnet_Membership_GetPassword">

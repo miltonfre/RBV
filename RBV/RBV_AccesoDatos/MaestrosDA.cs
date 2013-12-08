@@ -129,7 +129,8 @@ namespace RBV_AccesoDatos
 
             contextoRBV.tipoRecursos.InsertOnSubmit(new tipoRecurso
             {
-                tipoRecurso1 = tipoRecurso.NombreTipoRecurso
+                tipoRecurso1 = tipoRecurso.NombreTipoRecurso,
+                Descripcion = tipoRecurso.Descripcion
             });
 
             contextoRBV.SubmitChanges();
@@ -143,6 +144,7 @@ namespace RBV_AccesoDatos
 
             tipoRecursoAnterior = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
             tipoRecursoAnterior.tipoRecurso1 = tipoRecurso.NombreTipoRecurso;
+            tipoRecursoAnterior.Descripcion = tipoRecurso.Descripcion;
 
             contextoRBV.SubmitChanges();
         }
@@ -168,11 +170,32 @@ namespace RBV_AccesoDatos
                         select new TipoRecurso
                         {
                             IdTipoRecurso = tipoRecursoC.idTipoRecurso,
-                            NombreTipoRecurso = tipoRecursoC.tipoRecurso1
+                            NombreTipoRecurso = tipoRecursoC.tipoRecurso1,
+                            Descripcion = tipoRecursoC.Descripcion
                         }).ToList();
 
 
             return tiposRecurso;
+        }
+
+        public static TipoRecurso ConsultarTipoRecurso(short IdTipoRecurso)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            TipoRecurso tipoRecurso = new TipoRecurso();
+
+            var tipoRec = (from tiporec in contextoRBV.tipoRecursos
+                           where tiporec.idTipoRecurso == IdTipoRecurso
+                           select new TipoRecurso
+                           {
+                               IdTipoRecurso = tiporec.idTipoRecurso,
+                               NombreTipoRecurso = tiporec.tipoRecurso1,
+                               Descripcion = tiporec.Descripcion
+                           });
+            tipoRecurso = tipoRec.SingleOrDefault();
+
+
+            return tipoRecurso;
         }
 
         #endregion
@@ -187,6 +210,7 @@ namespace RBV_AccesoDatos
             {
                 caracteristicaRV = caracteristica.NombreCaracteristica
                 ,idClasificacionRV = caracteristica.IdClasificacionRV
+                ,Descripcion = caracteristica.Descripcion
             });
 
             contextoRBV.SubmitChanges();
@@ -201,6 +225,7 @@ namespace RBV_AccesoDatos
             caracteristicaAnterior = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
             caracteristicaAnterior.caracteristicaRV = caracteristica.NombreCaracteristica;
             caracteristicaAnterior.idClasificacionRV = caracteristica.IdClasificacionRV;
+            caracteristicaAnterior.Descripcion = caracteristica.Descripcion;
 
             contextoRBV.SubmitChanges();
         }
@@ -229,10 +254,12 @@ namespace RBV_AccesoDatos
                                    IdCaracteristica = caracteristicaC.idCaracteristicaRV,
                                    NombreCaracteristica = caracteristicaC.caracteristicaRV,
                                    IdClasificacionRV = caracteristicaC.idClasificacionRV,
+                                   Descripcion = caracteristicaC.Descripcion,
+                                   ValorCaracteristica = caracteristicaC.escalaValoracions.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV).Valor.ToString(),
                                    ClasificacionAsociada = new Clasificacion
                                    {
                                        IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
-                                       ClasificacionRV = caracteristicaC.clasificacionRecursoValioso.clasificacionRV
+                                       ClasificacionRV = caracteristicaC.clasificacionRecursoValioso.clasificacionRV                                       
                                    }
                                }).ToList();
 

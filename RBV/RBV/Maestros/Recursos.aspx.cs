@@ -135,6 +135,19 @@ namespace RBV.Maestros
         protected void ddlEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConsultarRecursos(Convert.ToInt16(ddlEmpresas.SelectedValue));
+        }
+
+        protected void ddlTipoRecurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTipoRecurso.SelectedValue != "0")
+            {
+                lblDescripcionTipo.Text = RBV_Negocio.MaestrosBO.ConsultarTipoRecurso(Convert.ToInt16(ddlTipoRecurso.SelectedValue)).Descripcion;
+            }
+            else
+            {
+                lblDescripcionTipo.Text = string.Empty;
+            }
+            
         }        
     }
 }

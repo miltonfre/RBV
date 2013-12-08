@@ -7,6 +7,8 @@ namespace RBV_Clases
     {
         public short IdCaracteristica { get; set; }
         public string NombreCaracteristica { get; set; }
+        public string ValorCaracteristica { get; set; }
+        public string Descripcion { get; set; }
         public short IdClasificacionRV { get; set; }
         public Clasificacion ClasificacionAsociada { get; set; }
     }

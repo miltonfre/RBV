@@ -76,6 +76,11 @@ namespace RBV_Negocio
             return Datos.MaestrosDA.ConsultarTiposRecurso();
         }
 
+        public static TipoRecurso ConsultarTipoRecurso(short IdTipoRecurso)
+        {
+            return Datos.MaestrosDA.ConsultarTipoRecurso(IdTipoRecurso);
+        }
+
         #endregion
 
         #region Caracteristica

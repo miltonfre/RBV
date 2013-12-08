@@ -167,8 +167,9 @@
                             align="center">
                             <%= columna.Id%>
                         </td>
-                        <td class="colname">
+                        <td class="colname" title="<%= columna.Descripcion %>">
                             <%= columna.Nombre%>
+                            
                         </td>
                         <%
                             }

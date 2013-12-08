@@ -144,4 +144,10 @@
   <data name="vsCorregirErrores" xml:space="preserve">
     <value>Por favor corregir los siguientes errores</value>
   </data>
+  <data name="lblDesTipoRecurso" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="hdrDescripcion" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
 </root>

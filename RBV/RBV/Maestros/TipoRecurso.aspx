@@ -25,6 +25,15 @@
                     </tr>
                     <tr>
                         <td>
+                            <asp:Label ID="lblDescripcion" Text="<%$ Resources:lblDesTipoRecurso %>" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <asp:Button ID="btnGuardar" Text="<%$ Resources:btnGuardar %>" runat="server" OnClick="btnGuardar_Click" CssClass="butt"/>
                         </td>
                         <td>
@@ -37,6 +46,7 @@
                                 OnRowEditing="grdTipoRecurso_RowEditing" DataKeyNames="IdTipoRecurso">
                                 <Columns>
                                     <asp:BoundField DataField="NombreTipoRecurso" HeaderText="<%$ Resources:hdrTipoRecurso %>" />
+                                    <asp:BoundField DataField="Descripcion" HeaderText="<%$ Resources:hdrDescripcion %>" />
                                     <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="<%$ Resources:hdrEditar %>" EditImageUrl="~/images/ico_lapiz.gif" />
                                     <asp:CommandField DeleteText="Eliminar" ShowDeleteButton="True" HeaderText="<%$ Resources:hdrEliminar %>"
                                         ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" />

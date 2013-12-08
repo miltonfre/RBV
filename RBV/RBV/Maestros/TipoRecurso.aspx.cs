@@ -60,7 +60,7 @@ namespace RBV.Maestros
         {
             Entidades.TipoRecurso tipoRecurso = new Entidades.TipoRecurso();
             tipoRecurso.NombreTipoRecurso = txtTipoRecurso.Text.Trim();
-
+            tipoRecurso.Descripcion = txtDescripcion.Text.Trim();
             if (Actualizar)
             {
                 tipoRecurso.IdTipoRecurso = IdTipoRecurso;
@@ -90,6 +90,7 @@ namespace RBV.Maestros
         private void LimpiarPagina()
         {
             txtTipoRecurso.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
             Actualizar = false;
         }
 
@@ -97,6 +98,7 @@ namespace RBV.Maestros
         {
             Actualizar = true;
             txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text;
+            txtDescripcion.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[1].Text;
             IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.DataKeys[e.NewEditIndex].Value);
         }
 

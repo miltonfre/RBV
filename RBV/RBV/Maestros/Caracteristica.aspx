@@ -33,6 +33,14 @@
                     </tr>
                     <tr>
                         <td>
+                            <asp:Label ID="lblDescripcion" Text="<%$ Resources:lblDescripcion %>" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <asp:Button ID="btnGuardar" Text="<%$ Resources:btnGuardar %>" runat="server" OnClick="btnGuardar_Click" CssClass="butt"/>
                         </td>
                         <td>
@@ -45,6 +53,7 @@
                                 OnRowDeleting="grdCaracteristica_RowDeleting" DataKeyNames="IdCaracteristica">
                                 <Columns>
                                     <asp:BoundField DataField="NombreCaracteristica" HeaderText="<%$ Resources:hdrCaracteristica %>" />
+                                    <asp:BoundField DataField="Descripcion" HeaderText="<%$ Resources:hdrDescripcion %>" />
                                     <asp:TemplateField Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblIdClasificionG" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"ClasificacionAsociada.IdClasificacionRV") %>'></asp:Label>

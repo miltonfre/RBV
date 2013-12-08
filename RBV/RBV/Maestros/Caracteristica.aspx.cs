@@ -72,7 +72,7 @@ namespace RBV.Maestros
             Entidades.Caracteristica caracteristica = new Entidades.Caracteristica();
             caracteristica.NombreCaracteristica = txtCaracteristica.Text.Trim();
             caracteristica.IdClasificacionRV = Convert.ToInt16(ddlClasificacion.SelectedValue);
-
+            caracteristica.Descripcion = txtDescripcion.Text.Trim();
             if (Actualizar)
             {
                 caracteristica.IdCaracteristica = IdCaracteristica;
@@ -97,6 +97,7 @@ namespace RBV.Maestros
         private void LimpiarPagina()
         {
             txtCaracteristica.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
             Actualizar = false;
             ddlClasificacion.SelectedIndex = 0;
         }
@@ -105,6 +106,7 @@ namespace RBV.Maestros
         {
             Actualizar = true;
             txtCaracteristica.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[0].Text;
+            txtDescripcion.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[1].Text;
             IdCaracteristica = Convert.ToInt16(grdCaracteristica.DataKeys[e.NewEditIndex].Value);
             ddlClasificacion.SelectedValue = ((Label)grdCaracteristica.Rows[e.NewEditIndex].Cells[1].FindControl("lblIdClasificionG")).Text;
         }

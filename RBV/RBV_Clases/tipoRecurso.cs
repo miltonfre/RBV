@@ -7,5 +7,6 @@ namespace RBV_Clases
     {
         public short IdTipoRecurso{ get; set; }
         public string NombreTipoRecurso { get; set; }
+        public string Descripcion { get; set; }
     }
 }
