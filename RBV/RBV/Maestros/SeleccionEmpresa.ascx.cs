@@ -19,6 +19,11 @@ namespace RBV.Maestros
             set { ddlEmpresaUsr.SelectedValue = value.ToString(); }
             get { return Convert.ToInt16(ddlEmpresaUsr.SelectedValue == string.Empty ? 0 : Convert.ToInt16(ddlEmpresaUsr.SelectedValue)); }
         }
+        public string Empresa
+        {
+            set { ddlEmpresaUsr.SelectedValue = value.ToString(); }
+            get { return ddlEmpresaUsr.SelectedItem.Text == string.Empty ? string.Empty : ddlEmpresaUsr.SelectedItem.Text; }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {

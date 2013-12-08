@@ -75,7 +75,7 @@ namespace RBV.Matriz
             Entidades.MatrizValoracion Matriz = RBV_Negocio.MatrizBO.ConsultarCaracteristicasRecursos(this.idEmpresa);
             foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p => p.ClasificacionAsociada.ClasificacionRV))
             {
-                Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica + " " +item.ValorCaracteristica + "%", Descripcion=item.Descripcion,Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
+                Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica == "Empresa" ? SeleccionEmpresa1.Empresa : item.NombreCaracteristica + " " +item.ValorCaracteristica + "%", Descripcion=item.Descripcion,Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
             }
             TitulosFilas.Add(new TituloFilas { NombreFilas = "" });
             foreach (Entidades.RecursosEmpresa item in Matriz.Recursos.OrderBy(p => p.IdRecursoEmpresa))

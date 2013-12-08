@@ -65,7 +65,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="<%$ Resources:hdrEditar %>" EditImageUrl="~/images/ico_lapiz.gif" />
-                                    <asp:CommandField ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" HeaderText="<%$ Resources:hdrEliminar %>"
+                                    <asp:CommandField ButtonType="Image" Visible="false" DeleteImageUrl="~/images/ico_borrar.gif" HeaderText="<%$ Resources:hdrEliminar %>"
                                         DeleteText="Eliminar" ShowDeleteButton="True" />
                                 </Columns>
                             </asp:GridView>
