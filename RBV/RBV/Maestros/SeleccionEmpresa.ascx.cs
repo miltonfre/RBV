@@ -25,6 +25,7 @@ namespace RBV.Maestros
             get { return ddlEmpresaUsr.SelectedItem.Text == string.Empty ? string.Empty : ddlEmpresaUsr.SelectedItem.Text; }
         }
 
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             //ConsultarEmpresas();

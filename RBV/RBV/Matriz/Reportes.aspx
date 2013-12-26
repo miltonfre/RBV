@@ -9,7 +9,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
 
-    <uc1:SeleccionEmpresa ID="SeleccionEmpresa1" runat="server" />
+    <uc1:SeleccionEmpresa ID="SeleccionEmpresa1" runat="server" OnEmpresaIndexChange="SeleccionEmpresa1_IndexChange" />
     <div>
     &nbsp;
     </div>
@@ -35,7 +35,7 @@
     </div>
     <asp:Chart ID="TortaRecursos" runat="server" Width="650" Height="400" BackGradientStyle="TopBottom" >
         <Series >
-            <asp:Series Name="TipoRecursos" MarkerImageTransparentColor="Aqua" Label="#PERCENT{P1}" IsValueShownAsLabel="true" ChartType="Pie"  IsVisibleInLegend="true"  LabelForeColor="White"  XValueType="Auto" ShadowColor="Gray"  >
+            <asp:Series Name="tipoRecurso" MarkerImageTransparentColor="Aqua" Label="#PERCENT{P1}" IsValueShownAsLabel="true" ChartType="Pie"  IsVisibleInLegend="true"  LabelForeColor="White"  XValueType="Auto" ShadowColor="Gray"  >
             
             </asp:Series>            
         </Series>
@@ -56,7 +56,7 @@
     </div>
     <asp:Chart ID="TipoRecValioso" runat="server" Width="650" Height="400" BackGradientStyle="TopBottom" >
         <Series >
-            <asp:Series Name="TipoRecursosVal" MarkerImageTransparentColor="Aqua" Label="#PERCENT{P1}" IsValueShownAsLabel="true" ChartType="Pie"  IsVisibleInLegend="true"  LabelForeColor="White"  XValueType="Auto" ShadowColor="Gray"  >
+            <asp:Series Name="tipoRecursoVal" MarkerImageTransparentColor="Aqua" Label="#PERCENT{P1}" IsValueShownAsLabel="true" ChartType="Pie"  IsVisibleInLegend="true"  LabelForeColor="White"  XValueType="Auto" ShadowColor="Gray"  >
             
             </asp:Series>            
         </Series>

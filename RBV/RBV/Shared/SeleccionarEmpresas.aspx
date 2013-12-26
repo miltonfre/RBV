@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Shared/Popup.Master" AutoEventWireup="true" CodeBehind="SeleccionarEmpresas.aspx.cs" Inherits="RBV.Shared.SeleccionarEmpresas" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/Popup.Master" AutoEventWireup="true" CodeBehind="Seleccionarempresa.aspx.cs" Inherits="RBV.Shared.SeleccionarEmpresas" Title="Untitled Page" %>
 <%@ Register src="SeleccionarEmpresa.ascx" tagname="SeleccionarEmpresa" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

@@ -21,10 +21,12 @@ namespace RBV.Matriz
                 ConsultarValoresPromedio();
             }
         }
-
+        protected void SeleccionEmpresa1_IndexChange(object sender, EventArgs e)
+        {
+            ConsultarValoresPromedio();
+        }
         private void ConsultarValoresPromedio()
         {
-
             List<Entidades.MatrizValoracion> MatrizValoracion = new List<RBV_Clases.MatrizValoracion>();
             List<RBV_Clases.RecursoValioso> recursosValiosos = new List<RBV_Clases.RecursoValioso>();
             decimal ValorTotal = 0;
@@ -50,11 +52,11 @@ namespace RBV.Matriz
             string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
             decimal[] ValoresTipo = (from p in recursosValiosos group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
 
-            TortaRecursos.Series["TipoRecursos"].Points.DataBindXY(TitulosTipo, ValoresTipo);
-            TortaRecursos.Series["TipoRecursos"].Points[1]["Exploded"] = "true";
-            for (int i = 0; i < TortaRecursos.Series["TipoRecursos"].Points.Count; i++)
+            TortaRecursos.Series["tipoRecurso"].Points.DataBindXY(TitulosTipo, ValoresTipo);
+            TortaRecursos.Series["tipoRecurso"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TortaRecursos.Series["tipoRecurso"].Points.Count; i++)
             {
-                TortaRecursos.Series["TipoRecursos"].Points[i].LegendText = TitulosTipo[i].ToString();
+                TortaRecursos.Series["tipoRecurso"].Points[i].LegendText = TitulosTipo[i].ToString();
             }
 
             //Pie recursos valiosos sobre total recursos
@@ -68,12 +70,12 @@ namespace RBV.Matriz
             Array.Resize(ref ValoresTipoVal, ValoresTipoVal.Length + 1);
             ValoresTipoVal[ValoresTipoVal.Length - 1] = (100 - ValoresTipoVal.Sum());
 
-            TipoRecValioso.Series["TipoRecursosVal"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
+            TipoRecValioso.Series["tipoRecursoVal"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
                         
-            TipoRecValioso.Series["TipoRecursosVal"].Points[1]["Exploded"] = "true";
-            for (int i = 0; i < TipoRecValioso.Series["TipoRecursosVal"].Points.Count; i++)
+            TipoRecValioso.Series["tipoRecursoVal"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TipoRecValioso.Series["tipoRecursoVal"].Points.Count; i++)
             {
-                TipoRecValioso.Series["TipoRecursosVal"].Points[i].LegendText = TitulosTipoVal[i].ToString();
+                TipoRecValioso.Series["tipoRecursoVal"].Points[i].LegendText = TitulosTipoVal[i].ToString();
             }
             
             //Pie recursos valiosos sobre recursos valiosos

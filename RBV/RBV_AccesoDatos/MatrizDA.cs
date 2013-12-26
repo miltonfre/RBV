@@ -24,10 +24,10 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
 
             List<MatrizValoracion> MatrizValoracionEmpresa = new List<MatrizValoracion>();
-            MatrizValoracionEmpresa = (from mat in contextoRBV.matrizValoracions
-                                       join rec in contextoRBV.recursosEmpresas
+            MatrizValoracionEmpresa = (from mat in contextoRBV.matrizValoracion
+                                       join rec in contextoRBV.recursosEmpresa
                                        on mat.idRecursoEmpresa equals rec.idRecursoEmpresa
-                                       join car in contextoRBV.caracteristicaRecursoValiosos
+                                       join car in contextoRBV.caracteristicaRecursoValioso
                                        on mat.idCaracteristicaRV equals car.idCaracteristicaRV
                                        where rec.idEmpresa == IdEmpresa
                                        select new MatrizValoracion
@@ -57,7 +57,7 @@ namespace RBV_AccesoDatos
 
                               }).ToList();
 
-            contextoRBV.matrizValoracions.InsertAllOnSubmit(matrizInsertar);
+            contextoRBV.matrizValoracion.InsertAllOnSubmit(matrizInsertar);
             contextoRBV.SubmitChanges();
         }
 
@@ -65,13 +65,13 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
             
-            var MatrizValoracionEmpresas = (from mat in contextoRBV.matrizValoracions
-                                            join rec in contextoRBV.recursosEmpresas
+            var MatrizValoracionEmpresas = (from mat in contextoRBV.matrizValoracion
+                                            join rec in contextoRBV.recursosEmpresa
                                             on mat.idRecursoEmpresa equals rec.idRecursoEmpresa
                                             where rec.idEmpresa == IdEmpresa
                                             select mat).ToList();
 
-            contextoRBV.matrizValoracions.DeleteAllOnSubmit(MatrizValoracionEmpresas);
+            contextoRBV.matrizValoracion.DeleteAllOnSubmit(MatrizValoracionEmpresas);
             contextoRBV.SubmitChanges();            
         }
     }

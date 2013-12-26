@@ -1,28 +1,308 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RBV" Class="RBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=290dpineda_p\sqlexpress;Initial Catalog=RBV;Persist Security Info=False;User ID=USR_RBV;Context Connection=False" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.empresaUsuario" Member="empresaUsuarios">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Context Connection=False" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.aspnet_WebEvent_Events" Member="aspnet_WebEvent_Events">
+    <Type Name="aspnet_WebEvent_Event">
+      <Column Name="EventId" Type="System.String" DbType="Char(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventType" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="EventSequence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
+      <Column Name="EventOccurrence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
+      <Column Name="EventCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventDetailCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ApplicationPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ApplicationVirtualPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="MachineName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestUrl" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ExceptionType" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Details" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tipoRecurso" Member="tipoRecurso">
+    <Type Name="tipoRecurso">
+      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tipoRecurso" Member="tipoRecurso1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="tipoRecurso_recursosEmpresa" Member="recursosEmpresa" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="recursosEmpresa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.segmentos" Member="segmentos">
+    <Type Name="segmentos">
+      <Column Name="idSegmento" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Association Name="segmentos_empresaSegmentos" Member="empresaSegmentos" ThisKey="idSegmento" OtherKey="idSegmento" Type="empresaSegmentos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sectorEmpresa" Member="sectorEmpresa">
+    <Type Name="sectorEmpresa">
+      <Column Name="idSector" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="sector_sectorEmpresa" Member="sector" ThisKey="idSector" OtherKey="idSector" Type="sector" IsForeignKey="true" />
+      <Association Name="empresa_sectorEmpresa" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sector" Member="sector">
+    <Type Name="sector">
+      <Column Name="idSector" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sector" Member="sector1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="sector_sectorEmpresa" Member="sectorEmpresa" ThisKey="idSector" OtherKey="idSector" Type="sectorEmpresa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.rolesInforme" Member="rolesInforme">
+    <Type Name="rolesInforme">
+      <Column Name="idRolInforme" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombreParticipante" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="rol" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="idInforme" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="Informe_rolesInforme" Member="Informe" ThisKey="idInforme" OtherKey="idInforme" Type="Informe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.recursosEmpresa" Member="recursosEmpresa">
+    <Type Name="recursosEmpresa">
+      <Column Name="idRecursoEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="recurso" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="recursosEmpresa_matrizValoracion" Member="matrizValoracion" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="matrizValoracion" />
+      <Association Name="tipoRecurso_recursosEmpresa" Member="tipoRecurso" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="tipoRecurso" IsForeignKey="true" />
+      <Association Name="empresa_recursosEmpresa" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.plantillaInforme" Member="plantillaInforme">
+    <Type Name="plantillaInforme">
+      <Column Name="idPlantillaInforme" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Introduccion" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ElaboradoPor" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="descripcionHeader" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="tituloPortada" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="nombreCarpetaInformesGenerados" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.matrizValoracion" Member="matrizValoracion">
+    <Type Name="matrizValoracion">
+      <Column Name="idRecursoEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="recursosEmpresa_matrizValoracion" Member="recursosEmpresa" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="recursosEmpresa" IsForeignKey="true" />
+      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lineaDeNegocio" Member="lineaDeNegocio">
+    <Type Name="lineaDeNegocio">
+      <Column Name="idLineaNegocio" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lineaNegocio" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="empresa_lineaDeNegocio" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Informe" Member="Informe">
+    <Type Name="Informe">
+      <Column Name="idInforme" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="fechaGeneracion" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="rutaArchivo" Type="System.String" DbType="VarChar(220) NOT NULL" CanBeNull="false" />
+      <Association Name="Informe_rolesInforme" Member="rolesInforme" ThisKey="idInforme" OtherKey="idInforme" Type="rolesInforme" />
+      <Association Name="empresa_Informe" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.escalaValoracion" Member="escalaValoracion">
+    <Type Name="escalaValoracion">
+      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="empresa_escalaValoracion" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.escalaCalificacion" Member="escalaCalificacion">
+    <Type Name="escalaCalificacion">
+      <Column Name="IdEscalaCalificacion" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Escala" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="empresa_escalaCalificacion" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.empresaUsuario" Member="empresaUsuario">
     <Type Name="empresaUsuario">
       <Column Name="idUsuarioEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_Membership_empresaUsuario" Member="aspnet_Membership" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Membership" IsForeignKey="true" />
       <Association Name="empresa_empresaUsuario" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+      <Association Name="aspnet_Membership_empresaUsuario" Member="aspnet_Membership" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Membership" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.aspnet_Applications" Member="aspnet_Applications">
-    <Type Name="aspnet_Application">
-      <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredApplicationName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+  <Table Name="dbo.empresaSegmentos" Member="empresaSegmentos">
+    <Type Name="empresaSegmentos">
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idSegmento" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="segmentos_empresaSegmentos" Member="segmentos" ThisKey="idSegmento" OtherKey="idSegmento" Type="segmentos" IsForeignKey="true" />
+      <Association Name="empresa_empresaSegmentos" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.empresa" Member="empresa">
+    <Type Name="empresa">
+      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="nombreEmpresa" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="represetanteLegal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="logo" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="empresa_sectorEmpresa" Member="sectorEmpresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="sectorEmpresa" />
+      <Association Name="empresa_recursosEmpresa" Member="recursosEmpresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="recursosEmpresa" />
+      <Association Name="empresa_lineaDeNegocio" Member="lineaDeNegocio" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="lineaDeNegocio" />
+      <Association Name="empresa_Informe" Member="Informe" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="Informe" />
+      <Association Name="empresa_escalaValoracion" Member="escalaValoracion" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="escalaValoracion" />
+      <Association Name="empresa_escalaCalificacion" Member="escalaCalificacion" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="escalaCalificacion" />
+      <Association Name="empresa_empresaUsuario" Member="empresaUsuario" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresaUsuario" />
+      <Association Name="empresa_empresaSegmentos" Member="empresaSegmentos" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresaSegmentos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ELMAH_Error" Member="ELMAH_Error">
+    <Type Name="ELMAH_Error">
+      <Column Name="ErrorId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Application" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Host" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StatusCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AllXml" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.codigoCIIU" Member="codigoCIIU">
+    <Type Name="codigoCIIU">
+      <Column Name="idCodigoCIIU" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="codigoCIIU" Member="codigoCIIU1" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.clasificacionRecursoValioso" Member="clasificacionRecursoValioso">
+    <Type Name="clasificacionRecursoValioso">
+      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="clasificacionRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="caracteristicaRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="caracteristicaRecursoValioso" />
+    </Type>
+  </Table>
+  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValioso">
+    <Type Name="caracteristicaRecursoValioso">
+      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracion" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
+      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracion" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
+      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_WebEvent_Events" Member="aspnet_WebEvent_Events1">
+    <Type Name="aspnet_WebEvent_Events">
+      <Column Name="EventId" Type="System.String" DbType="Char(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EventType" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="EventSequence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
+      <Column Name="EventOccurrence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
+      <Column Name="EventCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventDetailCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ApplicationPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ApplicationVirtualPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="MachineName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestUrl" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ExceptionType" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Details" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_UsersInRoles" Member="aspnet_UsersInRoles">
+    <Type Name="aspnet_UsersInRoles">
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+      <Association Name="aspnet_Roles_aspnet_UsersInRoles" Member="aspnet_Roles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_Roles" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_Users">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_UsersInRoles" Member="aspnet_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="aspnet_UsersInRoles" />
+      <Association Name="aspnet_Users_aspnet_Profile" Member="aspnet_Profile" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Profile" Cardinality="One" />
+      <Association Name="aspnet_Users_aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUser" ThisKey="UserId" OtherKey="UserId" Type="aspnet_PersonalizationPerUser" />
+      <Association Name="aspnet_Users_aspnet_Membership" Member="aspnet_Membership" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Membership" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_SchemaVersions" Member="aspnet_SchemaVersions">
+    <Type Name="aspnet_SchemaVersions">
+      <Column Name="Feature" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompatibleSchemaVersion" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IsCurrentVersion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Roles" Member="aspnet_Roles">
+    <Type Name="aspnet_Roles">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredRoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Association Name="aspnet_Application_aspnet_Membership" Member="aspnet_Memberships" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Membership" />
-      <Association Name="aspnet_Application_aspnet_Path" Member="aspnet_Paths" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Path" />
-      <Association Name="aspnet_Application_aspnet_Role" Member="aspnet_Roles" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Role" />
-      <Association Name="aspnet_Application_aspnet_User" Member="aspnet_Users" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_User" />
+      <Association Name="aspnet_Roles_aspnet_UsersInRoles" Member="aspnet_UsersInRoles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_UsersInRoles" />
     </Type>
   </Table>
-  <Table Name="dbo.aspnet_Membership" Member="aspnet_Memberships">
+  <Table Name="dbo.aspnet_Profile" Member="aspnet_Profile">
+    <Type Name="aspnet_Profile">
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PropertyNames" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PropertyValuesString" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PropertyValuesBinary" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_Profile" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUser">
+    <Type Name="aspnet_PersonalizationPerUser">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PageSettings" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Users_aspnet_PersonalizationPerUser" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
+      <Association Name="aspnet_Paths_aspnet_PersonalizationPerUser" Member="aspnet_Paths" ThisKey="PathId" OtherKey="PathId" Type="aspnet_Paths" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_PersonalizationAllUsers" Member="aspnet_PersonalizationAllUsers">
+    <Type Name="aspnet_PersonalizationAllUsers">
+      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PageSettings" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Paths_aspnet_PersonalizationAllUsers" Member="aspnet_Paths" ThisKey="PathId" OtherKey="PathId" Type="aspnet_Paths" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Paths" Member="aspnet_Paths">
+    <Type Name="aspnet_Paths">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredPath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_Paths_aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUser" ThisKey="PathId" OtherKey="PathId" Type="aspnet_PersonalizationPerUser" />
+      <Association Name="aspnet_Paths_aspnet_PersonalizationAllUsers" Member="aspnet_PersonalizationAllUsers" ThisKey="PathId" OtherKey="PathId" Type="aspnet_PersonalizationAllUsers" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Membership" Member="aspnet_Membership">
     <Type Name="aspnet_Membership">
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -45,203 +325,9 @@
       <Column Name="FailedPasswordAnswerAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FailedPasswordAnswerAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Comment" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="aspnet_Membership_empresaUsuario" Member="empresaUsuarios" ThisKey="UserId" OtherKey="UserId" Type="empresaUsuario" />
-      <Association Name="aspnet_Application_aspnet_Membership" Member="aspnet_Application" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
-      <Association Name="aspnet_User_aspnet_Membership" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_Paths" Member="aspnet_Paths">
-    <Type Name="aspnet_Path">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Path" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredPath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_Path_aspnet_PersonalizationAllUser" Member="aspnet_PersonalizationAllUser" ThisKey="PathId" OtherKey="PathId" Type="aspnet_PersonalizationAllUser" Cardinality="One" />
-      <Association Name="aspnet_Path_aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUsers" ThisKey="PathId" OtherKey="PathId" Type="aspnet_PersonalizationPerUser" />
-      <Association Name="aspnet_Application_aspnet_Path" Member="aspnet_Application" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_PersonalizationAllUsers" Member="aspnet_PersonalizationAllUsers">
-    <Type Name="aspnet_PersonalizationAllUser">
-      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PageSettings" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_Path_aspnet_PersonalizationAllUser" Member="aspnet_Path" ThisKey="PathId" OtherKey="PathId" Type="aspnet_Path" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUsers">
-    <Type Name="aspnet_PersonalizationPerUser">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PathId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="PageSettings" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_Path_aspnet_PersonalizationPerUser" Member="aspnet_Path" ThisKey="PathId" OtherKey="PathId" Type="aspnet_Path" IsForeignKey="true" />
-      <Association Name="aspnet_User_aspnet_PersonalizationPerUser" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_Profile" Member="aspnet_Profiles">
-    <Type Name="aspnet_Profile">
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PropertyNames" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="PropertyValuesString" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="PropertyValuesBinary" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_User_aspnet_Profile" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_Roles" Member="aspnet_Roles">
-    <Type Name="aspnet_Role">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredRoleName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Association Name="aspnet_Role_aspnet_UsersInRole" Member="aspnet_UsersInRoles" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_UsersInRole" />
-      <Association Name="aspnet_Application_aspnet_Role" Member="aspnet_Application" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_SchemaVersions" Member="aspnet_SchemaVersions">
-    <Type Name="aspnet_SchemaVersion">
-      <Column Name="Feature" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CompatibleSchemaVersion" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IsCurrentVersion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
-    <Type Name="aspnet_User">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
-      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="aspnet_User_aspnet_Membership" Member="aspnet_Membership" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Membership" Cardinality="One" />
-      <Association Name="aspnet_User_aspnet_PersonalizationPerUser" Member="aspnet_PersonalizationPerUsers" ThisKey="UserId" OtherKey="UserId" Type="aspnet_PersonalizationPerUser" />
-      <Association Name="aspnet_User_aspnet_Profile" Member="aspnet_Profile" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Profile" Cardinality="One" />
-      <Association Name="aspnet_User_aspnet_UsersInRole" Member="aspnet_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="aspnet_UsersInRole" />
-      <Association Name="aspnet_Application_aspnet_User" Member="aspnet_Application" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Application" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_UsersInRoles" Member="aspnet_UsersInRoles">
-    <Type Name="aspnet_UsersInRole">
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="aspnet_Role_aspnet_UsersInRole" Member="aspnet_Role" ThisKey="RoleId" OtherKey="RoleId" Type="aspnet_Role" IsForeignKey="true" />
-      <Association Name="aspnet_User_aspnet_UsersInRole" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.aspnet_WebEvent_Events" Member="aspnet_WebEvent_Events">
-    <Type Name="aspnet_WebEvent_Event">
-      <Column Name="EventId" Type="System.String" DbType="Char(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EventTimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="EventType" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="EventSequence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
-      <Column Name="EventOccurrence" Type="System.Decimal" DbType="Decimal(19,0) NOT NULL" CanBeNull="false" />
-      <Column Name="EventCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EventDetailCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Message" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
-      <Column Name="ApplicationPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Column Name="ApplicationVirtualPath" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Column Name="MachineName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="RequestUrl" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
-      <Column Name="ExceptionType" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Column Name="Details" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.clasificacionRecursoValioso" Member="clasificacionRecursoValiosos">
-    <Type Name="clasificacionRecursoValioso">
-      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="clasificacionRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="caracteristicaRecursoValioso" />
-    </Type>
-  </Table>
-  <Table Name="dbo.escalaCalificacion" Member="escalaCalificacions">
-    <Type Name="escalaCalificacion">
-      <Column Name="IdEscalaCalificacion" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="Escala" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Association Name="empresa_escalaCalificacion" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.escalaValoracion" Member="escalaValoracions">
-    <Type Name="escalaValoracion">
-      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="empresa_escalaValoracion" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
-      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.matrizValoracion" Member="matrizValoracions">
-    <Type Name="matrizValoracion">
-      <Column Name="idRecursoEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="valor" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="recursosEmpresa_matrizValoracion" Member="recursosEmpresa" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="recursosEmpresa" IsForeignKey="true" />
-      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="caracteristicaRecursoValioso" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="caracteristicaRecursoValioso" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.recursosEmpresa" Member="recursosEmpresas">
-    <Type Name="recursosEmpresa">
-      <Column Name="idRecursoEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="recurso" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="recursosEmpresa_matrizValoracion" Member="matrizValoracions" ThisKey="idRecursoEmpresa" OtherKey="idRecursoEmpresa" Type="matrizValoracion" />
-      <Association Name="empresa_recursosEmpresa" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
-      <Association Name="tipoRecurso_recursosEmpresa" Member="tipoRecurso" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="tipoRecurso" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.sector" Member="sectors">
-    <Type Name="sector">
-      <Column Name="idSector" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="sector" Member="sector1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="sector_sectorEmpresa" Member="sectorEmpresas" ThisKey="idSector" OtherKey="idSector" Type="sectorEmpresa" />
-    </Type>
-  </Table>
-  <Table Name="dbo.sectorEmpresa" Member="sectorEmpresas">
-    <Type Name="sectorEmpresa">
-      <Column Name="idSector" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="sector_sectorEmpresa" Member="sector" ThisKey="idSector" OtherKey="idSector" Type="sector" IsForeignKey="true" />
-      <Association Name="empresa_sectorEmpresa" Member="empresa" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresa" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.empresa" Member="empresas">
-    <Type Name="empresa">
-      <Column Name="idEmpresa" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nit" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="nombreEmpresa" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="represetanteLegal" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="empresa_empresaUsuario" Member="empresaUsuarios" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="empresaUsuario" />
-      <Association Name="empresa_escalaCalificacion" Member="escalaCalificacions" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="escalaCalificacion" />
-      <Association Name="empresa_escalaValoracion" Member="escalaValoracions" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="escalaValoracion" />
-      <Association Name="empresa_recursosEmpresa" Member="recursosEmpresas" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="recursosEmpresa" />
-      <Association Name="empresa_sectorEmpresa" Member="sectorEmpresas" ThisKey="idEmpresa" OtherKey="idEmpresa" Type="sectorEmpresa" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tipoRecurso" Member="tipoRecursos">
-    <Type Name="tipoRecurso">
-      <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tipoRecurso" Member="tipoRecurso1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="tipoRecurso_recursosEmpresa" Member="recursosEmpresas" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="recursosEmpresa" />
-    </Type>
-  </Table>
-  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos">
-    <Type Name="caracteristicaRecursoValioso">
-      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
-      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
-      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
+      <Column Name="IdEmpresa" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="aspnet_Membership_empresaUsuario" Member="empresaUsuario" ThisKey="UserId" OtherKey="UserId" Type="empresaUsuario" />
+      <Association Name="aspnet_Users_aspnet_Membership" Member="aspnet_Users" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Users" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_GetPassword" Method="aspnet_Membership_GetPassword">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Datos = RBV_AccesoDatos;
 using RBV_Clases;
+using System.Web.Security;
 
 namespace RBV_Negocio
 {
@@ -139,6 +140,14 @@ namespace RBV_Negocio
             return Datos.MaestrosDA.ConsultarEmpresas();
         }
 
+        public static List<Empresa> ConsultarEmpresasxUsuario(MembershipUser user)
+        {
+            return Datos.MaestrosDA.ConsultarEmpresasxUsuario(user);
+        }
+        public static Empresa ConsultarEmpresaxID(short srIdEmpresa)
+        {
+            return Datos.MaestrosDA.ConsultarEmpresaxID(srIdEmpresa);
+        }
         public static List<Empresa> ConsultarEmpresas(string Usuario)
         {
             return Datos.MaestrosDA.ConsultarEmpresas(Usuario);

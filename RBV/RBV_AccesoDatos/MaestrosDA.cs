@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RBV_Clases;
 using System.Data.Linq;
+using System.Web.Security;
 
 namespace RBV_AccesoDatos
 {
@@ -16,7 +17,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.clasificacionRecursoValiosos.InsertOnSubmit(new clasificacionRecursoValioso
+            contextoRBV.clasificacionRecursoValioso.InsertOnSubmit(new clasificacionRecursoValioso
             {
                clasificacionRV = clasificacion.ClasificacionRV
             });
@@ -30,7 +31,7 @@ namespace RBV_AccesoDatos
 
             clasificacionRecursoValioso clasificacionAnterior = new clasificacionRecursoValioso();
 
-            clasificacionAnterior = contextoRBV.clasificacionRecursoValiosos.SingleOrDefault(p => p.idClasificacionRV == clasificacion.IdClasificacionRV); 
+            clasificacionAnterior = contextoRBV.clasificacionRecursoValioso.SingleOrDefault(p => p.idClasificacionRV == clasificacion.IdClasificacionRV); 
             clasificacionAnterior.clasificacionRV = clasificacion.ClasificacionRV;
 
             contextoRBV.SubmitChanges();
@@ -41,8 +42,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             clasificacionRecursoValioso clasificacion = new clasificacionRecursoValioso();
 
-            clasificacion = contextoRBV.clasificacionRecursoValiosos.SingleOrDefault(p => p.idClasificacionRV == IdClasificacion); 
-            contextoRBV.clasificacionRecursoValiosos.DeleteOnSubmit(clasificacion);
+            clasificacion = contextoRBV.clasificacionRecursoValioso.SingleOrDefault(p => p.idClasificacionRV == IdClasificacion); 
+            contextoRBV.clasificacionRecursoValioso.DeleteOnSubmit(clasificacion);
             contextoRBV.SubmitChanges();
         }
                 
@@ -52,7 +53,7 @@ namespace RBV_AccesoDatos
 
             List<Clasificacion> clasificaciones = new List<Clasificacion>();
 
-            clasificaciones = (from clasificacion in contextoRBV.clasificacionRecursoValiosos 
+            clasificaciones = (from clasificacion in contextoRBV.clasificacionRecursoValioso 
                            
                            select new Clasificacion
                            {
@@ -71,7 +72,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.sectors.InsertOnSubmit (new sector
+            contextoRBV.sector.InsertOnSubmit (new sector
             {
                 sector1 = sector.NombreSector
             });
@@ -85,7 +86,7 @@ namespace RBV_AccesoDatos
 
             sector sectorAnterior = new sector();
 
-            sectorAnterior = contextoRBV.sectors.SingleOrDefault(p => p.idSector == sector.IdSector);
+            sectorAnterior = contextoRBV.sector.SingleOrDefault(p => p.idSector == sector.IdSector);
             sectorAnterior.sector1 = sector.NombreSector;
 
             contextoRBV.SubmitChanges();
@@ -96,8 +97,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             sector sectorEliminar = new sector();
 
-            sectorEliminar = contextoRBV.sectors.SingleOrDefault(p => p.idSector == IdSector);
-            contextoRBV.sectors.DeleteOnSubmit(sectorEliminar);
+            sectorEliminar = contextoRBV.sector.SingleOrDefault(p => p.idSector == IdSector);
+            contextoRBV.sector.DeleteOnSubmit(sectorEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -107,7 +108,7 @@ namespace RBV_AccesoDatos
 
             List<Sector> sectores = new List<Sector>();
 
-            sectores = (from sectorC in contextoRBV.sectors
+            sectores = (from sectorC in contextoRBV.sector
 
                                select new Sector
                                {
@@ -127,7 +128,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.tipoRecursos.InsertOnSubmit(new tipoRecurso
+            contextoRBV.tipoRecurso.InsertOnSubmit(new tipoRecurso
             {
                 tipoRecurso1 = tipoRecurso.NombreTipoRecurso,
                 Descripcion = tipoRecurso.Descripcion
@@ -142,7 +143,7 @@ namespace RBV_AccesoDatos
 
             tipoRecurso tipoRecursoAnterior = new tipoRecurso();
 
-            tipoRecursoAnterior = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
+            tipoRecursoAnterior = contextoRBV.tipoRecurso.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
             tipoRecursoAnterior.tipoRecurso1 = tipoRecurso.NombreTipoRecurso;
             tipoRecursoAnterior.Descripcion = tipoRecurso.Descripcion;
 
@@ -154,8 +155,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             tipoRecurso tipoRecursoEliminar = new tipoRecurso();
 
-            tipoRecursoEliminar = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == IdTipoRecurso);
-            contextoRBV.tipoRecursos.DeleteOnSubmit(tipoRecursoEliminar);
+            tipoRecursoEliminar = contextoRBV.tipoRecurso.SingleOrDefault(p => p.idTipoRecurso == IdTipoRecurso);
+            contextoRBV.tipoRecurso.DeleteOnSubmit(tipoRecursoEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -165,7 +166,7 @@ namespace RBV_AccesoDatos
 
             List<TipoRecurso> tiposRecurso = new List<TipoRecurso>();
 
-            tiposRecurso = (from tipoRecursoC in contextoRBV.tipoRecursos
+            tiposRecurso = (from tipoRecursoC in contextoRBV.tipoRecurso
 
                         select new TipoRecurso
                         {
@@ -184,7 +185,7 @@ namespace RBV_AccesoDatos
 
             TipoRecurso tipoRecurso = new TipoRecurso();
 
-            var tipoRec = (from tiporec in contextoRBV.tipoRecursos
+            var tipoRec = (from tiporec in contextoRBV.tipoRecurso
                            where tiporec.idTipoRecurso == IdTipoRecurso
                            select new TipoRecurso
                            {
@@ -206,7 +207,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.caracteristicaRecursoValiosos.InsertOnSubmit(new caracteristicaRecursoValioso
+            contextoRBV.caracteristicaRecursoValioso.InsertOnSubmit(new caracteristicaRecursoValioso
             {
                 caracteristicaRV = caracteristica.NombreCaracteristica
                 ,idClasificacionRV = caracteristica.IdClasificacionRV
@@ -222,7 +223,7 @@ namespace RBV_AccesoDatos
 
             caracteristicaRecursoValioso caracteristicaAnterior = new caracteristicaRecursoValioso();
 
-            caracteristicaAnterior = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
+            caracteristicaAnterior = contextoRBV.caracteristicaRecursoValioso.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
             caracteristicaAnterior.caracteristicaRV = caracteristica.NombreCaracteristica;
             caracteristicaAnterior.idClasificacionRV = caracteristica.IdClasificacionRV;
             caracteristicaAnterior.Descripcion = caracteristica.Descripcion;
@@ -235,8 +236,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             caracteristicaRecursoValioso caracteristicaEliminar = new caracteristicaRecursoValioso();
 
-            caracteristicaEliminar = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == IdCaracteristica);
-            contextoRBV.caracteristicaRecursoValiosos.DeleteOnSubmit(caracteristicaEliminar);
+            caracteristicaEliminar = contextoRBV.caracteristicaRecursoValioso.SingleOrDefault(p => p.idCaracteristicaRV == IdCaracteristica);
+            contextoRBV.caracteristicaRecursoValioso.DeleteOnSubmit(caracteristicaEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -246,7 +247,7 @@ namespace RBV_AccesoDatos
 
             List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
-            caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+            caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValioso
                                orderby caracteristicaC.idClasificacionRV
                                ,caracteristicaC.clasificacionRecursoValioso.clasificacionRV
                                select new Caracteristica
@@ -255,7 +256,7 @@ namespace RBV_AccesoDatos
                                    NombreCaracteristica = caracteristicaC.caracteristicaRV,
                                    IdClasificacionRV = caracteristicaC.idClasificacionRV,
                                    Descripcion = caracteristicaC.Descripcion,
-                                   ValorCaracteristica = caracteristicaC.escalaValoracions.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV).Valor.ToString(),
+                                   ValorCaracteristica = caracteristicaC.escalaValoracion.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV).Valor.ToString(),
                                    ClasificacionAsociada = new Clasificacion
                                    {
                                        IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
@@ -278,7 +279,7 @@ namespace RBV_AccesoDatos
 
                         List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
-                        caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+                        caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValioso
                                            where caracteristicaC.idClasificacionRV == clasificacion.IdClasificacionRV
                             select new Caracteristica
                             {
@@ -308,14 +309,7 @@ namespace RBV_AccesoDatos
             empresa.nombreEmpresa = empresaInsertar.NombreEmpresa;
             empresa.represetanteLegal = empresaInsertar.RepresetanteLegal;
 
-            //contextoRBV.empresas.InsertOnSubmit(new empresa
-            //{
-            //    nombreEmpresa = empresaInsertar.NombreEmpresa,
-            //    nit = empresaInsertar.Nit,
-            //    represetanteLegal = empresaInsertar.RepresetanteLegal,
-            //    idEmpresa = empresaInsertar.IdEmpresa
-            //});
-            contextoRBV.empresas.InsertOnSubmit(empresa);
+            contextoRBV.empresa.InsertOnSubmit(empresa);
             
             contextoRBV.SubmitChanges();
             (from sectorC in empresaInsertar.SectoresEmpresas select sectorC.IdEmpresa = empresa.idEmpresa).ToList();
@@ -337,7 +331,7 @@ namespace RBV_AccesoDatos
 
             empresa empresaAnterior = new empresa();
 
-            empresaAnterior = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa == empresaActualizar.IdEmpresa);
+            empresaAnterior = contextoRBV.empresa.SingleOrDefault(p => p.idEmpresa == empresaActualizar.IdEmpresa);
             empresaAnterior.nombreEmpresa = empresaActualizar.NombreEmpresa;
             empresaAnterior.represetanteLegal = empresaActualizar.RepresetanteLegal;
             empresaAnterior.nit = empresaActualizar.Nit;
@@ -356,16 +350,40 @@ namespace RBV_AccesoDatos
             empresaUsuario empresaUsuarioEliminar = new empresaUsuario();
             EliminarEmpresaSector(IdEmpresa);
             
-            empresaEliminar = contextoRBV.empresas.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
+            empresaEliminar = contextoRBV.empresa.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
 
             Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
 
-            empresaUsuarioEliminar = contextoRBV.empresaUsuarios.SingleOrDefault(p => p.idEmpresa == IdEmpresa && p.UserId == idUsuario);
+            empresaUsuarioEliminar = contextoRBV.empresaUsuario.SingleOrDefault(p => p.idEmpresa == IdEmpresa && p.UserId == idUsuario);
 
-            contextoRBV.empresaUsuarios.DeleteOnSubmit(empresaUsuarioEliminar);
-            contextoRBV.empresas.DeleteOnSubmit(empresaEliminar);
+            contextoRBV.empresaUsuario.DeleteOnSubmit(empresaUsuarioEliminar);
+            contextoRBV.empresa.DeleteOnSubmit(empresaEliminar);
             contextoRBV.SubmitChanges();
         }
+
+        public static Empresa ConsultarEmpresaxID(short srIdEmpresa)
+        {
+             RBVDataContext contextoRBV = new RBVDataContext();
+            Empresa empresa = new Empresa();
+            empresa = (from empresaC in contextoRBV.empresa
+                                where empresaC.idEmpresa == srIdEmpresa
+                               select new Empresa
+                               {
+                                   IdEmpresa = empresaC.idEmpresa,
+                                   NombreEmpresa = empresaC.nombreEmpresa,
+                                   RepresetanteLegal = empresaC.represetanteLegal,
+                                   Nit = empresaC.nit,
+                                   SectoresEmpresas = (from sectorC in empresaC.sectorEmpresa
+                                                       select new SectorEmpresa
+                                                       {
+                                                           IdSector = sectorC.idSector,
+                                                           IdEmpresa = sectorC.idEmpresa
+                                                       }).ToList()
+                               }).SingleOrDefault();
+
+
+            return empresa;
+          }
 
         public static List<Empresa> ConsultarEmpresas()
         {
@@ -373,7 +391,7 @@ namespace RBV_AccesoDatos
 
             List<Empresa> empresas = new List<Empresa>();
 
-            empresas = (from empresaC in contextoRBV.empresas
+            empresas = (from empresaC in contextoRBV.empresa
 
                         select new Empresa
                         {
@@ -381,7 +399,7 @@ namespace RBV_AccesoDatos
                             NombreEmpresa = empresaC.nombreEmpresa,
                             RepresetanteLegal = empresaC.represetanteLegal,
                             Nit = empresaC.nit,
-                            SectoresEmpresas = (from sectorC in empresaC.sectorEmpresas 
+                            SectoresEmpresas = (from sectorC in empresaC.sectorEmpresa 
                                                 select new SectorEmpresa 
                                                 { 
                                                     IdSector = sectorC.idSector, 
@@ -401,8 +419,8 @@ namespace RBV_AccesoDatos
             List<Empresa> empresas = new List<Empresa>();
             Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
 
-            empresas = (from empresaC in contextoRBV.empresas
-                        join empresaUsr in contextoRBV.empresaUsuarios
+            empresas = (from empresaC in contextoRBV.empresa
+                        join empresaUsr in contextoRBV.empresaUsuario
                         on empresaC.idEmpresa equals empresaUsr.idEmpresa
                         where empresaUsr.UserId == idUsuario
                         select new Empresa
@@ -423,7 +441,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.escalaCalificacions.InsertOnSubmit(new escalaCalificacion
+            contextoRBV.escalaCalificacion.InsertOnSubmit(new escalaCalificacion
             {
                 Escala = escalaCalificacionInsertar.Escala,
                 Valor = escalaCalificacionInsertar.Valor,
@@ -439,7 +457,7 @@ namespace RBV_AccesoDatos
 
             escalaCalificacion escalaCalificacionAnterior = new escalaCalificacion();
 
-            escalaCalificacionAnterior = contextoRBV.escalaCalificacions.SingleOrDefault(p => p.IdEscalaCalificacion == escalaCalificacionActualizar.IdEscalaCalificacion);
+            escalaCalificacionAnterior = contextoRBV.escalaCalificacion.SingleOrDefault(p => p.IdEscalaCalificacion == escalaCalificacionActualizar.IdEscalaCalificacion);
             escalaCalificacionAnterior.idEmpresa = escalaCalificacionActualizar.IdEmpresa;
             escalaCalificacionAnterior.Valor = escalaCalificacionActualizar.Valor;
             escalaCalificacionAnterior.Escala = escalaCalificacionActualizar.Escala;
@@ -452,8 +470,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             escalaCalificacion escalaCalificacionEliminar = new escalaCalificacion();
 
-            escalaCalificacionEliminar = contextoRBV.escalaCalificacions.SingleOrDefault(p => p.IdEscalaCalificacion == IdEscalaCalificacion);
-            contextoRBV.escalaCalificacions.DeleteOnSubmit(escalaCalificacionEliminar);
+            escalaCalificacionEliminar = contextoRBV.escalaCalificacion.SingleOrDefault(p => p.IdEscalaCalificacion == IdEscalaCalificacion);
+            contextoRBV.escalaCalificacion.DeleteOnSubmit(escalaCalificacionEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -463,7 +481,7 @@ namespace RBV_AccesoDatos
 
             List<EscalaCalificacion> escalaCalificacion = new List<EscalaCalificacion>();
 
-            escalaCalificacion = (from escalaC in contextoRBV.escalaCalificacions
+            escalaCalificacion = (from escalaC in contextoRBV.escalaCalificacion
                                   where (escalaC.idEmpresa == IdEmpresa)
                         select new EscalaCalificacion
                         {
@@ -484,7 +502,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.sectorEmpresas.InsertAllOnSubmit((from sectorC in SectoresEmpresas select new sectorEmpresa 
+            contextoRBV.sectorEmpresa.InsertAllOnSubmit((from sectorC in SectoresEmpresas select new sectorEmpresa 
                                         { 
                                             idSector = sectorC.IdSector, 
                                             idEmpresa = sectorC.IdEmpresa 
@@ -499,10 +517,10 @@ namespace RBV_AccesoDatos
 
             List<sectorEmpresa> sectoresEmpresaEliminar = new List<sectorEmpresa>();
 
-            sectoresEmpresaEliminar = contextoRBV.sectorEmpresas.Where(p => p.idEmpresa == SectoresEmpresas[0].IdEmpresa).ToList();
-            contextoRBV.sectorEmpresas.DeleteAllOnSubmit(sectoresEmpresaEliminar);
+            sectoresEmpresaEliminar = contextoRBV.sectorEmpresa.Where(p => p.idEmpresa == SectoresEmpresas[0].IdEmpresa).ToList();
+            contextoRBV.sectorEmpresa.DeleteAllOnSubmit(sectoresEmpresaEliminar);
 
-            contextoRBV.sectorEmpresas.InsertAllOnSubmit((from sectorC in SectoresEmpresas
+            contextoRBV.sectorEmpresa.InsertAllOnSubmit((from sectorC in SectoresEmpresas
                                                           select new sectorEmpresa
                                                           {
                                                               idSector = sectorC.IdSector,
@@ -518,8 +536,8 @@ namespace RBV_AccesoDatos
 
             List<sectorEmpresa> sectoresEmpresaEliminar = new List<sectorEmpresa>();
 
-            sectoresEmpresaEliminar = contextoRBV.sectorEmpresas.Where(p => p.idEmpresa == IdEmpresa).ToList();
-            contextoRBV.sectorEmpresas.DeleteAllOnSubmit(sectoresEmpresaEliminar);
+            sectoresEmpresaEliminar = contextoRBV.sectorEmpresa.Where(p => p.idEmpresa == IdEmpresa).ToList();
+            contextoRBV.sectorEmpresa.DeleteAllOnSubmit(sectoresEmpresaEliminar);
 
             contextoRBV.SubmitChanges();            
         }
@@ -531,7 +549,7 @@ namespace RBV_AccesoDatos
             List<SectorEmpresa> sectoresEmpresas = new List<SectorEmpresa>();
 
 
-            sectoresEmpresas = (from sectorC in contextoRBV.sectorEmpresas
+            sectoresEmpresas = (from sectorC in contextoRBV.sectorEmpresa
                                 where sectorC.idEmpresa == IdEmpresa
                                 select new SectorEmpresa
                                 {
@@ -549,13 +567,41 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.empresaUsuarios.InsertOnSubmit(new empresaUsuario
+            contextoRBV.empresaUsuario.InsertOnSubmit(new empresaUsuario
                                                           {
                                                               UserId = empresasUsuarios.UserId,
                                                               idEmpresa = empresasUsuarios.IdEmpresa
                                                           });
 
             contextoRBV.SubmitChanges();
+        }
+
+        public static List<Empresa> ConsultarEmpresasxUsuario(MembershipUser Usuario)
+        {
+            List<Empresa> empresasUs = new List<Empresa>();
+            try
+            {
+                RBVDataContext contextoRBV = new RBVDataContext();
+                //Guid giUsuario = new Guid(Usuario.UserName);
+
+
+                empresasUs = (from empresasUsC in contextoRBV.empresa
+                              //where empresasUsC.UserId == giUsuario
+                              select new Empresa
+                            {
+                                IdEmpresa = empresasUsC.idEmpresa,
+                                NombreEmpresa = empresasUsC.nombreEmpresa,
+                                RepresetanteLegal = empresasUsC.represetanteLegal,
+
+
+                            }).ToList();
+            }
+            catch (Exception ex)
+            {
+                Utilidades.UtilidadLogs.RegistrarError("Error consultando empresas por usuario", ex, ex.GetType());
+                throw new Exception("Error consultando empresas por usuario", ex);
+            }
+            return empresasUs;
         }
         #endregion
 
@@ -565,7 +611,7 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.recursosEmpresas.InsertOnSubmit(new recursosEmpresa
+            contextoRBV.recursosEmpresa.InsertOnSubmit(new recursosEmpresa
             {
                 recurso = recursoInsertar.NombreRecurso,
                 idTipoRecurso = recursoInsertar.TipoRecurso.IdTipoRecurso,
@@ -582,7 +628,7 @@ namespace RBV_AccesoDatos
 
             recursosEmpresa recursoAnterior = new recursosEmpresa();
 
-            recursoAnterior = contextoRBV.recursosEmpresas.SingleOrDefault(p => p.idRecursoEmpresa == recursoActualizar.IdRecursoEmpresa);
+            recursoAnterior = contextoRBV.recursosEmpresa.SingleOrDefault(p => p.idRecursoEmpresa == recursoActualizar.IdRecursoEmpresa);
             recursoAnterior.recurso = recursoActualizar.NombreRecurso;
             recursoAnterior.Descripcion = recursoActualizar.DescripcionRecurso;
             recursoAnterior.idTipoRecurso = recursoActualizar.TipoRecurso.IdTipoRecurso;
@@ -596,8 +642,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             recursosEmpresa recursoEliminar = new recursosEmpresa();
 
-            recursoEliminar = contextoRBV.recursosEmpresas.SingleOrDefault(p => p.idRecursoEmpresa == IdRecurso);
-            contextoRBV.recursosEmpresas.DeleteOnSubmit(recursoEliminar);
+            recursoEliminar = contextoRBV.recursosEmpresa.SingleOrDefault(p => p.idRecursoEmpresa == IdRecurso);
+            contextoRBV.recursosEmpresa.DeleteOnSubmit(recursoEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -607,7 +653,7 @@ namespace RBV_AccesoDatos
 
             List<RecursosEmpresa> recursos = new List<RecursosEmpresa>();
 
-            recursos = (from recursoC in contextoRBV.recursosEmpresas
+            recursos = (from recursoC in contextoRBV.recursosEmpresa
                         where recursoC.idEmpresa == IdEmpresa
                         select new RecursosEmpresa
                         {
@@ -639,8 +685,8 @@ namespace RBV_AccesoDatos
 
             List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
 
-            escalaValoracion = (from escalaC in contextoRBV.escalaValoracions
-                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+            escalaValoracion = (from escalaC in contextoRBV.escalaValoracion
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValioso
                                 on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
                                   where (escalaC.idEmpresa == IdEmpresa)
                                   select new EscalaValoracion
@@ -662,8 +708,8 @@ namespace RBV_AccesoDatos
 
             List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
 
-            escalaValoracion = (from escalaC in contextoRBV.escalaValoracions
-                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
+            escalaValoracion = (from escalaC in contextoRBV.escalaValoracion
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValioso
                                 on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
                                 where (escalaC.idEmpresa == IdEmpresa && escalaC.idCaracteristicaRV == idCaracteristicaRV)
                                 select new EscalaValoracion
@@ -687,10 +733,10 @@ namespace RBV_AccesoDatos
                 foreach (EscalaValoracion escalaVal in escala)
                 {
                     escalaValoracion escValEliminar = new escalaValoracion();
-                    escValEliminar = contextoRBV.escalaValoracions.SingleOrDefault(p => p.idCaracteristicaRV == escalaVal.IdCaracteristica && p.idEmpresa == escalaVal.IdEmpresa);
+                    escValEliminar = contextoRBV.escalaValoracion.SingleOrDefault(p => p.idCaracteristicaRV == escalaVal.IdCaracteristica && p.idEmpresa == escalaVal.IdEmpresa);
                     if (escValEliminar != null)
                     {
-                        contextoRBV.escalaValoracions.DeleteOnSubmit(escValEliminar);
+                        contextoRBV.escalaValoracion.DeleteOnSubmit(escValEliminar);
                         contextoRBV.SubmitChanges();
                     }                    
                 }
@@ -703,7 +749,7 @@ namespace RBV_AccesoDatos
                                          Valor = escal.Valor
                                      }).ToList();
 
-                contextoRBV.escalaValoracions.InsertAllOnSubmit(escalasValoracion);
+                contextoRBV.escalaValoracion.InsertAllOnSubmit(escalasValoracion);
                 contextoRBV.SubmitChanges();
             }
             catch (Exception ex)
@@ -712,5 +758,7 @@ namespace RBV_AccesoDatos
                 throw new Exception("Error insertando escalas de Valoración", ex);
             }
         }
+
+       
     }
 }

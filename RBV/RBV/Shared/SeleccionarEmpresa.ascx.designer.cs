@@ -14,7 +14,7 @@ namespace RBV.Shared {
     public partial class SeleccionarEmpresa {
         
         /// <summary>
-        /// Control rblEmpresas.
+        /// Control rblempresa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.

@@ -8,19 +8,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RBV.Matriz {
+namespace RBV.Reportes {
     
     
-    public partial class Reportes {
+    public partial class GraficoBarras {
         
         /// <summary>
-        /// Control SeleccionEmpresa1.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::RBV.Maestros.SeleccionEmpresa SeleccionEmpresa1;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// Control UpdatePanel6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel6;
+        
+        /// <summary>
+        /// Control Titulo1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Shared_Titulo Titulo1;
         
         /// <summary>
         /// Control BarrasRecursos.
@@ -30,32 +48,5 @@ namespace RBV.Matriz {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart BarrasRecursos;
-        
-        /// <summary>
-        /// Control TortaRecursos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart TortaRecursos;
-        
-        /// <summary>
-        /// Control TipoRecValioso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart TipoRecValioso;
-        
-        /// <summary>
-        /// Control RecValiosoVal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart RecValiosoVal;
     }
 }

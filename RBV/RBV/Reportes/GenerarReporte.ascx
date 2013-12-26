@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GenerarReporte.ascx.cs" Inherits="RBV.Reportes.GenerarReporte" %>
 <%@ Register Src="../Shared/Titulo.ascx" TagName="Titulo" TagPrefix="uc2" %>
 <%@ Register Assembly="Utilidades" Namespace="Utilidades" TagPrefix="cc2" %>
-<%@ Register Src="SeleccionEmpresa.ascx" TagName="SeleccionEmpresa" TagPrefix="uc1" %>
+<%@ Register Src="../Maestros/SeleccionEmpresa.ascx" TagName="SeleccionEmpresa" TagPrefix="uc1" %>
 
 <p>
     <br />
@@ -17,39 +17,82 @@
  <div id="company-page" class="page">
   <uc2:Titulo ID="Titulo1" runat="server" Titulo="<%$ Resources:Titulo1Titulo %>">
     </uc2:Titulo>
- <uc1:SeleccionEmpresa ID="SeleccionEmpresa1" runat="server" OnEmpresaIndexChange="SeleccionEmpresa1_OnEmpresaIndexChange"/>
+ <uc1:SeleccionEmpresa ID="SeleccionEmpresa1" runat="server" />
 <table>
     <tr>
+          <td style="background-color: #99CCFF" colspan="3">
+              Equipo de Trabajo</td>
+    </tr>
+    <tr>
         <td class="style2">
-            <asp:Label ID="lblCantidadParticipantes" runat="server" Text="<%$ Resources:lblCantidadParticipantes %>"></asp:Label>
+            <asp:Label ID="lblCantidadParticipantes" runat="server" 
+                Text="<%$ Resources:lblNombre %>"></asp:Label>
         </td>
-        <td >
-            <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-             <asp:RequiredFieldValidator ID="rfvCantidad" runat="server" ErrorMessage="<%$ Resources:rfvCantidad %>" Text="*" ValidationGroup="CargarRoles" ControlToValidate="txtCantidad">
-                        </asp:RequiredFieldValidator>
-                         <asp:RangeValidator ValidationGroup="CargarRoles" ID="rgCantidad" ControlToValidate="txtCantidad"
-                            MaximumValue="5" Display="Dynamic" ErrorMessage="<%$ Resources:rgCantidad %>"
-                            Text="*" MinimumValue="1" Type="Integer" runat="server"></asp:RangeValidator>
-            </td>
-        <td >
-            <asp:Button ID="btnCargar" runat="server" Text="<%$ Resources:btnCargar %>" 
-                CausesValidation="true" ValidationGroup="CargarRoles" 
-                onclick="btnCargar_Click" />
-            </td>
-    </tr>
-    <tr>
-        <td class="style1">
-            &nbsp;</td>
+        <td>
+           <asp:Label ID="Label1" runat="server" 
+                Text="<%$ Resources:lblCargo %>"></asp:Label>
+        </td>
         <td>
             &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td colspan="3" align="center">
-<asp:Button ID="btnGenerarReporte" runat="server" 
-    onclick="btnGenerarReporte_Click" Text="<%$ Resources:btnGenerarReporte %>" />
-        </td>
+   
+                        <tr>
+                            <td class="style1">
+                                <asp:TextBox ID="txtNombre1" runat="server" Width="270" MaxLength="100"></asp:TextBox>
+                              
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCargo1" runat="server" Width="150" MaxLength="100"></asp:TextBox>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="style1">
+                                <asp:TextBox ID="txtNombre2" runat="server" Width="270" MaxLength="100"></asp:TextBox>
+                              
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCargo2" runat="server" Width="150" MaxLength="100"></asp:TextBox>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="style1">
+                                <asp:TextBox ID="txtNombre3" runat="server" Width="270" MaxLength="100"></asp:TextBox>
+                              
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCargo3" runat="server" Width="150" MaxLength="100"></asp:TextBox>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="style1">
+                                <asp:TextBox ID="txtNombre4" runat="server" Width="270" MaxLength="100"></asp:TextBox>
+                              
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCargo4" runat="server" Width="150" MaxLength="100"></asp:TextBox>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="style1">
+                                <asp:TextBox ID="txtNombre5" runat="server" Width="270" MaxLength="100"></asp:TextBox>
+                              
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtCargo5" runat="server" Width="150" MaxLength="100"></asp:TextBox>
+                            </td>
+                            
+                        </tr>
+                   
+   
+        <tr>
+            <td align="center" colspan="3">
+                <asp:Button ID="btnGenerarReporte" runat="server" 
+                    onclick="btnGenerarReporte_Click" Text="<%$ Resources:btnGenerarReporte %>" />
+            </td>
+        </tr>
         
     </tr>
 </table>

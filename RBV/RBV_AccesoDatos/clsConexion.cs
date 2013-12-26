@@ -19,7 +19,7 @@ namespace RBV_AccesoDatos
         {
             DataSet ds = new DataSet();
                 RBVDataContext obj = new RBVDataContext();
-             empresa objempresa=   obj.empresas.Where(p => p.idEmpresa == 1).SingleOrDefault();
+             empresa objempresa=   obj.empresa.Where(p => p.idEmpresa == 1).SingleOrDefault();
             //obj.aspnet_Memberships.
             using (SqlConnection objConexion = clsProveedorConexion.ObtenerConexionSql())
             {

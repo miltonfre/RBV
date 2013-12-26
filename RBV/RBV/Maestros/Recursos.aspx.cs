@@ -141,7 +141,7 @@ namespace RBV.Maestros
         {
             if (ddlTipoRecurso.SelectedValue != "0")
             {
-                lblDescripcionTipo.Text = RBV_Negocio.MaestrosBO.ConsultarTipoRecurso(Convert.ToInt16(ddlTipoRecurso.SelectedValue)).Descripcion;
+                //lblDescripcionTipo.Text = RBV_Negocio.MaestrosBO.ConsultarTipoRecurso(Convert.ToInt16(ddlTipoRecurso.SelectedValue)).Descripcion;
             }
             else
             {

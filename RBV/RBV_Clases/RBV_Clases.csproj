@@ -62,19 +62,16 @@
     <Compile Include="EmpresaUsuario.cs" />
     <Compile Include="EscalaCalificacion.cs" />
     <Compile Include="EscalaValoracion.cs" />
+    <Compile Include="Informe.cs" />
+    <Compile Include="ListaValores.cs" />
     <Compile Include="MatrizValoracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursosEmpresa.cs" />
     <Compile Include="RecursoValioso.cs" />
+    <Compile Include="RolesInforme.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="SectorEmpresa.cs" />
     <Compile Include="TipoRecurso.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
-      <Project>{6ABAD527-845A-46B6-B38F-232F1D7FB03C}</Project>
-      <Name>Utilidades</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
