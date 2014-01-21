@@ -191,7 +191,7 @@ namespace RBV.Shared {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        
         
         /// <summary>
         /// Control mpeSeleccion.
@@ -200,6 +200,6 @@ namespace RBV.Shared {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeSeleccion;
+        //protected global::AjaxControlToolkit.ModalPopupExtender mpeSeleccion;
     }
 }

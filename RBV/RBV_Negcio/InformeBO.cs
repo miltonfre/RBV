@@ -25,7 +25,8 @@ namespace RBV_Negcio
         {
             //se crea una nueva carpeta
             Empresa empresa = informe.Empresa;
-           string strDirectorio= string.Concat(Environment.CurrentDirectory, "\\InformesGenerados\\", empresa.NombreEmpresa);
+           //string strDirectorio= string.Concat(Environment.CurrentDirectory, "\\InformesGenerados\\", empresa.NombreEmpresa);
+            string strDirectorio = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "InformesGenerados\\" + empresa.NombreEmpresa);
            if (!Directory.Exists(strDirectorio))
            {
                System.IO.Directory.CreateDirectory(strDirectorio);
@@ -127,7 +128,9 @@ namespace RBV_Negcio
         {
             //Hacemos la portada
             string strTituloPortada = "Análisis de Recursos Valiosos";
-            string strLogoPortada = string.Concat(Environment.CurrentDirectory, "\\RBV\\RBV\\img\\Login\\2.png");
+
+            //string strLogoPortada = string.Concat(Environment.CurrentDirectory, "\\RBV\\RBV\\img\\Login\\2.png");
+            string strLogoPortada = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img\\Login\\2.png");
             string strElaboradoPor = "Elaborado por: MyInnovation";
             // A formatting object for our headline:
             var headLineFormat = new Novacode.Formatting();

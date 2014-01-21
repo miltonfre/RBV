@@ -29,6 +29,22 @@ namespace RBV.Reportes
 
             string archivo = genWord.CrearWordWithDocX(informe);
             Response.Redirect(archivo, true);
+
+            //Response.Clear();
+            //Response.AddHeader("Content-Disposition", "attachment; filename=" + path);
+            ////Response.AddHeader("Content-Length", file.Length.ToString());
+            //Response.ContentType = "text/plain";
+            //Response.WriteFile(path);
+            //Response.Flush();
+            //Response.End();
+
+            //Response.Clear();
+            //Response.AddHeader("Content-Disposition", "attachment; filename=" + archivo);
+            ////Response.AddHeader("Content-Length", file.Length.ToString());
+            //Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            //Response.WriteFile(archivo);
+            //Response.Flush();
+            //Response.End();
         }
 
 

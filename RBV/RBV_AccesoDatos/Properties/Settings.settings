@@ -5,18 +5,18 @@
     <Setting Name="RBVConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False</Value>
+      <Value Profile="(Default)">Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False</Value>
     </Setting>
     <Setting Name="RBVConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=PERSONAL\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV</Value>
+      <Value Profile="(Default)">Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV</Value>
     </Setting>
   </Settings>
 </SettingsFile>
