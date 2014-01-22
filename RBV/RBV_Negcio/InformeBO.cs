@@ -20,7 +20,7 @@ namespace RBV_Negcio
 {
     public class InformeBO
     {
-
+        
         public string CrearWordWithDocX(Informe informe)
         {
             //se crea una nueva carpeta
@@ -39,10 +39,10 @@ namespace RBV_Negcio
            string fileName = string.Concat(strDirectorio,"\\", strFile);
             // Create the document in memory:
             var doc = DocX.Create(fileName);
-            doc.MarginTop = 5;
-            doc.MarginRight = 3;
-            doc.MarginLeft = 3;
-            doc.MarginBottom = 3;
+            //doc.MarginTop = 5;
+            //doc.MarginRight = 3;
+            //doc.MarginLeft = 3;
+            //doc.MarginBottom = 3;
             
             implementarHeader(doc);
             implementarFooter(doc);
@@ -51,11 +51,48 @@ namespace RBV_Negcio
             ingresarEquipoTrabajo(doc, informe.RolesInforme);
             doc.InsertSectionPageBreak(true);
             insertarGraficoBarra(doc, empresa, strDirectorio);
+            insertarRecursosValiosos(doc, empresa);
           
             doc.Save();
             return fileName;
         }
 
+        /// <summary>
+        /// Crea la tabla de recursos valiosos
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="empresa"></param>
+        private void insertarRecursosValiosos(DocX doc, Empresa empresa)
+        {
+            List<RecursoValioso> listadoRecursoValioso = MatrizBO.ConsultarRecursosValiosos(empresa.IdEmpresa);
+            int cantidadRecursos = listadoRecursoValioso.Count;
+            var RVParrafo = new Novacode.Formatting();
+            RVParrafo.FontFamily = new System.Drawing.FontFamily("Calibri");
+            RVParrafo.Size = 12D;
+            RVParrafo.Position = 3;
+          
+            Paragraph pParr = doc.InsertParagraph("En este sentido se identifican "+cantidadRecursos+" recursos por encima del promedio, los cuales se convierten en valiosos y se listan a continuación", false, RVParrafo);
+            pParr.Alignment = Alignment.left;            
+        
+            Table tab = doc.AddTable(cantidadRecursos + 1, 2);
+            tab.AutoFit = AutoFit.Contents;
+            tab.Alignment = Alignment.center;
+            tab.Design = TableDesign.ColorfulGridAccent1;
+            tab.Rows[0].Cells[0].Paragraphs.First().Append("Recurso Valioso");
+            tab.Rows[0].Cells[0].Paragraphs.First().Alignment = Alignment.center;
+            tab.Rows[0].Cells[0].Paragraphs.First().Bold();
+            tab.Rows[0].Cells[1].Paragraphs.First().Append("Observaciones");
+            tab.Rows[0].Cells[1].Paragraphs.First().Alignment = Alignment.center;
+            tab.Rows[0].Cells[1].Paragraphs.First().Bold();
+
+            for (int i = 0; i < cantidadRecursos; i++)
+            {
+                RecursoValioso recursoValioso = listadoRecursoValioso[i];
+                tab.Rows[i + 1].Cells[0].Paragraphs.First().Append(recursoValioso.NombreRecurso);
+                
+            }
+            doc.InsertTable(tab);
+        }
         private void ingresarEquipoTrabajo(DocX doc, List<RolesInforme> rolesInforme)
         {
             // Titulo Equipo de Trabajo:
@@ -63,7 +100,7 @@ namespace RBV_Negcio
             doc.InsertParagraph();
             doc.InsertParagraph();
             var equipoTrabajoFormat = new Novacode.Formatting();
-            equipoTrabajoFormat.FontFamily = new System.Drawing.FontFamily("Arial");
+            equipoTrabajoFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
             equipoTrabajoFormat.Size = 12D;
             equipoTrabajoFormat.Bold = true;
             Paragraph pTit = doc.InsertParagraph("Equipo de Trabajo", false, equipoTrabajoFormat);
@@ -93,6 +130,20 @@ namespace RBV_Negcio
         }
         private void insertarGraficoBarra(DocX doc, Empresa empresa, string strDirectorio)
         {
+            var RVFormat = new Novacode.Formatting();
+            RVFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
+            RVFormat.Size = 12D;
+            RVFormat.Bold = true;
+            Paragraph pTit = doc.InsertParagraph("Recursos Valiosos " + empresa.NombreEmpresa.ToUpper(), false, RVFormat);
+            pTit.Alignment = Alignment.left;
+
+            var RVParrafo = new Novacode.Formatting();
+            RVParrafo.FontFamily = new System.Drawing.FontFamily("Calibri");
+            RVParrafo.Size = 12D;
+            RVParrafo.Position = 3;
+            Paragraph pParr = doc.InsertParagraph("Se definen los recursos físicos, organizacionales e intangibles con los que cuenta " + empresa.NombreEmpresa.ToUpper() + ". Los recursos definidos son evaluados por parte del equipo técnico – gerencial desde la perspectiva de inimitable, durabilidad, apropiación, sustitución y superioridad competitiva.", false, RVParrafo);
+            pParr.Alignment = Alignment.left;
+
             string strGrafico = CrearGraficoBarra(empresa, strDirectorio);            
             Novacode.Image i = doc.AddImage(strGrafico);
             Picture p = i.CreatePicture();
@@ -134,45 +185,83 @@ namespace RBV_Negcio
             string strElaboradoPor = "Elaborado por: MyInnovation";
             // A formatting object for our headline:
             var headLineFormat = new Novacode.Formatting();
-            headLineFormat.FontFamily = new System.Drawing.FontFamily("Arial");
+            headLineFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
             headLineFormat.Size = 26D;
-            headLineFormat.Position = 32;
 
             // Ciudad:
             var paraFormat = new Novacode.Formatting();
-            paraFormat.FontFamily = new System.Drawing.FontFamily("Arial");
-            paraFormat.Size = 22D;
+            paraFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
+            paraFormat.Size = 18D;
 
             // Formato elaborado por:
             var elaboradoPorFormat = new Novacode.Formatting();
-            elaboradoPorFormat.FontFamily = new System.Drawing.FontFamily("Arial");
+            elaboradoPorFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
             elaboradoPorFormat.Size = 10D;
 
             // Add an Image into this document.
-            Novacode.Image i = doc.AddImage(strLogoPortada);
-            // Create a Picture (Custom View) of this Image.
-            Picture p = i.CreatePicture();
+            //Novacode.Image i = doc.AddImage(strLogoPortada);
+            //// Create a Picture (Custom View) of this Image.
+            //Picture p = i.CreatePicture();
 
 
-            Paragraph pImg = doc.InsertParagraph("").AppendPicture(p);
-            pImg.Alignment = Alignment.right;
-
+            //Paragraph pImg = doc.InsertParagraph("").AppendPicture(p);
+            //pImg.Alignment = Alignment.right;
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
             Paragraph pTit = doc.InsertParagraph(strTituloPortada, false, headLineFormat);
-            pTit.Alignment = Alignment.right;
-
-            Paragraph pEmp = doc.InsertParagraph(empresa.NombreEmpresa, false, headLineFormat);
-            pEmp.Alignment = Alignment.right;
-
-            Paragraph pElp = doc.InsertParagraph(strElaboradoPor, false, elaboradoPorFormat);
-            pElp.Alignment = Alignment.right;
-
+            pTit.Alignment = Alignment.center;
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph(); 
             doc.InsertParagraph();
             doc.InsertParagraph();
 
-            Paragraph pCiud = doc.InsertParagraph("Medellín");
+             Paragraph pEmp = doc.InsertParagraph("Milton Fredy González Díaz" , false, headLineFormat);
+            pEmp.Alignment = Alignment.center;
+            pEmp = doc.InsertParagraph("Diego León Pineda Montoya", false, headLineFormat);
+            pEmp.Alignment = Alignment.center;
+
+
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            doc.InsertParagraph();
+            pEmp = doc.InsertParagraph(empresa.NombreEmpresa, false, paraFormat);
+            pEmp.Alignment = Alignment.center;
+
+            //Paragraph pElp = doc.InsertParagraph(strElaboradoPor, false, elaboradoPorFormat);
+            //pElp.Alignment = Alignment.right;
+
+
+            Paragraph pCiud = doc.InsertParagraph("Medellín", false, paraFormat);
             pCiud.Alignment = Alignment.center;
 
-            Paragraph pAno = doc.InsertParagraph(DateTime.Now.Year.ToString());
+            Paragraph pAno = doc.InsertParagraph(DateTime.Now.Year.ToString(), false, paraFormat);
             pAno.Alignment = Alignment.center;
         }
 
