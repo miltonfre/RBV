@@ -23,7 +23,11 @@ namespace RBV.Matriz
         }
         protected void SeleccionEmpresa1_IndexChange(object sender, EventArgs e)
         {
-            ConsultarValoresPromedio();
+            if (!SeleccionEmpresa1.IdEmpresa.ToString().Equals("0"))
+            {
+                ConsultarValoresPromedio();
+            }
+            
         }
         private void ConsultarValoresPromedio()
         {
