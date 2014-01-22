@@ -30,6 +30,7 @@ namespace RBV.Matriz
                 SeleccionEmpresa1.Usuario = User.Identity.Name;
                 SeleccionEmpresa1.ConsultarEmpresas();
             }
+            
             ConsultarMatrizConValoresCalculados();
         }
 
@@ -64,6 +65,7 @@ namespace RBV.Matriz
 
         private void ConsultarMatrizConValoresCalculados()
         {
+            //TODO: Cambiar Empresa
             MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(5).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
             this.idEmpresa = SeleccionEmpresa1.IdEmpresa;
             if (MatrizValoracion.Count > 0)

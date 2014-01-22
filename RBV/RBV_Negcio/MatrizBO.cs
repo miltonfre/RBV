@@ -64,5 +64,23 @@ namespace RBV_Negocio
             }
             return RecursosValiosos;
         }
+
+        public static List<RecursoValioso> ConsultarRecursosValiosos(short idEmpresa)
+        {
+            List<RecursoValioso> Recursos = new List<RecursoValioso>();
+            List<RecursoValioso> RecursosValiosos = new List<RecursoValioso>();
+            decimal ValorTotal = 0;
+
+            List<MatrizValoracion> matrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(5).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
+
+            if (matrizValoracion.Count > 0)
+            {
+                Recursos = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(matrizValoracion, idEmpresa);
+                ValorTotal = Recursos.Sum(p => p.Valor) / Recursos.Count;
+                RecursosValiosos = Recursos.Where(p => p.Valor >= ValorTotal).ToList();
+            }
+
+            return RecursosValiosos;
+        }
     }
 }
