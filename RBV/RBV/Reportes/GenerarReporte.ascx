@@ -3,12 +3,15 @@
 <%@ Register Assembly="Utilidades" Namespace="Utilidades" TagPrefix="cc2" %>
 <%@ Register Src="../Maestros/SeleccionEmpresa.ascx" TagName="SeleccionEmpresa" TagPrefix="uc1" %>
 
+<%@ Register src="../Shared/Mensaje.ascx" tagname="Mensaje" tagprefix="uc3" %>
+
 <p>
     <br />
 </p>
  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
  <asp:UpdatePanel ID="UpdatePanel6" runat="server" RenderMode="Inline" UpdateMode="always">
         <ContentTemplate>
+        <uc3:Mensaje ID="Mensaje1" runat="server" />
             <cc2:ValidationSummary ID="vsCargarRoles" runat="server" MensajeDeIntroduccion="<%$ Resources:vsCorregirErrores %>"
                 ValidationGroup="CargarRoles" ShowMessageBox="true" ShowSummary="false" UpdatePanel="UpdatePanel6" />
                  <cc2:ValidationSummary ID="vsGenerarInforme" runat="server" MensajeDeIntroduccion="<%$ Resources:vsCorregirErrores %>"
@@ -17,7 +20,9 @@
  <div id="company-page" class="page">
   <uc2:Titulo ID="Titulo1" runat="server" Titulo="<%$ Resources:Titulo1Titulo %>">
     </uc2:Titulo>
+    
  <uc1:SeleccionEmpresa ID="SeleccionEmpresa1" runat="server" />
+     
 <table>
     <tr>
           <td style="background-color: #99CCFF" colspan="3">
@@ -89,7 +94,7 @@
    
         <tr>
             <td align="center" colspan="3">
-                <asp:Button ID="btnGenerarReporte" runat="server" 
+                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="butt"
                     onclick="btnGenerarReporte_Click" Text="<%$ Resources:btnGenerarReporte %>" />
             </td>
         </tr>

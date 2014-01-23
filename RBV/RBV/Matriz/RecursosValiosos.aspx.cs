@@ -24,30 +24,43 @@ namespace RBV.Matriz
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //TODO: Cambiar empresa
             if (!Page.IsPostBack)
             {
-                SeleccionEmpresa1.Usuario = User.Identity.Name;
-                SeleccionEmpresa1.ConsultarEmpresas();
+                cargarEmpresas();
+                if (!ddlEmpres.SelectedValue.ToString().Equals("0"))
+                {
+                    ConsultarMatrizConValoresCalculados();
+                }
             }
-            
-            ConsultarMatrizConValoresCalculados();
         }
 
-        protected void SeleccionEmpresa1_OnEmpresaIndexChange(object sender, EventArgs e)
-        { 
+        private void cargarEmpresas()
+        {
+            List<RBV_Clases.Empresa> Empresas = RBV_Negocio.MaestrosBO.ConsultarEmpresas(User.Identity.Name).ToList();
+            //TODO: Poner mensaje en constante...
+            ddlEmpres.DataSource = Empresas;
+            ddlEmpres.DataBind();
+            ddlEmpres.Items.Insert(0, new ListItem("<---Seleccione--->", "0"));
+            ddlEmpres.SelectedValue = "0";
+
+            if (Empresas.Count > 1)
+            {
+                ddlEmpres.SelectedValue = "0";
+            }
+            else
+            {
+                ddlEmpres.SelectedIndex = 1;
+            }
+        }
         
-        }
-
         [WebMethod]
-        public static Resultado Actualizar(string info, string totales, int idFila)
+        public static Resultado Actualizar(string info, string totales, int idFila, short idEmpresa)
         {
             var result = new Resultado();
 
             List<RBV_Clases.MatrizValoracion> MatrizValoracion = ensamblarMatrizCalificar(info);
 
-            //TODO: CambiarEmpresa
-            List<RecursoValioso> recursosValioso = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(MatrizValoracion, 5);
+            List<RecursoValioso> recursosValioso = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(MatrizValoracion, idEmpresa);
 
             result.TotalLinea = recursosValioso.SingleOrDefault(p => p.Valor != 0).Valor;
 
@@ -55,52 +68,65 @@ namespace RBV.Matriz
             ValTotales[idFila] = result.TotalLinea.ToString();
 
             result.TotalGrupo = decimal.Round(ValTotales.Sum(p=> Convert.ToDecimal(p.ToString())) / ValTotales.Length,4);
-            /*
-            result.TotalGrupo = 20.9;
             
-            */
-            return result;
-            
+            return result;            
         }
 
         private void ConsultarMatrizConValoresCalculados()
         {
-            //TODO: Cambiar Empresa
-            MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(5).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
-            this.idEmpresa = SeleccionEmpresa1.IdEmpresa;
+            decimal valorCaracteristicas = 0;
+            this.idEmpresa = Convert.ToInt16(ddlEmpres.SelectedValue);
+            MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(this.idEmpresa).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
+            
             if (MatrizValoracion.Count > 0)
             {
                 recursosValiosos = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(MatrizValoracion, this.idEmpresa);
-                ValorTotal = recursosValiosos.Sum(p => p.Valor) / recursosValiosos.Count;
+                if (recursosValiosos.Count > 0)
+                {
+                    ValorTotal = recursosValiosos.Sum(p => p.Valor) / recursosValiosos.Count;
+                }                
             }
             
             Entidades.MatrizValoracion Matriz = RBV_Negocio.MatrizBO.ConsultarCaracteristicasRecursos(this.idEmpresa);
-            foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p => p.ClasificacionAsociada.ClasificacionRV))
+            if (Matriz.Recursos.Count > 0)
             {
-                Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica == "Empresa" ? SeleccionEmpresa1.Empresa : item.NombreCaracteristica + " " +item.ValorCaracteristica + "%", Descripcion=item.Descripcion,Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
+                foreach (Entidades.Caracteristica item in Matriz.Caracteristicas.OrderBy(p => p.ClasificacionAsociada.ClasificacionRV))
+                {
+                    Titulos.Add(new Titulo { Nombre = item.NombreCaracteristica == "Empresa" ? ddlEmpres.SelectedItem.Text + " " + item.ValorCaracteristica + "%" : item.NombreCaracteristica + " " + item.ValorCaracteristica + "%", Descripcion = item.Descripcion, Id = item.IdCaracteristica.ToString(), IdClasificacion = item.ClasificacionAsociada.IdClasificacionRV.ToString() });
+                    valorCaracteristicas += Convert.ToDecimal(item.ValorCaracteristica);
+                }
+                TitulosFilas.Add(new TituloFilas { NombreFilas = "" });
+                foreach (Entidades.RecursosEmpresa item in Matriz.Recursos.OrderBy(p => p.IdRecursoEmpresa))
+                {
+                    TitulosFilas.Add(new TituloFilas { NombreFilas = item.NombreRecurso, IdFilas = item.IdRecursoEmpresa.ToString() });
+                }
+
+                Calificacion = RBV_Negocio.MaestrosBO.ConsultarEscalaCalificaciones(this.idEmpresa);
+
+                Clasificaciones = (from cla in Matriz.Caracteristicas
+                                   group cla by new
+                                   {
+                                       cla.ClasificacionAsociada.ClasificacionRV
+                                   } into g
+                                   orderby g.Key.ClasificacionRV
+                                   select new TituloClasificaciones
+                                            {
+                                                Nombre = g.Key.ClasificacionRV + " " + g.Sum(p => Convert.ToDecimal(p.ValorCaracteristica)).ToString() + "%",
+                                                CantidadCaracteristica = g.Count(p => p.ClasificacionAsociada.ClasificacionRV != null) * 2
+                                                
+                                            }).Distinct().ToList();
+
+                if (valorCaracteristicas < 100)
+                {
+                    //TODO: Verificar error de scriptmanager al poner el ascx de mensajes
+                    lblMensaje.Text = "Por favor antes de comenzar la evaluación ingrese valores a las características. Página Escala Valoración.";
+                    lblMensaje.Visible = true;
+                }
+                else
+                {
+                    lblMensaje.Visible = false;
+                }
             }
-            TitulosFilas.Add(new TituloFilas { NombreFilas = "" });
-            foreach (Entidades.RecursosEmpresa item in Matriz.Recursos.OrderBy(p => p.IdRecursoEmpresa))
-            {
-                TitulosFilas.Add(new TituloFilas { NombreFilas = item.NombreRecurso, IdFilas = item.IdRecursoEmpresa.ToString() });
-            }
-
-            //TODO: Cambiar empresa
-            Calificacion = RBV_Negocio.MaestrosBO.ConsultarEscalaCalificaciones(this.idEmpresa);
-
-            Clasificaciones = (from cla in Matriz.Caracteristicas
-                               group cla by new
-                               {
-                                    cla.ClasificacionAsociada.ClasificacionRV
-                               } into g
-                               orderby g.Key.ClasificacionRV
-                               select new TituloClasificaciones 
-                                        { 
-                                            Nombre = g.Key.ClasificacionRV + " " + g.Sum(p=> Convert.ToDecimal(p.ValorCaracteristica)).ToString() + "%",
-                                            CantidadCaracteristica = g.Count(p=>p.ClasificacionAsociada.ClasificacionRV != null) *2
-                                            
-                                        }).Distinct().ToList();
-
         }
 
         public struct Titulo
@@ -125,12 +151,11 @@ namespace RBV.Matriz
         }
 
         [WebMethod]
-        public static string Save(string info)
+        public static string Save(string info, short idEmpresa)
         {
             List<RBV_Clases.MatrizValoracion> MatrizValoracion = ensamblarMatrizCalificar(info);
             
-            //TODO: Cambiar empresa
-            RBV_Negocio.MatrizBO.InsertarMatriz(MatrizValoracion, 5);
+            RBV_Negocio.MatrizBO.InsertarMatriz(MatrizValoracion, idEmpresa);
 
             return "Datos guardados con exito";
         }
@@ -150,6 +175,14 @@ namespace RBV.Matriz
                 }
             }
             return MatrizValoracion;
+        }
+
+        protected void ddlEmpres_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!ddlEmpres.SelectedValue.ToString().Equals("0"))
+            {
+                ConsultarMatrizConValoresCalculados();
+            }
         }
     }
 }

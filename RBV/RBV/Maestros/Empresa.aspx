@@ -3,13 +3,16 @@
 
 <%@ Register Src="../Shared/Titulo.ascx" TagName="Titulo" TagPrefix="uc2" %>
 <%@ Register Assembly="Utilidades" Namespace="Utilidades" TagPrefix="cc2" %>
-
+<%@ Register src="../Shared/Mensaje.ascx" tagname="Mensaje" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContenidoPaginas" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
-    <uc2:Titulo ID="Titulo1" runat="server" Titulo="<%$ Resources:Titulo1Titulo %>">
-    </uc2:Titulo>
+    
     <asp:UpdatePanel ID="UpdatePanel6" runat="server" RenderMode="Inline" UpdateMode="always">
         <ContentTemplate>
+    
+            <uc1:Mensaje ID="Mensaje1" runat="server" />
+            <uc2:Titulo ID="Titulo1" runat="server" Titulo="<%$ Resources:Titulo1Titulo %>">
+            </uc2:Titulo>
             <cc2:ValidationSummary ID="ValidationSummary1" runat="server" MensajeDeIntroduccion="<%$ Resources:vsCorregirErrores %>"
                 ValidationGroup="Crear" ShowMessageBox="true" ShowSummary="false" UpdatePanel="UpdatePanel6" />
             <!--<div id="company-right-container">
@@ -56,6 +59,7 @@
                                 CssClass="butt" />
                             <asp:Button ID="btnCancelar" Text="<%$ Resources:btnCancelar %>" runat="server" OnClick="btnCancelar_Click"
                                 CssClass="butt" />
+                                 
                         </td>
                     </tr>
                     <tr>
@@ -72,7 +76,8 @@
                                     <asp:BoundField DataField="nombreEmpresa" HeaderText="<%$ Resources:hdrEmpresa %>" />
                                     <asp:BoundField DataField="nit" HeaderText="<%$ Resources:hdrNit %>" />
                                     <asp:BoundField DataField="represetanteLegal" HeaderText="<%$ Resources:hdrrepresetanteLegal %>" />
-                                    <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="<%$ Resources:hdrEditar %>" EditImageUrl="~/images/ico_lapiz.gif" />
+                                    <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="<%$ Resources:hdrEditar %>"
+                                        EditImageUrl="~/images/ico_lapiz.gif" />
                                     <asp:CommandField ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" HeaderText="<%$ Resources:hdrEliminar %>"
                                         DeleteText="Eliminar" ShowDeleteButton="True" />
                                 </Columns>

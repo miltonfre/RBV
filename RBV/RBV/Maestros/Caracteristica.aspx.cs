@@ -90,7 +90,7 @@ namespace RBV.Maestros
 
         private void ConsultarCaracteristicas()
         {
-            grdCaracteristica.DataSource = RBV_Negocio.MaestrosBO.ConsultarCaracteristicas();
+            grdCaracteristica.DataSource = RBV_Negocio.MaestrosBO.ConsultarCaracteristicas(0);
             grdCaracteristica.DataBind();
         }
 

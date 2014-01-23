@@ -8,28 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RBV.Matriz {
+namespace RBV.Shared {
     
     
-    public partial class RecursosValiosos {
-        
-        /// <summary>
-        /// lblempres control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblempres;
-        
-        /// <summary>
-        /// ddlEmpres control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmpres;
+    public partial class Mensaje {
         
         /// <summary>
         /// lblMensaje control.
@@ -39,5 +21,14 @@ namespace RBV.Matriz {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
+        /// tmtMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer tmtMensaje;
     }
 }

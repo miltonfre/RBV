@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades = RBV_Clases;
+using System.Data.SqlClient;
 
 
 namespace RBV.Maestros
@@ -56,6 +57,9 @@ namespace RBV.Maestros
                 ConsultarSectores();
                 ConsultarEmpresas();                
             }
+            string url = "http://www.dotnetcurry.com";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "OpenWin", "<script>openNewWin('" + url + "')</script>");
         }
 
         private void ConsultarSectores()
@@ -149,7 +153,21 @@ namespace RBV.Maestros
         {
             //TODO: Mostra mensaje de confirmacion
             IdEmpresa = Convert.ToInt16(grdEmpresas.DataKeys[e.RowIndex].Value);
-            RBV_Negocio.MaestrosBO.EliminarEmpresa(IdEmpresa, User.Identity.Name);
+            try
+            {
+                RBV_Negocio.MaestrosBO.EliminarEmpresa(IdEmpresa, User.Identity.Name);
+            }
+            catch (SqlException sqlex)
+            {
+                //TODO: Mensaje donde van a quedar??????
+                Mensaje1.Mensajes = "No fue posible eliminar la empresa seleccionada, asegúrese que esta no tenga datos relacionados.";
+            }
+            catch (Exception ex)
+            {
+                //TODO: Mensaje donde van a quedar??????
+                Mensaje1.Mensajes = "ocurrió un error inesperado, intente nuevamente por favor.";
+            }
+            
 
             ConsultarEmpresas();
             LimpiarPagina();

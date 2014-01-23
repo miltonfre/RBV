@@ -5,6 +5,7 @@ using System.Text;
 using RBV_Clases;
 using System.Data.Linq;
 using System.Web.Security;
+using System.Data.SqlClient;
 
 namespace RBV_AccesoDatos
 {
@@ -241,7 +242,7 @@ namespace RBV_AccesoDatos
             contextoRBV.SubmitChanges();
         }
 
-        public static List<Caracteristica> ConsultarCaracteristicas()
+        public static List<Caracteristica> ConsultarCaracteristicas(short IdEmpresa)
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
@@ -256,7 +257,7 @@ namespace RBV_AccesoDatos
                                    NombreCaracteristica = caracteristicaC.caracteristicaRV,
                                    IdClasificacionRV = caracteristicaC.idClasificacionRV,
                                    Descripcion = caracteristicaC.Descripcion,
-                                   ValorCaracteristica = caracteristicaC.escalaValoracion.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV).Valor.ToString(),
+                                   ValorCaracteristica = caracteristicaC.escalaValoracion.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV && p.idEmpresa == IdEmpresa).Valor.ToString(),
                                    ClasificacionAsociada = new Clasificacion
                                    {
                                        IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
@@ -323,6 +324,7 @@ namespace RBV_AccesoDatos
 
             empresaInsertar.EmpresasUsuarios.IdEmpresa = empresa.idEmpresa;
             InsertarEmpresaUsuario(empresaInsertar.EmpresasUsuarios);
+            InsertarEscalaCalificacion(empresa.idEmpresa);
         }
 
         public static void ActualizarEmpresa(Empresa empresaActualizar)
@@ -345,20 +347,39 @@ namespace RBV_AccesoDatos
 
         public static void EliminarEmpresa(short IdEmpresa, string Usuario)
         {
-            RBVDataContext contextoRBV = new RBVDataContext();
-            empresa empresaEliminar = new empresa();
-            empresaUsuario empresaUsuarioEliminar = new empresaUsuario();
-            EliminarEmpresaSector(IdEmpresa);
+            try
+            {
+                RBVDataContext contextoRBV = new RBVDataContext();
+                empresa empresaEliminar = new empresa();
+                empresaUsuario empresaUsuarioEliminar = new empresaUsuario();
+                List<escalaCalificacion> escalaCalificacionElimicar = new List<escalaCalificacion>();
+                EliminarEmpresaSector(IdEmpresa);
+
+                empresaEliminar = contextoRBV.empresa.SingleOrDefault(p => p.idEmpresa == IdEmpresa);
+
+                Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
+
+                empresaUsuarioEliminar = contextoRBV.empresaUsuario.SingleOrDefault(p => p.idEmpresa == IdEmpresa && p.UserId == idUsuario);
+
+                escalaCalificacionElimicar = contextoRBV.escalaCalificacion.Where(p => p.idEmpresa == IdEmpresa).ToList();
+
+                contextoRBV.empresaUsuario.DeleteOnSubmit(empresaUsuarioEliminar);
+                if (escalaCalificacionElimicar != null)
+                {
+                    contextoRBV.escalaCalificacion.DeleteAllOnSubmit(escalaCalificacionElimicar);
+                }                
+                contextoRBV.empresa.DeleteOnSubmit(empresaEliminar);
+                contextoRBV.SubmitChanges();
+            }
+            catch (SqlException Sqlex)
+            {
+                throw Sqlex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             
-            empresaEliminar = contextoRBV.empresa.SingleOrDefault(p => p.idEmpresa  == IdEmpresa);
-
-            Guid idUsuario = contextoRBV.aspnet_Users.SingleOrDefault(p => p.UserName == Usuario).UserId;
-
-            empresaUsuarioEliminar = contextoRBV.empresaUsuario.SingleOrDefault(p => p.idEmpresa == IdEmpresa && p.UserId == idUsuario);
-
-            contextoRBV.empresaUsuario.DeleteOnSubmit(empresaUsuarioEliminar);
-            contextoRBV.empresa.DeleteOnSubmit(empresaEliminar);
-            contextoRBV.SubmitChanges();
         }
 
         public static Empresa ConsultarEmpresaxID(short srIdEmpresa)
@@ -436,6 +457,24 @@ namespace RBV_AccesoDatos
         #endregion
 
         #region EscalaCalificacion
+
+        public static void InsertarEscalaCalificacion(short IdEmpresa)
+        {
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            List<Calificacion> calificaciones = contextoRBV.Calificacions.ToList();
+
+            List<escalaCalificacion> escalaCalificaciones = (from escalaC in calificaciones
+                                  select new escalaCalificacion
+                                  {
+                                      idEmpresa = IdEmpresa,
+                                      Escala = escalaC.Escala,
+                                      Valor = escalaC.Valor
+                                  }).ToList();
+            contextoRBV.escalaCalificacion.InsertAllOnSubmit(escalaCalificaciones);
+            contextoRBV.SubmitChanges();
+        }
+
 
         public static void InsertarEscalaCalificacion(EscalaCalificacion escalaCalificacionInsertar)
         {
@@ -639,12 +678,23 @@ namespace RBV_AccesoDatos
 
         public static void EliminarRecurso(short IdRecurso)
         {
-            RBVDataContext contextoRBV = new RBVDataContext();
-            recursosEmpresa recursoEliminar = new recursosEmpresa();
+            try
+            {
+                RBVDataContext contextoRBV = new RBVDataContext();
+                recursosEmpresa recursoEliminar = new recursosEmpresa();
 
-            recursoEliminar = contextoRBV.recursosEmpresa.SingleOrDefault(p => p.idRecursoEmpresa == IdRecurso);
-            contextoRBV.recursosEmpresa.DeleteOnSubmit(recursoEliminar);
-            contextoRBV.SubmitChanges();
+                recursoEliminar = contextoRBV.recursosEmpresa.SingleOrDefault(p => p.idRecursoEmpresa == IdRecurso);
+                if (recursoEliminar != null)
+                {
+                    contextoRBV.recursosEmpresa.DeleteOnSubmit(recursoEliminar);
+                    contextoRBV.SubmitChanges();
+                }                
+            }
+            catch (SqlException Sqlex)
+            {
+                throw Sqlex;
+            }
+            
         }
 
         public static List<RecursosEmpresa> ConsultarRecursos(short IdEmpresa)

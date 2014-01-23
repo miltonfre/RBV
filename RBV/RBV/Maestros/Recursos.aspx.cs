@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entidades = RBV_Clases;
+using System.Data.SqlClient;
 
 namespace RBV.Maestros
 {
@@ -125,9 +126,16 @@ namespace RBV.Maestros
         {
             //TODO: Mostra mensaje de confirmacion
             IdRecurso = Convert.ToInt16(grdRecurso.DataKeys[e.RowIndex].Value);
-
-            RBV_Negocio.MaestrosBO.EliminarRecurso(IdRecurso);
-
+            try
+            {
+                RBV_Negocio.MaestrosBO.EliminarRecurso(IdRecurso);
+            }
+            catch (SqlException Sqlex)
+            {
+                //TODO: Mensaje donde van a quedar??????
+                Mensaje1.Mensajes = "No fue posible eliminar el recurso seleccionado, asegúrese que esta no tenga datos relacionados.";
+            }
+            
             ConsultarRecursos(Convert.ToInt16(ddlEmpresas.SelectedValue));
             LimpiarPagina();
         }

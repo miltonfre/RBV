@@ -13,7 +13,7 @@ namespace RBV_AccesoDatos
         {
             MatrizValoracion matriz = new MatrizValoracion();
             
-            matriz.Caracteristicas = MaestrosDA.ConsultarCaracteristicas();
+            matriz.Caracteristicas = MaestrosDA.ConsultarCaracteristicas(IdEmpresa);
             matriz.Recursos = MaestrosDA.ConsultarRecursos(IdEmpresa);
             
             return matriz;

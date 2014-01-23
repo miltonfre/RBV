@@ -5,6 +5,7 @@ using System.Text;
 using Datos = RBV_AccesoDatos;
 using RBV_Clases;
 using System.Web.Security;
+using System.Data.SqlClient;
 
 namespace RBV_Negocio
 {
@@ -101,9 +102,9 @@ namespace RBV_Negocio
             Datos.MaestrosDA.EliminarCaracteristica(IdCaracteristica);
         }
 
-        public static List<Caracteristica> ConsultarCaracteristicas()
+        public static List<Caracteristica> ConsultarCaracteristicas(short IdEmpresa)
         {
-            return Datos.MaestrosDA.ConsultarCaracteristicas();
+            return Datos.MaestrosDA.ConsultarCaracteristicas(IdEmpresa);
         }
 
           /// <summary>
@@ -132,7 +133,18 @@ namespace RBV_Negocio
 
         public static void EliminarEmpresa(short IdEmpresa, string Usuario)
         {
-            Datos.MaestrosDA.EliminarEmpresa(IdEmpresa, Usuario);
+            try
+            {
+                Datos.MaestrosDA.EliminarEmpresa(IdEmpresa, Usuario);
+            }
+            catch (SqlException Sqlex)
+            {
+                throw Sqlex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static List<Empresa> ConsultarEmpresas()
@@ -218,7 +230,15 @@ namespace RBV_Negocio
 
         public static void EliminarRecurso(short IdRecurso)
         {
-            Datos.MaestrosDA.EliminarRecurso(IdRecurso);
+            try
+            {
+                Datos.MaestrosDA.EliminarRecurso(IdRecurso);
+            }
+            catch (SqlException Sqlex)
+            {
+                throw Sqlex;
+            }
+            
         }
 
         public static List<RecursosEmpresa> ConsultarRecursos(short IdEmpresa)

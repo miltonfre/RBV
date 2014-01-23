@@ -15,7 +15,7 @@
     </siteMapNode>
     <siteMapNode url="" title="Evaluar empresa"  description="">
       <siteMapNode url="Maestros/Empresa.aspx" title="Empresas"  description="" />
-      <siteMapNode url="Maestros/EscalaCalificacion.aspx" title="Escala de Calificación"  description="" />
+      
       <siteMapNode url="Maestros/Recursos.aspx" title="Administración de Recursos"  description="" />
       <siteMapNode url="Maestros/EscalaValoracion.aspx" title="Escala de Valoración"  description="" />
       <siteMapNode url="Matriz/RecursosValiosos.aspx" title="Matriz de Evaluación"  description="" />

@@ -23,15 +23,6 @@ namespace RBV.Maestros {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Titulo1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Shared_Titulo Titulo1;
-        
-        /// <summary>
         /// UpdatePanel6 control.
         /// </summary>
         /// <remarks>
@@ -39,6 +30,24 @@ namespace RBV.Maestros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
+        
+        /// <summary>
+        /// Mensaje1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RBV.Shared.Mensaje Mensaje1;
+        
+        /// <summary>
+        /// Titulo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Shared_Titulo Titulo1;
         
         /// <summary>
         /// ValidationSummary1 control.

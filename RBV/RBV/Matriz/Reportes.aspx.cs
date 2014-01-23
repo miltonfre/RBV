@@ -18,7 +18,10 @@ namespace RBV.Matriz
             {
                 SeleccionEmpresa1.Usuario = User.Identity.Name;
                 SeleccionEmpresa1.ConsultarEmpresas();
-                ConsultarValoresPromedio();
+                if (!SeleccionEmpresa1.IdEmpresa.ToString().Equals("0"))
+                {
+                    ConsultarValoresPromedio();
+                }
             }
         }
         protected void SeleccionEmpresa1_IndexChange(object sender, EventArgs e)
@@ -57,7 +60,7 @@ namespace RBV.Matriz
             decimal[] ValoresTipo = (from p in recursosValiosos group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
 
             TortaRecursos.Series["tipoRecurso"].Points.DataBindXY(TitulosTipo, ValoresTipo);
-            TortaRecursos.Series["tipoRecurso"].Points[1]["Exploded"] = "true";
+            //TortaRecursos.Series["tipoRecurso"].Points[1]["Exploded"] = "true";
             for (int i = 0; i < TortaRecursos.Series["tipoRecurso"].Points.Count; i++)
             {
                 TortaRecursos.Series["tipoRecurso"].Points[i].LegendText = TitulosTipo[i].ToString();
@@ -90,7 +93,7 @@ namespace RBV.Matriz
 
             RecValiosoVal.Series["RecursosValioVal"].Points.DataBindXY(TitulosValVal, ValoresValVal);
 
-            RecValiosoVal.Series["RecursosValioVal"].Points[1]["Exploded"] = "true";
+            //RecValiosoVal.Series["RecursosValioVal"].Points[1]["Exploded"] = "true";
             for (int i = 0; i < RecValiosoVal.Series["RecursosValioVal"].Points.Count; i++)
             {
                 RecValiosoVal.Series["RecursosValioVal"].Points[i].LegendText = TitulosTipo[i].ToString();
