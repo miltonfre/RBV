@@ -71,7 +71,7 @@ namespace RBV_Negocio
             List<RecursoValioso> RecursosValiosos = new List<RecursoValioso>();
             decimal ValorTotal = 0;
 
-            List<MatrizValoracion> matrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(5).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
+            List<MatrizValoracion> matrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(idEmpresa).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
 
             if (matrizValoracion.Count > 0)
             {
