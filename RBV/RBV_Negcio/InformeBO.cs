@@ -51,6 +51,7 @@ namespace RBV_Negcio
             ingresarEquipoTrabajo(doc, informe.RolesInforme);
             doc.InsertSectionPageBreak(true);
             insertarGraficoBarra(doc, empresa, strDirectorio);
+            insertarGraficosTortas(doc, empresa, strDirectorio);
             insertarRecursosValiosos(doc, empresa);
           
             doc.Save();
@@ -333,57 +334,224 @@ namespace RBV_Negcio
             Chart1.SaveImage(imgName, ChartImageFormat.Jpeg);
             return imgName;
         }
-        //private void TortaPorctipoRecurso()
-        //{
-        //    string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
-        //    decimal[] ValoresTipo = (from p in recursosValiosos group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
-
-        //    TortaRecursos.Series["tipoRecurso"].Points.DataBindXY(TitulosTipo, ValoresTipo);
-        //    TortaRecursos.Series["tipoRecurso"].Points[1]["Exploded"] = "true";
-        //    for (int i = 0; i < TortaRecursos.Series["tipoRecurso"].Points.Count; i++)
-        //    {
-        //        TortaRecursos.Series["tipoRecurso"].Points[i].LegendText = TitulosTipo[i].ToString();
-        //    }
-
-        //}
-        //private void TortaRecValiososSobreValiosos()
-        //{
-        //    string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
-        //    decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
-
-        //    Array.Resize(ref TitulosTipoVal, TitulosTipoVal.Length + 1);
-        //    TitulosTipoVal[TitulosTipoVal.Length - 1] = "No Valiosos";
-
-        //    Array.Resize(ref ValoresTipoVal, ValoresTipoVal.Length + 1);
-        //    ValoresTipoVal[ValoresTipoVal.Length - 1] = (100 - ValoresTipoVal.Sum());
-
-        //    TipoRecValioso.Series["tipoRecursoVal"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
-
-        //    TipoRecValioso.Series["tipoRecursoVal"].Points[1]["Exploded"] = "true";
-        //    for (int i = 0; i < TipoRecValioso.Series["tipoRecursoVal"].Points.Count; i++)
-        //    {
-        //        TipoRecValioso.Series["tipoRecursoVal"].Points[i].LegendText = TitulosTipoVal[i].ToString();
-        //    }
-
-        //}
-        //private void TortaRecValisosoSobreTotal()
-        //{
-        //    List<RBV_Clases.RecursoValioso> recursosVal = new List<RBV_Clases.RecursoValioso>();
-        //    string[] TitulosValVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
-        //    recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
-        //    decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
-
-        //    RecValiosoVal.Series["RecursosValioVal"].Points.DataBindXY(TitulosValVal, ValoresValVal);
-
-        //    RecValiosoVal.Series["RecursosValioVal"].Points[1]["Exploded"] = "true";
-        //    for (int i = 0; i < RecValiosoVal.Series["RecursosValioVal"].Points.Count; i++)
-        //    {
-        //        RecValiosoVal.Series["RecursosValioVal"].Points[i].LegendText = TitulosTipo[i].ToString();
-        //    }
 
 
-        //}
+        #region TORTA
+        /// <summary>
+        /// Metodo que se encarga de crear el 'Coco' de los gráficos de barra
+        /// </summary>
+        /// <returns></returns>
+        public System.Web.UI.DataVisualization.Charting.Chart CrearTorta()
+        {
+            System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = new System.Web.UI.DataVisualization.Charting.Chart();
+            TortaRecursos.Width = System.Web.UI.WebControls.Unit.Pixel(650);
+            TortaRecursos.Height = System.Web.UI.WebControls.Unit.Pixel(400);
+            TortaRecursos.BackGradientStyle = GradientStyle.TopBottom;
 
-     
+            Legend Default = new Legend();
+            Default.LegendStyle = LegendStyle.Row;
+            Default.Docking = Docking.Bottom;
+            Default.Alignment = StringAlignment.Center;
+            Default.BackColor = Color.Transparent;
+            Default.IsTextAutoFit = false;
+            //Font font = new Font();
+            //font.FontFamily=FontFamily.
+            //Default.Font=
+            TortaRecursos.Legends.Add(Default);
+
+            
+
+            ChartArea ChartArea1 = new ChartArea("ChartArea1");
+
+            System.Web.UI.DataVisualization.Charting.Axis axisX = new System.Web.UI.DataVisualization.Charting.Axis();
+            axisX.LabelAutoFitStyle = LabelAutoFitStyles.LabelsAngleStep90;
+            axisX.IsLabelAutoFit = true;
+            axisX.Interval = 1;
+           
+          
+            System.Web.UI.DataVisualization.Charting.Axis axisY = new System.Web.UI.DataVisualization.Charting.Axis();
+            axisX.Interval = 0.2;
+
+            ChartArea1.AxisX = axisX;
+            ChartArea1.AxisY = axisY;
+
+            //Color borderColor = new Color();
+            //borderColor.A = 64;
+            //borderColor.B = 64;
+            //borderColor.G = 64;
+            //borderColor.R = 64;
+            //ChartArea1.BorderColor=borderColor;
+            ChartArea1.BackColor = Color.Transparent;
+            ChartArea1.BackSecondaryColor = Color.Transparent;
+            ChartArea1.Area3DStyle.Enable3D = true;
+            ChartArea1.BorderWidth = 0;
+
+            TortaRecursos.ChartAreas.Add(ChartArea1);
+
+            System.Web.UI.DataVisualization.Charting.Series tipoRecurso = new System.Web.UI.DataVisualization.Charting.Series("Recursos");
+            tipoRecurso.ShadowColor = Color.Gray;
+            tipoRecurso.ChartType = SeriesChartType.Pie;
+            tipoRecurso.IsVisibleInLegend = true;
+            tipoRecurso.MarkerImageTransparentColor = Color.Aqua;
+            tipoRecurso.Label = "#PERCENT{P1}";
+            tipoRecurso.IsValueShownAsLabel = true;
+            tipoRecurso.LabelForeColor = Color.White;
+            tipoRecurso.XValueType = ChartValueType.Auto;
+            TortaRecursos.Series.Add(tipoRecurso);
+
+
+            return TortaRecursos;
+        }
+
+        /// <summary>
+        /// Método que se encarga de llenar los datos de la torta por porcentaje de recursos
+        /// </summary>
+        /// <param name="empresa"></param>
+        /// <param name="strDirectorio"></param>
+        /// <returns></returns>
+        public string CrearTortaRecursos(Empresa empresa, string strDirectorio, List<RBV_Clases.RecursoValioso> recursosValiosos)
+        {
+            System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = CrearTorta();
+                      
+            string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            decimal[] ValoresTipo = (from p in recursosValiosos group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+
+            TortaRecursos.Series["Recursos"].Points.DataBindXY(TitulosTipo, ValoresTipo);
+            TortaRecursos.Series["Recursos"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TortaRecursos.Series["Recursos"].Points.Count; i++)
+            {
+                TortaRecursos.Series["Recursos"].Points[i].LegendText = TitulosTipo[i].ToString();
+            }
+            string strFile = "TortaRec" + empresa.NombreEmpresa + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".Jpeg";
+            string imgName = string.Concat(strDirectorio, "\\", strFile);
+            TortaRecursos.SaveImage(imgName, ChartImageFormat.Jpeg);
+            return imgName;
+        }
+
+        /// <summary>
+        /// Método que se encarga de llenar los datos de la torta por Tipo de Recursos Valiosos Sobre Total
+        /// </summary>
+        /// <param name="empresa"></param>
+        /// <param name="strDirectorio"></param>
+        /// <returns></returns>
+        public string CrearTortaRecursosSobreTotal(Empresa empresa, string strDirectorio, List<RBV_Clases.RecursoValioso> recursosValiosos, decimal ValorTotal)
+        {
+            System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = CrearTorta();
+           
+
+            string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+
+            Array.Resize(ref TitulosTipoVal, TitulosTipoVal.Length + 1);
+            TitulosTipoVal[TitulosTipoVal.Length - 1] = "No Valiosos";
+
+            Array.Resize(ref ValoresTipoVal, ValoresTipoVal.Length + 1);
+            ValoresTipoVal[ValoresTipoVal.Length - 1] = (100 - ValoresTipoVal.Sum());
+
+            TortaRecursos.Series["Recursos"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
+
+            //TortaRecursos.Series["Recursos"].Points[1]["Exploded"] = "true";
+            for (int i = 0; i < TortaRecursos.Series["Recursos"].Points.Count; i++)
+            {
+                TortaRecursos.Series["Recursos"].Points[i].LegendText = TitulosTipoVal[i].ToString();
+            }
+            string strFile = "TortaRecSobret" + empresa.NombreEmpresa + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".Jpeg";
+            string imgName = string.Concat(strDirectorio, "\\", strFile);
+            TortaRecursos.SaveImage(imgName, ChartImageFormat.Jpeg);
+            return imgName;
+        }
+
+        /// <summary>
+        /// Método que se encarga de llenar los datos de la torta por Tipo de Recursos Valiosos Sobre Valiosos
+        /// </summary>
+        /// <param name="empresa"></param>
+        /// <param name="strDirectorio"></param>
+        /// <returns></returns>
+        public string CrearTortaRecursosValiososSobreValiosos(Empresa empresa, string strDirectorio, List<RBV_Clases.RecursoValioso> recursosValiosos, decimal ValorTotal)
+        {
+            System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = CrearTorta();
+            string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            List<RBV_Clases.RecursoValioso> recursosVal = new List<RBV_Clases.RecursoValioso>();
+            string[] TitulosValVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
+            decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
+
+            TortaRecursos.Series["Recursos"].Points.DataBindXY(TitulosValVal, ValoresValVal);
+            for (int i = 0; i < TortaRecursos.Series["Recursos"].Points.Count; i++)
+            {
+                TortaRecursos.Series["Recursos"].Points[i].LegendText = TitulosTipo[i].ToString();
+            }
+            string strFile = "TortaRecsobreVal" + empresa.NombreEmpresa + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".Jpeg";
+            string imgName = string.Concat(strDirectorio, "\\", strFile);
+            TortaRecursos.SaveImage(imgName, ChartImageFormat.Jpeg);
+            return imgName;
+        }
+
+        private void insertarGraficosTortas(DocX doc, Empresa empresa, string strDirectorio)
+        {
+
+            List<RBV_Clases.RecursoValioso> recursosValiosos = new List<RBV_Clases.RecursoValioso>();
+            List<Entidades.MatrizValoracion> MatrizValoracion = new List<RBV_Clases.MatrizValoracion>();
+            decimal ValorTotal = 0;
+            MatrizValoracion = RBV_Negocio.MatrizBO.ConsultarMatrizValoracion(empresa.IdEmpresa).OrderBy(p => p.IdCaracteristica).ThenBy(p => p.IdRecurso).ToList();
+
+            if (MatrizValoracion.Count > 0)
+            {
+                recursosValiosos = RBV_Negocio.MatrizBO.CalcularResultadosMatriz(MatrizValoracion, empresa.IdEmpresa);
+                ValorTotal = recursosValiosos.Sum(p => p.Valor) / recursosValiosos.Count;
+            }
+
+
+
+            var RVFormat = new Novacode.Formatting();
+            RVFormat.FontFamily = new System.Drawing.FontFamily("Calibri");
+            RVFormat.Size = 12D;
+            RVFormat.Bold = true;
+
+
+            var RVParrafo = new Novacode.Formatting();
+            RVParrafo.FontFamily = new System.Drawing.FontFamily("Calibri");
+            RVParrafo.Size = 12D;
+            RVParrafo.Position = 3;
+
+
+            string strGraficoTortaRecursos = CrearTortaRecursos(empresa, strDirectorio, recursosValiosos);
+            string strGraficoTortaRecursosSobreTotal = CrearTortaRecursosSobreTotal(empresa, strDirectorio, recursosValiosos, ValorTotal);
+            string strGraficoTortaRecursosSobreValiosos = CrearTortaRecursosValiososSobreValiosos(empresa, strDirectorio, recursosValiosos, ValorTotal);
+
+            //Torta de porcentajes
+            Paragraph pTit = doc.InsertParagraph("Porcentajes de Recursos", false, RVFormat);
+            pTit.Alignment = Alignment.left;
+            Paragraph pParr = doc.InsertParagraph("Aquí va el análisis a la torta de porcentaje ", false, RVParrafo);
+            pParr.Alignment = Alignment.left;
+
+            Novacode.Image i = doc.AddImage(strGraficoTortaRecursos);
+            Picture pic = i.CreatePicture();
+            Paragraph pImg = doc.InsertParagraph("").AppendPicture(pic);
+            pImg.Alignment = Alignment.center;
+
+            //Torta de porcentajes sobre recursos total
+            pTit = doc.InsertParagraph("Porcentajes de Recursos valiosos sobre el total de los recursos", false, RVFormat);
+            pTit.Alignment = Alignment.left;
+            pParr = doc.InsertParagraph("Aquí va el análisis a la torta de porcentaje ", false, RVParrafo);
+            pParr.Alignment = Alignment.left;
+
+            i = doc.AddImage(strGraficoTortaRecursosSobreTotal);
+            pic = i.CreatePicture();
+            pImg = doc.InsertParagraph("").AppendPicture(pic);
+            pImg.Alignment = Alignment.center;
+
+            //Torta de porcentajes sobre valiosos
+            pTit = doc.InsertParagraph("Porcentajes de Recursos valiosos sobre el total de los valiosos", false, RVFormat);
+            pTit.Alignment = Alignment.left;
+            pParr = doc.InsertParagraph("Aquí va el análisis a la torta de porcentaje", false, RVParrafo);
+            pParr.Alignment = Alignment.left;
+
+            i = doc.AddImage(strGraficoTortaRecursosSobreValiosos);
+            pic = i.CreatePicture();
+            pImg = doc.InsertParagraph("").AppendPicture(pic);
+            pImg.Alignment = Alignment.center;
+        }
+        #endregion
     }
 }

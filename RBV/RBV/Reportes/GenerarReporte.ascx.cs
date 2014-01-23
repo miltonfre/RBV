@@ -4,6 +4,7 @@ using RBV_Clases;
 using System.Web.UI.DataVisualization.Charting;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace RBV.Reportes
 {
@@ -30,7 +31,9 @@ namespace RBV.Reportes
                 informe.RolesInforme = llenarRolesInforme();
 
                 string archivo = genWord.CrearWordWithDocX(informe);
-                Response.Redirect(archivo, true);
+                System.Diagnostics.Process.Start(archivo);
+              
+       
             }
             else
             {
