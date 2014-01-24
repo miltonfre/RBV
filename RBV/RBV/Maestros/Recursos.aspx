@@ -23,6 +23,9 @@
                             <asp:DropDownList ID="ddlEmpresas" runat="server" DataValueField="IdEmpresa" DataTextField="NombreEmpresa"
                                 OnSelectedIndexChanged="ddlEmpresas_SelectedIndexChanged" AutoPostBack="true">
                             </asp:DropDownList>
+                             <asp:RequiredFieldValidator ID="rfvEmpresa" runat="server" ControlToValidate="ddlEmpresas"
+                                ErrorMessage="<%$ Resources:rfvRecurso %>" Text="*" ValidationGroup="CrearROl" InitialValue="0">
+                            </asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
