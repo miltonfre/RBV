@@ -68,9 +68,11 @@ namespace RBV.Matriz
 
             //Pie recursos valiosos sobre total recursos
 
-            string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
-            decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+<<<<<<< .mine            string[] TitulosTipoVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).Select(p => p.TipoRecurso).Distinct().ToArray();
+=======            string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+>>>>>>> .theirs            decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
 
+          
             Array.Resize(ref TitulosTipoVal, TitulosTipoVal.Length + 1);
             TitulosTipoVal[TitulosTipoVal.Length - 1] = "No Valiosos";
 
@@ -87,7 +89,7 @@ namespace RBV.Matriz
 
             //Pie recursos valiosos sobre recursos valiosos
             List<RBV_Clases.RecursoValioso> recursosVal = new List<RBV_Clases.RecursoValioso>();
-            string[] TitulosValVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            string[] TitulosValVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).Select(p => p.TipoRecurso).Distinct().ToArray();
             recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
             decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
 
