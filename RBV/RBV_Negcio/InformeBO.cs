@@ -437,17 +437,17 @@ namespace RBV_Negcio
         public string CrearTortaRecursosSobreTotal(Empresa empresa, string strDirectorio, List<RBV_Clases.RecursoValioso> recursosValiosos, decimal ValorTotal)
         {
             System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = CrearTorta();
-           
 
-            string[] TitulosTipoVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+
+            string[] TitulosTipoVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).Select(p => p.TipoRecurso).Distinct().ToArray();
             decimal[] ValoresTipoVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosValiosos.Count)) * 100, 2)).ToArray();
+
 
             Array.Resize(ref TitulosTipoVal, TitulosTipoVal.Length + 1);
             TitulosTipoVal[TitulosTipoVal.Length - 1] = "No Valiosos";
 
             Array.Resize(ref ValoresTipoVal, ValoresTipoVal.Length + 1);
             ValoresTipoVal[ValoresTipoVal.Length - 1] = (100 - ValoresTipoVal.Sum());
-
             TortaRecursos.Series["Recursos"].Points.DataBindXY(TitulosTipoVal, ValoresTipoVal);
 
             //TortaRecursos.Series["Recursos"].Points[1]["Exploded"] = "true";
@@ -472,9 +472,11 @@ namespace RBV_Negcio
             System.Web.UI.DataVisualization.Charting.Chart TortaRecursos = CrearTorta();
             string[] TitulosTipo = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
             List<RBV_Clases.RecursoValioso> recursosVal = new List<RBV_Clases.RecursoValioso>();
-            string[] TitulosValVal = recursosValiosos.Select(p => p.TipoRecurso).Distinct().ToArray();
+            
+            string[] TitulosValVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).Select(p => p.TipoRecurso).Distinct().ToArray();
             recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
             decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
+
 
             TortaRecursos.Series["Recursos"].Points.DataBindXY(TitulosValVal, ValoresValVal);
             for (int i = 0; i < TortaRecursos.Series["Recursos"].Points.Count; i++)
