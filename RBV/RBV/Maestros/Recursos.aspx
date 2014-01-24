@@ -33,6 +33,9 @@
                             <asp:DropDownList ID="ddlTipoRecurso" runat="server" AutoPostBack="true" DataValueField="IdTipoRecurso"
                                 DataTextField="NombreTipoRecurso" OnSelectedIndexChanged="ddlTipoRecurso_SelectedIndexChanged">
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvTipoRecurso" runat="server" ControlToValidate="ddlTipoRecurso"
+                                ErrorMessage="<%$ Resources:rfvRecurso %>" Text="*" ValidationGroup="CrearROl" InitialValue="0">
+                            </asp:RequiredFieldValidator>
                         </td>
                         <td>
                             <asp:Label ID="lblDescripcionTipo" runat="server" Text=""></asp:Label>
@@ -59,7 +62,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnGuardar" runat="server" CssClass="butt" OnClick="btnGuardar_Click"
+                            <asp:Button ID="btnGuardar" runat="server" CssClass="butt" OnClick="btnGuardar_Click" ValidationGroup="CrearROl"
                                 Text="<%$ Resources:btnGuardar %>" />
                         </td>
                         <td>
