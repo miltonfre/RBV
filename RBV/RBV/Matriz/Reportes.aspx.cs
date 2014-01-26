@@ -86,17 +86,25 @@ namespace RBV.Matriz
                 TipoRecValioso.Series["tipoRecursoVal"].Points[i].LegendText = TitulosTipoVal[i].ToString();
             }
 
-            //Pie recursos valiosos sobre recursos valiosos
-            List<RBV_Clases.RecursoValioso> recursosVal = new List<RBV_Clases.RecursoValioso>();
-            string[] TitulosValVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).Select(p => p.TipoRecurso).Distinct().ToArray();
-            recursosVal = recursosValiosos.Where(p => p.Valor >= ValorTotal).ToList();
-            decimal[] ValoresValVal = (from p in recursosValiosos where p.Valor >= ValorTotal group p.IdTipoRecurso by p.IdTipoRecurso into g select Math.Round((Convert.ToDecimal(g.Count()) / Convert.ToDecimal(recursosVal.Count)) * 100, 2)).ToArray();
-
-            RecValiosoVal.Series["RecursosValioVal"].Points.DataBindXY(TitulosValVal, ValoresValVal);
-            for (int i = 0; i < RecValiosoVal.Series["RecursosValioVal"].Points.Count; i++)
+            //Barras horizontales contra clasificacion
+            ValorTotal = 0;
+            if (MatrizValoracion.Count > 0)
             {
-                RecValiosoVal.Series["RecursosValioVal"].Points[i].LegendText = TitulosTipo[i].ToString();
+                recursosValiosos = RBV_Negocio.MatrizBO.CalcularResultadosCaracteritica(MatrizValoracion, SeleccionEmpresa1.IdEmpresa); 
+                ValorTotal = recursosValiosos.Sum(p => p.Valor) / recursosValiosos.Count;
             }
+            
+            string[] Titulo = recursosValiosos.Select(p => p.NombreCaracteristica).ToArray();
+            decimal[] Valor = recursosValiosos.Select(p => p.Valor).ToArray();
+            decimal[] PromedioCaracte = new decimal[Titulo.Length];
+            chrBarrasClasi.Series["Recursos"].Points.DataBindXY(Titulo, Valor);
+
+            //for (int i = 0; i < Titulo.Length; i++)
+            //{
+            //    PromedioCaracte[i] = ValorTotal;
+            //}
+
+            //chrBarrasClasi.Series["Promedio"].Points.DataBindXY(Titulos, Promedio);
         }
     }
 

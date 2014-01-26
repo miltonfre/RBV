@@ -82,5 +82,30 @@ namespace RBV_Negocio
 
             return RecursosValiosos;
         }
+
+
+
+        public static List<RecursoValioso> CalcularResultadosCaracteritica(List<MatrizValoracion> Matriz, short IdEmpresa)
+        {
+            List<EscalaValoracion> escalaValoracion = MaestrosDA.ConsultarEscalaValoracion(IdEmpresa);
+            List<RecursosEmpresa> recursosEmpresa = MaestrosDA.ConsultarRecursos(IdEmpresa);
+            List<RecursoValioso> RecursosValiosos = new List<RecursoValioso>();
+
+            foreach (EscalaValoracion item in escalaValoracion)
+            {
+
+                List<MatrizValoracion> MatrizCaracteristica = Matriz.Where(p => p.IdCaracteristica == item.IdCaracteristica).Distinct().ToList();
+                decimal ValorTotalCaracteristica = 0;
+                foreach (MatrizValoracion itemCaracteristica in MatrizCaracteristica)
+                {
+                    decimal ValorClasificacion = escalaValoracion.Where(p => p.IdClasificacion == itemCaracteristica.IdClasificacion).Sum(p => p.Valor);
+                    decimal ValorCaracteristica = item.Valor;
+                    
+                    ValorTotalCaracteristica += itemCaracteristica.Valor * (ValorCaracteristica / 100) * (ValorClasificacion / 100);                    
+                }
+                RecursosValiosos.Add(new RecursoValioso {Valor = ValorTotalCaracteristica, NombreCaracteristica = escalaValoracion.Where(p => p.IdCaracteristica == item.IdCaracteristica).Single().Caracteristica });
+            }
+            return RecursosValiosos;
+        }
     }
 }

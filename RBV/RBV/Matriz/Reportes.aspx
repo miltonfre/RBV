@@ -73,24 +73,24 @@
         </ChartAreas>
     </asp:Chart>
      <div>
-     Tipo de Recursos Valiosos Sobre Valiosos
-    </div>
-    <asp:Chart ID="RecValiosoVal" runat="server" Width="650" Height="400" BackGradientStyle="TopBottom" >
+     
+     <asp:Chart ID="chrBarrasClasi" runat="server" Width="650" Height="400" >
         <Series >
-            <asp:Series Name="RecursosValioVal" MarkerImageTransparentColor="Aqua" Label="#PERCENT{P1}" IsValueShownAsLabel="true" ChartType="Pie"  IsVisibleInLegend="true"  LabelForeColor="White"  XValueType="Auto" ShadowColor="Gray"  >
+            <asp:Series Name="Recursos"  ChartType="Bar"  ShadowColor="Gray" IsVisibleInLegend="true" >
+            </asp:Series>     
             
-            </asp:Series>            
         </Series>
-        
         <Legends>
-        <asp:Legend BackColor="Transparent" Alignment="Center" Docking="Bottom" Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Name="Default" LegendStyle="Row" ></asp:Legend>
-        <asp:Legend ></asp:Legend>
+        <asp:Legend LegendStyle="Table" Docking="Bottom" ></asp:Legend>
         </Legends>
         <ChartAreas>
-            <asp:ChartArea Name="ChartArea1"   BorderColor="64, 64, 64, 64" BackSecondaryColor="Transparent" BackColor="Transparent" ShadowColor="Transparent" BorderWidth="0" Area3DStyle-Enable3D="true" >            
-            <AxisX LabelAutoFitStyle="LabelsAngleStep90"  IsLabelAutoFit="true" Interval="1"  ></AxisX>
-            <AxisY Interval="0.2" ></AxisY>
+            <asp:ChartArea Name="ChartArea1" >
+            <AxisX LabelAutoFitStyle="LabelsAngleStep90" IsLabelAutoFit="true" Interval="1"></AxisX>
+            <AxisY Interval="0.2"></AxisY>
+            
             </asp:ChartArea>
         </ChartAreas>
     </asp:Chart>
+     
+     </div>
 </asp:Content>

@@ -12,5 +12,6 @@ namespace RBV_Clases
         public decimal Valor { get; set; }
         public string TipoRecurso { get; set; }
         public short IdTipoRecurso { get; set; }
+        public string NombreCaracteristica { get; set; }
     }
 }
