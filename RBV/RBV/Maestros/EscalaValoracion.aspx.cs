@@ -68,7 +68,15 @@ namespace RBV.Maestros
                 if (lstEscalaxEmpresa.Count > 0)
                 {
                     TextBox txtValor = (TextBox)e.Item.FindControl("txtValor");
-                    txtValor.Text = lstEscalaxEmpresa[0].Valor.ToString();
+                    if (lstEscalaxEmpresa[0].Valor - (int)(lstEscalaxEmpresa[0].Valor) > 0)
+                    {
+                        txtValor.Text = lstEscalaxEmpresa[0].Valor.ToString();
+                    }
+                    else
+                    {
+                        txtValor.Text = ((int)lstEscalaxEmpresa[0].Valor).ToString();
+                    }
+                    
                 }
             }
         }
@@ -82,7 +90,7 @@ namespace RBV.Maestros
         private static void CalcularClasificacion(TextBox textBox)
         {
            
-            int suma = 0;
+            decimal suma = 0;
             Label lblValorSumaCaracteristica = new Label();
             if (textBox != null)
             {
@@ -92,8 +100,8 @@ namespace RBV.Maestros
                     if (control.FindControl("txtValor") != null)
                     {
                         TextBox txtValor = (TextBox)control.FindControl("txtValor");
-                        int nuevoValor = 0;
-                        if (int.TryParse(txtValor.Text, out nuevoValor))
+                        decimal nuevoValor = 0;
+                        if (decimal.TryParse(txtValor.Text, out nuevoValor))
                         {
                             suma = suma + nuevoValor;
                         }

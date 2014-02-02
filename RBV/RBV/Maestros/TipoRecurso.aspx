@@ -28,7 +28,16 @@
                             <asp:Label ID="lblDescripcion" Text="<%$ Resources:lblDesTipoRecurso %>" runat="server"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" MaxLength="500"></asp:TextBox>
+                            
+                        </td>
+                    </tr>
+                             <tr>
+                        <td>
+                            <asp:Label ID="lblAcciones" Text="<%$ Resources:lblAcciones %>" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtAcciones" runat="server" TextMode="MultiLine" MaxLength="1000"></asp:TextBox>
                             
                         </td>
                     </tr>
@@ -47,9 +56,10 @@
                                 <Columns>
                                     <asp:BoundField DataField="NombreTipoRecurso" HeaderText="<%$ Resources:hdrTipoRecurso %>" />
                                     <asp:BoundField DataField="Descripcion" HeaderText="<%$ Resources:hdrDescripcion %>" />
+                                    <asp:BoundField DataField="Acciones" HeaderText="<%$ Resources:hdrAcciones %>" />
                                     <asp:CommandField ShowEditButton="True" ButtonType="Image" HeaderText="<%$ Resources:hdrEditar %>" EditImageUrl="~/images/ico_lapiz.gif" />
-                                    <asp:CommandField DeleteText="Eliminar" ShowDeleteButton="True" HeaderText="<%$ Resources:hdrEliminar %>"
-                                        ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" />
+                                    <%--<asp:CommandField DeleteText="Eliminar" ShowDeleteButton="True" HeaderText="<%$ Resources:hdrEliminar %>"
+                                        ButtonType="Image" DeleteImageUrl="~/images/ico_borrar.gif" />--%>
                                 </Columns>
                             </asp:GridView>
                         </td>

@@ -57,7 +57,7 @@ namespace RBV_Negocio
                     }
                     else
                     {
-                        ValorTotalRecurso += itemRecurso.Valor * (ValorCaracteristica / 100) * (ValorClasificacion / 100);
+                        ValorTotalRecurso += itemRecurso.Valor * (ValorCaracteristica / 100); //* (ValorClasificacion / 100);
                     }
                 }
                 RecursosValiosos.Add(new RecursoValioso { IdRecursoEmpresa = item.IdRecursoEmpresa, NombreRecurso = item.NombreRecurso ,Valor = ValorTotalRecurso, IdTipoRecurso = item.TipoRecurso.IdTipoRecurso, TipoRecurso = item.TipoRecurso.NombreTipoRecurso });
@@ -100,8 +100,8 @@ namespace RBV_Negocio
                 {
                     decimal ValorClasificacion = escalaValoracion.Where(p => p.IdClasificacion == itemCaracteristica.IdClasificacion).Sum(p => p.Valor);
                     decimal ValorCaracteristica = item.Valor;
-                    
-                    ValorTotalCaracteristica += itemCaracteristica.Valor * (ValorCaracteristica / 100) * (ValorClasificacion / 100);                    
+
+                    ValorTotalCaracteristica += itemCaracteristica.Valor * (ValorCaracteristica / 100); //* (ValorClasificacion / 100);                    
                 }
                 RecursosValiosos.Add(new RecursoValioso {Valor = ValorTotalCaracteristica, NombreCaracteristica = escalaValoracion.Where(p => p.IdCaracteristica == item.IdCaracteristica).Single().Caracteristica });
             }

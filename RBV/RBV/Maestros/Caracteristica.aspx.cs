@@ -73,6 +73,7 @@ namespace RBV.Maestros
             caracteristica.NombreCaracteristica = txtCaracteristica.Text.Trim();
             caracteristica.IdClasificacionRV = Convert.ToInt16(ddlClasificacion.SelectedValue);
             caracteristica.Descripcion = txtDescripcion.Text.Trim();
+            caracteristica.Acciones = txtAcciones.Text.Trim();
             if (Actualizar)
             {
                 caracteristica.IdCaracteristica = IdCaracteristica;
@@ -100,13 +101,15 @@ namespace RBV.Maestros
             txtDescripcion.Text = string.Empty;
             Actualizar = false;
             ddlClasificacion.SelectedIndex = 0;
+            txtAcciones.Text = string.Empty;
         }
 
         protected void grdCaracteristica_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtCaracteristica.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[0].Text;
-            txtDescripcion.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[1].Text;
+            txtCaracteristica.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[0].Text.Trim();
+            txtDescripcion.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[1].Text.Trim();
+            txtAcciones.Text = grdCaracteristica.Rows[e.NewEditIndex].Cells[2].Text.Trim();
             IdCaracteristica = Convert.ToInt16(grdCaracteristica.DataKeys[e.NewEditIndex].Value);
             ddlClasificacion.SelectedValue = ((Label)grdCaracteristica.Rows[e.NewEditIndex].Cells[1].FindControl("lblIdClasificionG")).Text;
         }

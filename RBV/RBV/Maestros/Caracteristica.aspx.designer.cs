@@ -104,6 +104,24 @@ namespace RBV.Maestros {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
+        /// lblAcciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAcciones;
+        
+        /// <summary>
+        /// txtAcciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAcciones;
+        
+        /// <summary>
         /// btnGuardar control.
         /// </summary>
         /// <remarks>

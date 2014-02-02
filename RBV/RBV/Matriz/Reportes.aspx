@@ -25,7 +25,7 @@
         <ChartAreas>
             <asp:ChartArea Name="ChartArea1" >
             
-            <AxisX LabelAutoFitStyle="LabelsAngleStep90" IsLabelAutoFit="true" Interval="1"></AxisX>
+            <AxisX LabelAutoFitStyle="LabelsAngleStep90"   IsLabelAutoFit="false" Interval="1"></AxisX>
             <AxisY Interval="0.2"></AxisY>
             </asp:ChartArea>
         </ChartAreas>

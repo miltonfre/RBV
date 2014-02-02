@@ -27,7 +27,7 @@ namespace RBV_AccesoDatos
             MatrizValoracionEmpresa = (from mat in contextoRBV.matrizValoracion
                                        join rec in contextoRBV.recursosEmpresa
                                        on mat.idRecursoEmpresa equals rec.idRecursoEmpresa
-                                       join car in contextoRBV.caracteristicaRecursoValioso
+                                       join car in contextoRBV.caracteristicaRecursoValiosos
                                        on mat.idCaracteristicaRV equals car.idCaracteristicaRV
                                        where rec.idEmpresa == IdEmpresa
                                        select new MatrizValoracion

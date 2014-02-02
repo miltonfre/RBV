@@ -36,7 +36,15 @@
                             <asp:Label ID="lblDescripcion" Text="<%$ Resources:lblDescripcion %>" runat="server"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" MaxLength="500"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblAcciones" Text="<%$ Resources:lblAcciones %>" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtAcciones" runat="server" TextMode="MultiLine" MaxLength="1000"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -54,6 +62,7 @@
                                 <Columns>
                                     <asp:BoundField DataField="NombreCaracteristica" HeaderText="<%$ Resources:hdrCaracteristica %>" />
                                     <asp:BoundField DataField="Descripcion" HeaderText="<%$ Resources:hdrDescripcion %>" />
+                                    <asp:BoundField DataField="Acciones" HeaderText="<%$ Resources:hdrAcciones %>" />
                                     <asp:TemplateField Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblIdClasificionG" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"ClasificacionAsociada.IdClasificacionRV") %>'></asp:Label>

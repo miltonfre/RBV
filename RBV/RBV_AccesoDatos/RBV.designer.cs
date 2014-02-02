@@ -33,9 +33,6 @@ namespace RBV_AccesoDatos
     partial void Insertaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
     partial void Updateaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
     partial void Deleteaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
-    partial void InserttipoRecurso(tipoRecurso instance);
-    partial void UpdatetipoRecurso(tipoRecurso instance);
-    partial void DeletetipoRecurso(tipoRecurso instance);
     partial void Insertsegmentos(segmentos instance);
     partial void Updatesegmentos(segmentos instance);
     partial void Deletesegmentos(segmentos instance);
@@ -87,9 +84,6 @@ namespace RBV_AccesoDatos
     partial void InsertclasificacionRecursoValioso(clasificacionRecursoValioso instance);
     partial void UpdateclasificacionRecursoValioso(clasificacionRecursoValioso instance);
     partial void DeleteclasificacionRecursoValioso(clasificacionRecursoValioso instance);
-    partial void InsertcaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
-    partial void UpdatecaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
-    partial void DeletecaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
     partial void Insertaspnet_WebEvent_Events(aspnet_WebEvent_Events instance);
     partial void Updateaspnet_WebEvent_Events(aspnet_WebEvent_Events instance);
     partial void Deleteaspnet_WebEvent_Events(aspnet_WebEvent_Events instance);
@@ -120,6 +114,12 @@ namespace RBV_AccesoDatos
     partial void Insertaspnet_Membership(aspnet_Membership instance);
     partial void Updateaspnet_Membership(aspnet_Membership instance);
     partial void Deleteaspnet_Membership(aspnet_Membership instance);
+    partial void InsertcaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
+    partial void UpdatecaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
+    partial void DeletecaracteristicaRecursoValioso(caracteristicaRecursoValioso instance);
+    partial void InserttipoRecurso(tipoRecurso instance);
+    partial void UpdatetipoRecurso(tipoRecurso instance);
+    partial void DeletetipoRecurso(tipoRecurso instance);
     #endregion
 		
 		public RBVDataContext() : 
@@ -157,14 +157,6 @@ namespace RBV_AccesoDatos
 			get
 			{
 				return this.GetTable<aspnet_WebEvent_Event>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tipoRecurso> tipoRecurso
-		{
-			get
-			{
-				return this.GetTable<tipoRecurso>();
 			}
 		}
 		
@@ -304,14 +296,6 @@ namespace RBV_AccesoDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<caracteristicaRecursoValioso> caracteristicaRecursoValioso
-		{
-			get
-			{
-				return this.GetTable<caracteristicaRecursoValioso>();
-			}
-		}
-		
 		public System.Data.Linq.Table<aspnet_WebEvent_Events> aspnet_WebEvent_Events1
 		{
 			get
@@ -397,6 +381,22 @@ namespace RBV_AccesoDatos
 			get
 			{
 				return this.GetTable<Calificacion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<caracteristicaRecursoValioso> caracteristicaRecursoValiosos
+		{
+			get
+			{
+				return this.GetTable<caracteristicaRecursoValioso>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tipoRecurso> tipoRecursos
+		{
+			get
+			{
+				return this.GetTable<tipoRecurso>();
 			}
 		}
 		
@@ -1180,144 +1180,6 @@ namespace RBV_AccesoDatos
 		}
 	}
 	
-	[Table(Name="dbo.tipoRecurso")]
-	public partial class tipoRecurso : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _idTipoRecurso;
-		
-		private string _tipoRecurso1;
-		
-		private string _Descripcion;
-		
-		private EntitySet<recursosEmpresa> _recursosEmpresa;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidTipoRecursoChanging(short value);
-    partial void OnidTipoRecursoChanged();
-    partial void OntipoRecurso1Changing(string value);
-    partial void OntipoRecurso1Changed();
-    partial void OnDescripcionChanging(string value);
-    partial void OnDescripcionChanged();
-    #endregion
-		
-		public tipoRecurso()
-		{
-			this._recursosEmpresa = new EntitySet<recursosEmpresa>(new Action<recursosEmpresa>(this.attach_recursosEmpresa), new Action<recursosEmpresa>(this.detach_recursosEmpresa));
-			OnCreated();
-		}
-		
-		[Column(Storage="_idTipoRecurso", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short idTipoRecurso
-		{
-			get
-			{
-				return this._idTipoRecurso;
-			}
-			set
-			{
-				if ((this._idTipoRecurso != value))
-				{
-					this.OnidTipoRecursoChanging(value);
-					this.SendPropertyChanging();
-					this._idTipoRecurso = value;
-					this.SendPropertyChanged("idTipoRecurso");
-					this.OnidTipoRecursoChanged();
-				}
-			}
-		}
-		
-		[Column(Name="tipoRecurso", Storage="_tipoRecurso1", DbType="VarChar(50)")]
-		public string tipoRecurso1
-		{
-			get
-			{
-				return this._tipoRecurso1;
-			}
-			set
-			{
-				if ((this._tipoRecurso1 != value))
-				{
-					this.OntipoRecurso1Changing(value);
-					this.SendPropertyChanging();
-					this._tipoRecurso1 = value;
-					this.SendPropertyChanged("tipoRecurso1");
-					this.OntipoRecurso1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_Descripcion", DbType="VarChar(500)")]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this.OnDescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._Descripcion = value;
-					this.SendPropertyChanged("Descripcion");
-					this.OnDescripcionChanged();
-				}
-			}
-		}
-		
-		[Association(Name="tipoRecurso_recursosEmpresa", Storage="_recursosEmpresa", ThisKey="idTipoRecurso", OtherKey="idTipoRecurso")]
-		public EntitySet<recursosEmpresa> recursosEmpresa
-		{
-			get
-			{
-				return this._recursosEmpresa;
-			}
-			set
-			{
-				this._recursosEmpresa.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_recursosEmpresa(recursosEmpresa entity)
-		{
-			this.SendPropertyChanging();
-			entity.tipoRecurso = this;
-		}
-		
-		private void detach_recursosEmpresa(recursosEmpresa entity)
-		{
-			this.SendPropertyChanging();
-			entity.tipoRecurso = null;
-		}
-	}
-	
 	[Table(Name="dbo.segmentos")]
 	public partial class segmentos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1931,9 +1793,9 @@ namespace RBV_AccesoDatos
 		
 		private EntitySet<matrizValoracion> _matrizValoracion;
 		
-		private EntityRef<tipoRecurso> _tipoRecurso;
-		
 		private EntityRef<empresa> _empresa;
+		
+		private EntityRef<tipoRecurso> _tipoRecurso;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1954,8 +1816,8 @@ namespace RBV_AccesoDatos
 		public recursosEmpresa()
 		{
 			this._matrizValoracion = new EntitySet<matrizValoracion>(new Action<matrizValoracion>(this.attach_matrizValoracion), new Action<matrizValoracion>(this.detach_matrizValoracion));
-			this._tipoRecurso = default(EntityRef<tipoRecurso>);
 			this._empresa = default(EntityRef<empresa>);
+			this._tipoRecurso = default(EntityRef<tipoRecurso>);
 			OnCreated();
 		}
 		
@@ -2080,40 +1942,6 @@ namespace RBV_AccesoDatos
 			}
 		}
 		
-		[Association(Name="tipoRecurso_recursosEmpresa", Storage="_tipoRecurso", ThisKey="idTipoRecurso", OtherKey="idTipoRecurso", IsForeignKey=true)]
-		public tipoRecurso tipoRecurso
-		{
-			get
-			{
-				return this._tipoRecurso.Entity;
-			}
-			set
-			{
-				tipoRecurso previousValue = this._tipoRecurso.Entity;
-				if (((previousValue != value) 
-							|| (this._tipoRecurso.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tipoRecurso.Entity = null;
-						previousValue.recursosEmpresa.Remove(this);
-					}
-					this._tipoRecurso.Entity = value;
-					if ((value != null))
-					{
-						value.recursosEmpresa.Add(this);
-						this._idTipoRecurso = value.idTipoRecurso;
-					}
-					else
-					{
-						this._idTipoRecurso = default(short);
-					}
-					this.SendPropertyChanged("tipoRecurso");
-				}
-			}
-		}
-		
 		[Association(Name="empresa_recursosEmpresa", Storage="_empresa", ThisKey="idEmpresa", OtherKey="idEmpresa", IsForeignKey=true)]
 		public empresa empresa
 		{
@@ -2144,6 +1972,40 @@ namespace RBV_AccesoDatos
 						this._idEmpresa = default(short);
 					}
 					this.SendPropertyChanged("empresa");
+				}
+			}
+		}
+		
+		[Association(Name="tipoRecurso_recursosEmpresa", Storage="_tipoRecurso", ThisKey="idTipoRecurso", OtherKey="idTipoRecurso", IsForeignKey=true)]
+		public tipoRecurso tipoRecurso
+		{
+			get
+			{
+				return this._tipoRecurso.Entity;
+			}
+			set
+			{
+				tipoRecurso previousValue = this._tipoRecurso.Entity;
+				if (((previousValue != value) 
+							|| (this._tipoRecurso.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tipoRecurso.Entity = null;
+						previousValue.recursosEmpresas.Remove(this);
+					}
+					this._tipoRecurso.Entity = value;
+					if ((value != null))
+					{
+						value.recursosEmpresas.Add(this);
+						this._idTipoRecurso = value.idTipoRecurso;
+					}
+					else
+					{
+						this._idTipoRecurso = default(short);
+					}
+					this.SendPropertyChanged("tipoRecurso");
 				}
 			}
 		}
@@ -2541,12 +2403,12 @@ namespace RBV_AccesoDatos
 					if ((previousValue != null))
 					{
 						this._caracteristicaRecursoValioso.Entity = null;
-						previousValue.matrizValoracion.Remove(this);
+						previousValue.matrizValoracions.Remove(this);
 					}
 					this._caracteristicaRecursoValioso.Entity = value;
 					if ((value != null))
 					{
-						value.matrizValoracion.Add(this);
+						value.matrizValoracions.Add(this);
 						this._idCaracteristicaRV = value.idCaracteristicaRV;
 					}
 					else
@@ -3111,12 +2973,12 @@ namespace RBV_AccesoDatos
 					if ((previousValue != null))
 					{
 						this._caracteristicaRecursoValioso.Entity = null;
-						previousValue.escalaValoracion.Remove(this);
+						previousValue.escalaValoracions.Remove(this);
 					}
 					this._caracteristicaRecursoValioso.Entity = value;
 					if ((value != null))
 					{
-						value.escalaValoracion.Add(this);
+						value.escalaValoracions.Add(this);
 						this._idCaracteristicaRV = value.idCaracteristicaRV;
 					}
 					else
@@ -4512,7 +4374,7 @@ namespace RBV_AccesoDatos
 		
 		private string _clasificacionRV;
 		
-		private EntitySet<caracteristicaRecursoValioso> _caracteristicaRecursoValioso;
+		private EntitySet<caracteristicaRecursoValioso> _caracteristicaRecursoValiosos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4526,7 +4388,7 @@ namespace RBV_AccesoDatos
 		
 		public clasificacionRecursoValioso()
 		{
-			this._caracteristicaRecursoValioso = new EntitySet<caracteristicaRecursoValioso>(new Action<caracteristicaRecursoValioso>(this.attach_caracteristicaRecursoValioso), new Action<caracteristicaRecursoValioso>(this.detach_caracteristicaRecursoValioso));
+			this._caracteristicaRecursoValiosos = new EntitySet<caracteristicaRecursoValioso>(new Action<caracteristicaRecursoValioso>(this.attach_caracteristicaRecursoValiosos), new Action<caracteristicaRecursoValioso>(this.detach_caracteristicaRecursoValiosos));
 			OnCreated();
 		}
 		
@@ -4570,16 +4432,16 @@ namespace RBV_AccesoDatos
 			}
 		}
 		
-		[Association(Name="clasificacionRecursoValioso_caracteristicaRecursoValioso", Storage="_caracteristicaRecursoValioso", ThisKey="idClasificacionRV", OtherKey="idClasificacionRV")]
-		public EntitySet<caracteristicaRecursoValioso> caracteristicaRecursoValioso
+		[Association(Name="clasificacionRecursoValioso_caracteristicaRecursoValioso", Storage="_caracteristicaRecursoValiosos", ThisKey="idClasificacionRV", OtherKey="idClasificacionRV")]
+		public EntitySet<caracteristicaRecursoValioso> caracteristicaRecursoValiosos
 		{
 			get
 			{
-				return this._caracteristicaRecursoValioso;
+				return this._caracteristicaRecursoValiosos;
 			}
 			set
 			{
-				this._caracteristicaRecursoValioso.Assign(value);
+				this._caracteristicaRecursoValiosos.Assign(value);
 			}
 		}
 		
@@ -4603,247 +4465,16 @@ namespace RBV_AccesoDatos
 			}
 		}
 		
-		private void attach_caracteristicaRecursoValioso(caracteristicaRecursoValioso entity)
+		private void attach_caracteristicaRecursoValiosos(caracteristicaRecursoValioso entity)
 		{
 			this.SendPropertyChanging();
 			entity.clasificacionRecursoValioso = this;
 		}
 		
-		private void detach_caracteristicaRecursoValioso(caracteristicaRecursoValioso entity)
+		private void detach_caracteristicaRecursoValiosos(caracteristicaRecursoValioso entity)
 		{
 			this.SendPropertyChanging();
 			entity.clasificacionRecursoValioso = null;
-		}
-	}
-	
-	[Table(Name="dbo.caracteristicaRecursoValioso")]
-	public partial class caracteristicaRecursoValioso : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _idCaracteristicaRV;
-		
-		private string _caracteristicaRV;
-		
-		private short _idClasificacionRV;
-		
-		private string _Descripcion;
-		
-		private EntitySet<matrizValoracion> _matrizValoracion;
-		
-		private EntitySet<escalaValoracion> _escalaValoracion;
-		
-		private EntityRef<clasificacionRecursoValioso> _clasificacionRecursoValioso;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidCaracteristicaRVChanging(short value);
-    partial void OnidCaracteristicaRVChanged();
-    partial void OncaracteristicaRVChanging(string value);
-    partial void OncaracteristicaRVChanged();
-    partial void OnidClasificacionRVChanging(short value);
-    partial void OnidClasificacionRVChanged();
-    partial void OnDescripcionChanging(string value);
-    partial void OnDescripcionChanged();
-    #endregion
-		
-		public caracteristicaRecursoValioso()
-		{
-			this._matrizValoracion = new EntitySet<matrizValoracion>(new Action<matrizValoracion>(this.attach_matrizValoracion), new Action<matrizValoracion>(this.detach_matrizValoracion));
-			this._escalaValoracion = new EntitySet<escalaValoracion>(new Action<escalaValoracion>(this.attach_escalaValoracion), new Action<escalaValoracion>(this.detach_escalaValoracion));
-			this._clasificacionRecursoValioso = default(EntityRef<clasificacionRecursoValioso>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_idCaracteristicaRV", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short idCaracteristicaRV
-		{
-			get
-			{
-				return this._idCaracteristicaRV;
-			}
-			set
-			{
-				if ((this._idCaracteristicaRV != value))
-				{
-					this.OnidCaracteristicaRVChanging(value);
-					this.SendPropertyChanging();
-					this._idCaracteristicaRV = value;
-					this.SendPropertyChanged("idCaracteristicaRV");
-					this.OnidCaracteristicaRVChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_caracteristicaRV", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string caracteristicaRV
-		{
-			get
-			{
-				return this._caracteristicaRV;
-			}
-			set
-			{
-				if ((this._caracteristicaRV != value))
-				{
-					this.OncaracteristicaRVChanging(value);
-					this.SendPropertyChanging();
-					this._caracteristicaRV = value;
-					this.SendPropertyChanged("caracteristicaRV");
-					this.OncaracteristicaRVChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_idClasificacionRV", DbType="SmallInt NOT NULL")]
-		public short idClasificacionRV
-		{
-			get
-			{
-				return this._idClasificacionRV;
-			}
-			set
-			{
-				if ((this._idClasificacionRV != value))
-				{
-					if (this._clasificacionRecursoValioso.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidClasificacionRVChanging(value);
-					this.SendPropertyChanging();
-					this._idClasificacionRV = value;
-					this.SendPropertyChanged("idClasificacionRV");
-					this.OnidClasificacionRVChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Descripcion", DbType="VarChar(500)")]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this.OnDescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._Descripcion = value;
-					this.SendPropertyChanged("Descripcion");
-					this.OnDescripcionChanged();
-				}
-			}
-		}
-		
-		[Association(Name="caracteristicaRecursoValioso_matrizValoracion", Storage="_matrizValoracion", ThisKey="idCaracteristicaRV", OtherKey="idCaracteristicaRV")]
-		public EntitySet<matrizValoracion> matrizValoracion
-		{
-			get
-			{
-				return this._matrizValoracion;
-			}
-			set
-			{
-				this._matrizValoracion.Assign(value);
-			}
-		}
-		
-		[Association(Name="caracteristicaRecursoValioso_escalaValoracion", Storage="_escalaValoracion", ThisKey="idCaracteristicaRV", OtherKey="idCaracteristicaRV")]
-		public EntitySet<escalaValoracion> escalaValoracion
-		{
-			get
-			{
-				return this._escalaValoracion;
-			}
-			set
-			{
-				this._escalaValoracion.Assign(value);
-			}
-		}
-		
-		[Association(Name="clasificacionRecursoValioso_caracteristicaRecursoValioso", Storage="_clasificacionRecursoValioso", ThisKey="idClasificacionRV", OtherKey="idClasificacionRV", IsForeignKey=true)]
-		public clasificacionRecursoValioso clasificacionRecursoValioso
-		{
-			get
-			{
-				return this._clasificacionRecursoValioso.Entity;
-			}
-			set
-			{
-				clasificacionRecursoValioso previousValue = this._clasificacionRecursoValioso.Entity;
-				if (((previousValue != value) 
-							|| (this._clasificacionRecursoValioso.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._clasificacionRecursoValioso.Entity = null;
-						previousValue.caracteristicaRecursoValioso.Remove(this);
-					}
-					this._clasificacionRecursoValioso.Entity = value;
-					if ((value != null))
-					{
-						value.caracteristicaRecursoValioso.Add(this);
-						this._idClasificacionRV = value.idClasificacionRV;
-					}
-					else
-					{
-						this._idClasificacionRV = default(short);
-					}
-					this.SendPropertyChanged("clasificacionRecursoValioso");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_matrizValoracion(matrizValoracion entity)
-		{
-			this.SendPropertyChanging();
-			entity.caracteristicaRecursoValioso = this;
-		}
-		
-		private void detach_matrizValoracion(matrizValoracion entity)
-		{
-			this.SendPropertyChanging();
-			entity.caracteristicaRecursoValioso = null;
-		}
-		
-		private void attach_escalaValoracion(escalaValoracion entity)
-		{
-			this.SendPropertyChanging();
-			entity.caracteristicaRecursoValioso = this;
-		}
-		
-		private void detach_escalaValoracion(escalaValoracion entity)
-		{
-			this.SendPropertyChanging();
-			entity.caracteristicaRecursoValioso = null;
 		}
 	}
 	
@@ -7514,6 +7145,423 @@ namespace RBV_AccesoDatos
 					this._Valor = value;
 				}
 			}
+		}
+	}
+	
+	[Table(Name="dbo.caracteristicaRecursoValioso")]
+	public partial class caracteristicaRecursoValioso : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _idCaracteristicaRV;
+		
+		private string _caracteristicaRV;
+		
+		private short _idClasificacionRV;
+		
+		private string _Descripcion;
+		
+		private string _Acciones;
+		
+		private EntitySet<matrizValoracion> _matrizValoracions;
+		
+		private EntitySet<escalaValoracion> _escalaValoracions;
+		
+		private EntityRef<clasificacionRecursoValioso> _clasificacionRecursoValioso;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidCaracteristicaRVChanging(short value);
+    partial void OnidCaracteristicaRVChanged();
+    partial void OncaracteristicaRVChanging(string value);
+    partial void OncaracteristicaRVChanged();
+    partial void OnidClasificacionRVChanging(short value);
+    partial void OnidClasificacionRVChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnAccionesChanging(string value);
+    partial void OnAccionesChanged();
+    #endregion
+		
+		public caracteristicaRecursoValioso()
+		{
+			this._matrizValoracions = new EntitySet<matrizValoracion>(new Action<matrizValoracion>(this.attach_matrizValoracions), new Action<matrizValoracion>(this.detach_matrizValoracions));
+			this._escalaValoracions = new EntitySet<escalaValoracion>(new Action<escalaValoracion>(this.attach_escalaValoracions), new Action<escalaValoracion>(this.detach_escalaValoracions));
+			this._clasificacionRecursoValioso = default(EntityRef<clasificacionRecursoValioso>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_idCaracteristicaRV", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short idCaracteristicaRV
+		{
+			get
+			{
+				return this._idCaracteristicaRV;
+			}
+			set
+			{
+				if ((this._idCaracteristicaRV != value))
+				{
+					this.OnidCaracteristicaRVChanging(value);
+					this.SendPropertyChanging();
+					this._idCaracteristicaRV = value;
+					this.SendPropertyChanged("idCaracteristicaRV");
+					this.OnidCaracteristicaRVChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_caracteristicaRV", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string caracteristicaRV
+		{
+			get
+			{
+				return this._caracteristicaRV;
+			}
+			set
+			{
+				if ((this._caracteristicaRV != value))
+				{
+					this.OncaracteristicaRVChanging(value);
+					this.SendPropertyChanging();
+					this._caracteristicaRV = value;
+					this.SendPropertyChanged("caracteristicaRV");
+					this.OncaracteristicaRVChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_idClasificacionRV", DbType="SmallInt NOT NULL")]
+		public short idClasificacionRV
+		{
+			get
+			{
+				return this._idClasificacionRV;
+			}
+			set
+			{
+				if ((this._idClasificacionRV != value))
+				{
+					if (this._clasificacionRecursoValioso.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidClasificacionRVChanging(value);
+					this.SendPropertyChanging();
+					this._idClasificacionRV = value;
+					this.SendPropertyChanged("idClasificacionRV");
+					this.OnidClasificacionRVChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Descripcion", DbType="VarChar(500)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Acciones", DbType="VarChar(1000)")]
+		public string Acciones
+		{
+			get
+			{
+				return this._Acciones;
+			}
+			set
+			{
+				if ((this._Acciones != value))
+				{
+					this.OnAccionesChanging(value);
+					this.SendPropertyChanging();
+					this._Acciones = value;
+					this.SendPropertyChanged("Acciones");
+					this.OnAccionesChanged();
+				}
+			}
+		}
+		
+		[Association(Name="caracteristicaRecursoValioso_matrizValoracion", Storage="_matrizValoracions", ThisKey="idCaracteristicaRV", OtherKey="idCaracteristicaRV")]
+		public EntitySet<matrizValoracion> matrizValoracions
+		{
+			get
+			{
+				return this._matrizValoracions;
+			}
+			set
+			{
+				this._matrizValoracions.Assign(value);
+			}
+		}
+		
+		[Association(Name="caracteristicaRecursoValioso_escalaValoracion", Storage="_escalaValoracions", ThisKey="idCaracteristicaRV", OtherKey="idCaracteristicaRV")]
+		public EntitySet<escalaValoracion> escalaValoracions
+		{
+			get
+			{
+				return this._escalaValoracions;
+			}
+			set
+			{
+				this._escalaValoracions.Assign(value);
+			}
+		}
+		
+		[Association(Name="clasificacionRecursoValioso_caracteristicaRecursoValioso", Storage="_clasificacionRecursoValioso", ThisKey="idClasificacionRV", OtherKey="idClasificacionRV", IsForeignKey=true)]
+		public clasificacionRecursoValioso clasificacionRecursoValioso
+		{
+			get
+			{
+				return this._clasificacionRecursoValioso.Entity;
+			}
+			set
+			{
+				clasificacionRecursoValioso previousValue = this._clasificacionRecursoValioso.Entity;
+				if (((previousValue != value) 
+							|| (this._clasificacionRecursoValioso.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._clasificacionRecursoValioso.Entity = null;
+						previousValue.caracteristicaRecursoValiosos.Remove(this);
+					}
+					this._clasificacionRecursoValioso.Entity = value;
+					if ((value != null))
+					{
+						value.caracteristicaRecursoValiosos.Add(this);
+						this._idClasificacionRV = value.idClasificacionRV;
+					}
+					else
+					{
+						this._idClasificacionRV = default(short);
+					}
+					this.SendPropertyChanged("clasificacionRecursoValioso");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_matrizValoracions(matrizValoracion entity)
+		{
+			this.SendPropertyChanging();
+			entity.caracteristicaRecursoValioso = this;
+		}
+		
+		private void detach_matrizValoracions(matrizValoracion entity)
+		{
+			this.SendPropertyChanging();
+			entity.caracteristicaRecursoValioso = null;
+		}
+		
+		private void attach_escalaValoracions(escalaValoracion entity)
+		{
+			this.SendPropertyChanging();
+			entity.caracteristicaRecursoValioso = this;
+		}
+		
+		private void detach_escalaValoracions(escalaValoracion entity)
+		{
+			this.SendPropertyChanging();
+			entity.caracteristicaRecursoValioso = null;
+		}
+	}
+	
+	[Table(Name="dbo.tipoRecurso")]
+	public partial class tipoRecurso : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _idTipoRecurso;
+		
+		private string _tipoRecurso1;
+		
+		private string _Descripcion;
+		
+		private string _Acciones;
+		
+		private EntitySet<recursosEmpresa> _recursosEmpresas;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidTipoRecursoChanging(short value);
+    partial void OnidTipoRecursoChanged();
+    partial void OntipoRecurso1Changing(string value);
+    partial void OntipoRecurso1Changed();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnAccionesChanging(string value);
+    partial void OnAccionesChanged();
+    #endregion
+		
+		public tipoRecurso()
+		{
+			this._recursosEmpresas = new EntitySet<recursosEmpresa>(new Action<recursosEmpresa>(this.attach_recursosEmpresas), new Action<recursosEmpresa>(this.detach_recursosEmpresas));
+			OnCreated();
+		}
+		
+		[Column(Storage="_idTipoRecurso", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short idTipoRecurso
+		{
+			get
+			{
+				return this._idTipoRecurso;
+			}
+			set
+			{
+				if ((this._idTipoRecurso != value))
+				{
+					this.OnidTipoRecursoChanging(value);
+					this.SendPropertyChanging();
+					this._idTipoRecurso = value;
+					this.SendPropertyChanged("idTipoRecurso");
+					this.OnidTipoRecursoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tipoRecurso", Storage="_tipoRecurso1", DbType="VarChar(50)")]
+		public string tipoRecurso1
+		{
+			get
+			{
+				return this._tipoRecurso1;
+			}
+			set
+			{
+				if ((this._tipoRecurso1 != value))
+				{
+					this.OntipoRecurso1Changing(value);
+					this.SendPropertyChanging();
+					this._tipoRecurso1 = value;
+					this.SendPropertyChanged("tipoRecurso1");
+					this.OntipoRecurso1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Descripcion", DbType="VarChar(500)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Acciones", DbType="VarChar(1000)")]
+		public string Acciones
+		{
+			get
+			{
+				return this._Acciones;
+			}
+			set
+			{
+				if ((this._Acciones != value))
+				{
+					this.OnAccionesChanging(value);
+					this.SendPropertyChanging();
+					this._Acciones = value;
+					this.SendPropertyChanged("Acciones");
+					this.OnAccionesChanged();
+				}
+			}
+		}
+		
+		[Association(Name="tipoRecurso_recursosEmpresa", Storage="_recursosEmpresas", ThisKey="idTipoRecurso", OtherKey="idTipoRecurso")]
+		public EntitySet<recursosEmpresa> recursosEmpresas
+		{
+			get
+			{
+				return this._recursosEmpresas;
+			}
+			set
+			{
+				this._recursosEmpresas.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_recursosEmpresas(recursosEmpresa entity)
+		{
+			this.SendPropertyChanging();
+			entity.tipoRecurso = this;
+		}
+		
+		private void detach_recursosEmpresas(recursosEmpresa entity)
+		{
+			this.SendPropertyChanging();
+			entity.tipoRecurso = null;
 		}
 	}
 	

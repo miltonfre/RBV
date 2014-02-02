@@ -44,7 +44,7 @@
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ID="RegularExpressionValidaTalla" runat="server"
                                                     ControlToValidate="txtValor" Text="*" Display="Dynamic" ErrorMessage="Por favor ingrese un porcentaje correcto"
-                                                    ValidationExpression="^\d+$" ValidationGroup="CrearEscala"></asp:RegularExpressionValidator>
+                                                    ValidationExpression="\d*\.?\d*" ValidationGroup="CrearEscala"></asp:RegularExpressionValidator>
                                                 <asp:Label ID="lblPorcentaje" runat="server" Text='%'></asp:Label>
                                             </td>
                                         </tr>

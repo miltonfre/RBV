@@ -150,4 +150,10 @@
   <data name="hdrDescripcion" xml:space="preserve">
     <value>Descripcion</value>
   </data>
+  <data name="lblAcciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="hdrAcciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
 </root>

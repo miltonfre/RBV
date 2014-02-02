@@ -129,10 +129,11 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.tipoRecurso.InsertOnSubmit(new tipoRecurso
+            contextoRBV.tipoRecursos.InsertOnSubmit(new tipoRecurso
             {
                 tipoRecurso1 = tipoRecurso.NombreTipoRecurso,
-                Descripcion = tipoRecurso.Descripcion
+                Descripcion = tipoRecurso.Descripcion,
+                Acciones = tipoRecurso.Acciones
             });
 
             contextoRBV.SubmitChanges();
@@ -144,9 +145,10 @@ namespace RBV_AccesoDatos
 
             tipoRecurso tipoRecursoAnterior = new tipoRecurso();
 
-            tipoRecursoAnterior = contextoRBV.tipoRecurso.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
+            tipoRecursoAnterior = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == tipoRecurso.IdTipoRecurso);
             tipoRecursoAnterior.tipoRecurso1 = tipoRecurso.NombreTipoRecurso;
             tipoRecursoAnterior.Descripcion = tipoRecurso.Descripcion;
+            tipoRecursoAnterior.Acciones = tipoRecurso.Acciones;
 
             contextoRBV.SubmitChanges();
         }
@@ -156,8 +158,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             tipoRecurso tipoRecursoEliminar = new tipoRecurso();
 
-            tipoRecursoEliminar = contextoRBV.tipoRecurso.SingleOrDefault(p => p.idTipoRecurso == IdTipoRecurso);
-            contextoRBV.tipoRecurso.DeleteOnSubmit(tipoRecursoEliminar);
+            tipoRecursoEliminar = contextoRBV.tipoRecursos.SingleOrDefault(p => p.idTipoRecurso == IdTipoRecurso);
+            contextoRBV.tipoRecursos.DeleteOnSubmit(tipoRecursoEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -167,13 +169,14 @@ namespace RBV_AccesoDatos
 
             List<TipoRecurso> tiposRecurso = new List<TipoRecurso>();
 
-            tiposRecurso = (from tipoRecursoC in contextoRBV.tipoRecurso
+            tiposRecurso = (from tipoRecursoC in contextoRBV.tipoRecursos
 
                         select new TipoRecurso
                         {
                             IdTipoRecurso = tipoRecursoC.idTipoRecurso,
                             NombreTipoRecurso = tipoRecursoC.tipoRecurso1,
-                            Descripcion = tipoRecursoC.Descripcion
+                            Descripcion = tipoRecursoC.Descripcion,
+                            Acciones = tipoRecursoC.Acciones
                         }).ToList();
 
 
@@ -186,7 +189,7 @@ namespace RBV_AccesoDatos
 
             TipoRecurso tipoRecurso = new TipoRecurso();
 
-            var tipoRec = (from tiporec in contextoRBV.tipoRecurso
+            var tipoRec = (from tiporec in contextoRBV.tipoRecursos
                            where tiporec.idTipoRecurso == IdTipoRecurso
                            select new TipoRecurso
                            {
@@ -208,11 +211,12 @@ namespace RBV_AccesoDatos
         {
             RBVDataContext contextoRBV = new RBVDataContext();
 
-            contextoRBV.caracteristicaRecursoValioso.InsertOnSubmit(new caracteristicaRecursoValioso
+            contextoRBV.caracteristicaRecursoValiosos.InsertOnSubmit(new caracteristicaRecursoValioso
             {
                 caracteristicaRV = caracteristica.NombreCaracteristica
                 ,idClasificacionRV = caracteristica.IdClasificacionRV
                 ,Descripcion = caracteristica.Descripcion
+                ,Acciones = caracteristica.Acciones
             });
 
             contextoRBV.SubmitChanges();
@@ -224,10 +228,11 @@ namespace RBV_AccesoDatos
 
             caracteristicaRecursoValioso caracteristicaAnterior = new caracteristicaRecursoValioso();
 
-            caracteristicaAnterior = contextoRBV.caracteristicaRecursoValioso.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
+            caracteristicaAnterior = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == caracteristica.IdCaracteristica);
             caracteristicaAnterior.caracteristicaRV = caracteristica.NombreCaracteristica;
             caracteristicaAnterior.idClasificacionRV = caracteristica.IdClasificacionRV;
             caracteristicaAnterior.Descripcion = caracteristica.Descripcion;
+            caracteristicaAnterior.Acciones = caracteristica.Acciones;
 
             contextoRBV.SubmitChanges();
         }
@@ -237,8 +242,8 @@ namespace RBV_AccesoDatos
             RBVDataContext contextoRBV = new RBVDataContext();
             caracteristicaRecursoValioso caracteristicaEliminar = new caracteristicaRecursoValioso();
 
-            caracteristicaEliminar = contextoRBV.caracteristicaRecursoValioso.SingleOrDefault(p => p.idCaracteristicaRV == IdCaracteristica);
-            contextoRBV.caracteristicaRecursoValioso.DeleteOnSubmit(caracteristicaEliminar);
+            caracteristicaEliminar = contextoRBV.caracteristicaRecursoValiosos.SingleOrDefault(p => p.idCaracteristicaRV == IdCaracteristica);
+            contextoRBV.caracteristicaRecursoValiosos.DeleteOnSubmit(caracteristicaEliminar);
             contextoRBV.SubmitChanges();
         }
 
@@ -248,7 +253,7 @@ namespace RBV_AccesoDatos
 
             List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
-            caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValioso
+            caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
                                orderby caracteristicaC.idClasificacionRV
                                ,caracteristicaC.clasificacionRecursoValioso.clasificacionRV
                                select new Caracteristica
@@ -257,7 +262,8 @@ namespace RBV_AccesoDatos
                                    NombreCaracteristica = caracteristicaC.caracteristicaRV,
                                    IdClasificacionRV = caracteristicaC.idClasificacionRV,
                                    Descripcion = caracteristicaC.Descripcion,
-                                   ValorCaracteristica = caracteristicaC.escalaValoracion.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV && p.idEmpresa == IdEmpresa).Valor.ToString(),
+                                   Acciones = caracteristicaC.Acciones,
+                                   ValorCaracteristica = caracteristicaC.escalaValoracions.SingleOrDefault(p=>p.idCaracteristicaRV == caracteristicaC.idCaracteristicaRV && p.idEmpresa == IdEmpresa).Valor.ToString(),
                                    ClasificacionAsociada = new Clasificacion
                                    {
                                        IdClasificacionRV = caracteristicaC.clasificacionRecursoValioso.idClasificacionRV,
@@ -280,7 +286,7 @@ namespace RBV_AccesoDatos
 
                         List<Caracteristica> caracteristicas = new List<Caracteristica>();
 
-                        caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValioso
+                        caracteristicas = (from caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
                                            where caracteristicaC.idClasificacionRV == clasificacion.IdClasificacionRV
                             select new Caracteristica
                             {
@@ -736,7 +742,7 @@ namespace RBV_AccesoDatos
             List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
 
             escalaValoracion = (from escalaC in contextoRBV.escalaValoracion
-                                join caracteristicaC in contextoRBV.caracteristicaRecursoValioso
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
                                 on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
                                   where (escalaC.idEmpresa == IdEmpresa)
                                   select new EscalaValoracion
@@ -759,7 +765,7 @@ namespace RBV_AccesoDatos
             List<EscalaValoracion> escalaValoracion = new List<EscalaValoracion>();
 
             escalaValoracion = (from escalaC in contextoRBV.escalaValoracion
-                                join caracteristicaC in contextoRBV.caracteristicaRecursoValioso
+                                join caracteristicaC in contextoRBV.caracteristicaRecursoValiosos
                                 on escalaC.idCaracteristicaRV equals caracteristicaC.idCaracteristicaRV
                                 where (escalaC.idEmpresa == IdEmpresa && escalaC.idCaracteristicaRV == idCaracteristicaRV)
                                 select new EscalaValoracion

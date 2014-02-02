@@ -61,6 +61,7 @@ namespace RBV.Maestros
             Entidades.TipoRecurso tipoRecurso = new Entidades.TipoRecurso();
             tipoRecurso.NombreTipoRecurso = txtTipoRecurso.Text.Trim();
             tipoRecurso.Descripcion = txtDescripcion.Text.Trim();
+            tipoRecurso.Acciones = txtAcciones.Text.Trim();
             if (Actualizar)
             {
                 tipoRecurso.IdTipoRecurso = IdTipoRecurso;
@@ -91,14 +92,16 @@ namespace RBV.Maestros
         {
             txtTipoRecurso.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
+            txtAcciones.Text = string.Empty;
             Actualizar = false;
         }
 
         protected void grdTipoRecurso_RowEditing(object sender, GridViewEditEventArgs e)
         {
             Actualizar = true;
-            txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text;
-            txtDescripcion.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[1].Text;
+            txtTipoRecurso.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[0].Text.Trim();
+            txtDescripcion.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[1].Text.Trim();
+            txtAcciones.Text = grdTipoRecurso.Rows[e.NewEditIndex].Cells[2].Text.Trim(); ;
             IdTipoRecurso = Convert.ToInt16(grdTipoRecurso.DataKeys[e.NewEditIndex].Value);
         }
 
