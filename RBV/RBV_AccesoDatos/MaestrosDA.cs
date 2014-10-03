@@ -630,8 +630,8 @@ namespace RBV_AccesoDatos
                 //Guid giUsuario = new Guid(Usuario.UserName);
 
 
-                empresasUs = (from empresasUsC in contextoRBV.empresa
-                              //where empresasUsC.UserId == giUsuario
+                empresasUs = (from empresasUsC in contextoRBV.empresa  //where empresasUsC.UserId == giUsuario
+                             
                               select new Empresa
                             {
                                 IdEmpresa = empresasUsC.idEmpresa,

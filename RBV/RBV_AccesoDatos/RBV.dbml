@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RBV" Class="RBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Context Connection=False" SettingsObjectName="RBV_AccesoDatos.Properties.Settings" SettingsPropertyName="RBVConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_WebEvent_Events" Member="aspnet_WebEvent_Events">
     <Type Name="aspnet_WebEvent_Event">
       <Column Name="EventId" Type="System.String" DbType="Char(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
