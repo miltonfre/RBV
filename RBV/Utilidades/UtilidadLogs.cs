@@ -38,5 +38,10 @@ namespace Utilidades
             ILog logger = LogManager.GetLogger(tipo);
             logger.Warn(mensaje);
         }
+
+        public static void RegistrarError(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
