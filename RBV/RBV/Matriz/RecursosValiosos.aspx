@@ -70,7 +70,7 @@
                         });
 
                         var idEmpresa = $("[id*='ddlEmpres'] :selected").val();
-                        
+
                         $.ajax({
                             type: "POST",
                             url: "RecursosValiosos.aspx/Actualizar",
@@ -81,10 +81,11 @@
 
                                 $("#r_" + idFila).text(msg.d.TotalLinea);
                                 $("#total").text(msg.d.TotalGrupo);
+                               // alert(msg.d.TotalLinea + " - " + msg.d.TotalGrupo);
                                 if (msg.d.TotalLinea >= msg.d.TotalGrupo) {
                                     //TODO: Pasar a una clase
-                                    objTr.css("color", "Lime");
-                                    objTr.css("border-top-color", "Lime");
+                                    objTr.css("color", "Black");
+                                    objTr.css("border-top-color", "Blue");
                                     objTr.css("border-bottom-style", "double");
                                     objTr.css("border-top-style", "double");
                                     objTr.css("font-weight", "bold");
@@ -164,7 +165,7 @@
                     if (recursosValiosos.Count > 0 && recursosValiosos[IndiceFila].Valor >= ValorTotal)
                     {
                 %>
-                <tr id='<%= IndiceFila %>' style="color: Lime; border-bottom-style: double; border-top-color: Lime;
+                <tr id='<%= IndiceFila %>' style="color: Black; border-bottom-style: double; border-top-color: Black;
                     border-top-style: double; font-weight: bold">
                     <%
                         }

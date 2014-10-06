@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using System.Data;
 using RBV_Clases;
 using System.Web.UI.DataVisualization.Charting;
+using System.Globalization;
 
 
 namespace RBV_Negcio
@@ -111,7 +112,7 @@ namespace RBV_Negcio
             doc.InsertParagraph();
             doc.InsertParagraph();
 
-           Table tab = doc.AddTable(rolesInforme.Count+1, 2);
+           Table tab = doc.AddTable(rolesInforme.Count+1, 3);
             tab.AutoFit = AutoFit.Window;
             tab.Alignment = Alignment.center;
             tab.Design = TableDesign.ColorfulGridAccent1;
@@ -121,11 +122,15 @@ namespace RBV_Negcio
             tab.Rows[0].Cells[1].Paragraphs.First().Append("Cargo/Rol");
             tab.Rows[0].Cells[1].Paragraphs.First().Alignment = Alignment.center;
             tab.Rows[0].Cells[1].Paragraphs.First().Bold();
+            tab.Rows[0].Cells[2].Paragraphs.First().Append("Fecha");
+            tab.Rows[0].Cells[2].Paragraphs.First().Alignment = Alignment.center;
+            tab.Rows[0].Cells[2].Paragraphs.First().Bold();
             for (int i = 0; i < rolesInforme.Count; i++)
             {
                 RolesInforme rolInforme=rolesInforme[i];
                 tab.Rows[i+1].Cells[0].Paragraphs.First().Append(rolInforme.NombreParticipante);
                 tab.Rows[i+1].Cells[1].Paragraphs.First().Append(rolInforme.Rol);
+                tab.Rows[i+1].Cells[2].Paragraphs.First().Append(rolInforme.Fecha);
             }
             doc.InsertTable(tab);
         }
@@ -225,45 +230,25 @@ namespace RBV_Negcio
             doc.InsertParagraph();
             doc.InsertParagraph();
 
-             Paragraph pEmp = doc.InsertParagraph("Milton Fredy González Díaz" , false, headLineFormat);
-            pEmp.Alignment = Alignment.center;
-            pEmp = doc.InsertParagraph("Diego León Pineda Montoya", false, headLineFormat);
-            pEmp.Alignment = Alignment.center;
+            // Paragraph pEmp = doc.InsertParagraph("Milton Fredy González Díaz" , false, headLineFormat);
+            //pEmp.Alignment = Alignment.center;
+            //pEmp = doc.InsertParagraph("Diego León Pineda Montoya", false, headLineFormat);
+            //pEmp.Alignment = Alignment.center;
+            Paragraph pEmp = doc.InsertParagraph(empresa.NombreEmpresa, false, headLineFormat);
+            pEmp.Alignment = Alignment.left;
 
-
             doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            doc.InsertParagraph();
-            pEmp = doc.InsertParagraph(empresa.NombreEmpresa, false, paraFormat);
-            pEmp.Alignment = Alignment.center;
-
+ 
             //Paragraph pElp = doc.InsertParagraph(strElaboradoPor, false, elaboradoPorFormat);
             //pElp.Alignment = Alignment.right;
 
 
-            Paragraph pCiud = doc.InsertParagraph("Medellín", false, paraFormat);
-            pCiud.Alignment = Alignment.center;
+            //Paragraph pCiud = doc.InsertParagraph("Medellín", false, paraFormat);
+            //pCiud.Alignment = Alignment.left;
 
-            Paragraph pAno = doc.InsertParagraph(DateTime.Now.Year.ToString(), false, paraFormat);
-            pAno.Alignment = Alignment.center;
+            CultureInfo ci = new CultureInfo("es-ES");
+            Paragraph pAno = doc.InsertParagraph(DateTime.Now.ToString("MMMM", ci) + " " + DateTime.Now.Year.ToString(), false, paraFormat);
+            pAno.Alignment = Alignment.left;
         }
 
 
@@ -489,6 +474,31 @@ namespace RBV_Negcio
             return imgName;
         }
 
+
+        /// <summary>
+        /// Método que se encarga de llenar los datos del grafico de barras horizontales contra clasificacion
+        /// </summary>
+        /// <param name="empresa">DLP</param>
+        /// <param name="strDirectorio"></param>
+        /// <returns></returns>
+        public string CrearGraficoBarrasHorizontalesClasificacion(Empresa empresa, string strDirectorio, List<RBV_Clases.MatrizValoracion> matrizValoracion, decimal ValorTotal)
+        {
+            System.Web.UI.DataVisualization.Charting.Chart BarrasRecursos = CrearTorta();
+            BarrasRecursos.Series["Recursos"].ChartType = SeriesChartType.Bar;
+
+            List<RecursoValioso> recursosValiosos = RBV_Negocio.MatrizBO.CalcularResultadosCaracteritica(matrizValoracion, empresa.IdEmpresa); 
+
+            string[] Titulo = recursosValiosos.Select(p => p.NombreCaracteristica).ToArray();
+            decimal[] Valor = recursosValiosos.Select(p => p.Valor).ToArray();
+            BarrasRecursos.Series["Recursos"].Points.DataBindXY(Titulo, Valor);
+            
+            string strFile = "BarrasHorizontalVal" + empresa.NombreEmpresa + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".Jpeg";
+            string imgName = string.Concat(strDirectorio, "\\", strFile);
+            BarrasRecursos.SaveImage(imgName, ChartImageFormat.Jpeg);
+            return imgName;
+        }
+
+
         private void insertarGraficosTortas(DocX doc, Empresa empresa, string strDirectorio)
         {
 
@@ -520,6 +530,7 @@ namespace RBV_Negcio
             string strGraficoTortaRecursos = CrearTortaRecursos(empresa, strDirectorio, recursosValiosos);
             string strGraficoTortaRecursosSobreTotal = CrearTortaRecursosSobreTotal(empresa, strDirectorio, recursosValiosos, ValorTotal);
             string strGraficoTortaRecursosSobreValiosos = CrearTortaRecursosValiososSobreValiosos(empresa, strDirectorio, recursosValiosos, ValorTotal);
+            string strGraficoBarrasHorinzotales = CrearGraficoBarrasHorizontalesClasificacion(empresa, strDirectorio, MatrizValoracion, ValorTotal);
 
             //Torta de porcentajes
             Paragraph pTit = doc.InsertParagraph("Porcentajes de Recursos", false, RVFormat);
@@ -550,6 +561,17 @@ namespace RBV_Negcio
             pParr.Alignment = Alignment.left;
 
             i = doc.AddImage(strGraficoTortaRecursosSobreValiosos);
+            pic = i.CreatePicture();
+            pImg = doc.InsertParagraph("").AppendPicture(pic);
+            pImg.Alignment = Alignment.center;
+
+            //Torta de barras horizonteles
+            pTit = doc.InsertParagraph("Recursos contra clasificación", false, RVFormat);
+            pTit.Alignment = Alignment.left;
+            pParr = doc.InsertParagraph("Aquí va el análisis de barras horizontales", false, RVParrafo);
+            pParr.Alignment = Alignment.left;
+
+            i = doc.AddImage(strGraficoBarrasHorinzotales);
             pic = i.CreatePicture();
             pImg = doc.InsertParagraph("").AppendPicture(pic);
             pImg.Alignment = Alignment.center;

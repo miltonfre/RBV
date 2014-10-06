@@ -205,35 +205,35 @@
         <classShapeMoniker Id="7ed7b465-7f04-40a5-9b40-06b94e48b09f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 17.6648723623798); (3.06607443490112 : 17.9809467972809 : JumpStart); (3.18392556509888 : 18.0987979274787 : JumpEnd); (3.375 : 18.2898723623798); (3.375 : 19.4431469726563); (6.5 : 19.4431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 17.6648723623798); (3.375 : 18.2898723623798); (3.375 : 19.4431469726563); (6.5 : 19.4431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/empresa/empresa_recursosEmpresa" />
       <nodes>
         <classShapeMoniker Id="b4f6ef22-5446-48d5-b2e5-54fdd8b00ea4" />
         <classShapeMoniker Id="56e5e0d0-10bb-4e02-a208-e11b9642d7b3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.484374 : 17.7131982421875); (1.484374 : 18.29974659375); (3.04166666666667 : 18.29974659375 : JumpStart); (3.20833333333333 : 18.29974659375 : JumpEnd); (3.5 : 18.29974659375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.484374 : 17.7131982421875); (1.484374 : 18.29974659375); (2.19791866666667 : 18.29974659375 : JumpStart); (2.36458533333333 : 18.29974659375 : JumpEnd); (3.5 : 18.29974659375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/empresa/empresa_lineaDeNegocio" />
       <nodes>
         <classShapeMoniker Id="b4f6ef22-5446-48d5-b2e5-54fdd8b00ea4" />
         <classShapeMoniker Id="057cd6f7-c095-4e01-b3a4-eadc0f889a00" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.281252 : 17.7131982421875); (2.281252 : 18.875); (2.91666666666667 : 18.875 : JumpStart); (3.08333333333333 : 18.875 : JumpEnd); (3.25 : 18.875); (3.25 : 29.6354484049479); (3.5 : 29.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.281252 : 17.7131982421875); (2.281252 : 18.875); (3.25 : 18.875); (3.25 : 29.6354484049479); (3.5 : 29.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/empresa/empresa_Informe" />
       <nodes>
         <classShapeMoniker Id="b4f6ef22-5446-48d5-b2e5-54fdd8b00ea4" />
         <classShapeMoniker Id="fd1af82e-ae9c-4a26-93bf-7418bc243aad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 16.8838932291667); (3.04166666666667 : 16.8838932291667 : JumpStart); (3.20833333333333 : 16.8838932291667 : JumpEnd); (6.11979416666667 : 16.8838932291667 : JumpStart); (6.28646083333333 : 16.8838932291667 : JumpEnd); (6.5 : 16.8838932291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 16.8838932291667); (6.5 : 16.8838932291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/empresa/empresa_escalaValoracion" />
       <nodes>
         <classShapeMoniker Id="b4f6ef22-5446-48d5-b2e5-54fdd8b00ea4" />
         <classShapeMoniker Id="984b0581-cc5c-4b75-9263-b56a8ec63bd2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.484374 : 17.7131982421875); (1.484374 : 18.625); (3 : 18.625); (3 : 24.6642976888021); (3.5 : 24.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.484374 : 17.7131982421875); (1.484374 : 18.625); (2.19791866666667 : 18.625 : JumpStart); (2.36458533333333 : 18.625 : JumpEnd); (3 : 18.625); (3 : 24.6642976888021); (3.16666666666667 : 24.6642976888021 : JumpStart); (3.33333333333333 : 24.6642976888021 : JumpEnd); (3.5 : 24.6642976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/empresa/empresa_escalaCalificacion" />
       <nodes>
         <classShapeMoniker Id="b4f6ef22-5446-48d5-b2e5-54fdd8b00ea4" />
@@ -254,7 +254,7 @@
         <classShapeMoniker Id="fe4fb90e-3856-4dae-991f-254ca5114136" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2 : 8.625); (2 : 6.59375); (3.29166666666667 : 6.59375 : JumpStart); (3.45833333333333 : 6.59375 : JumpEnd); (6.11979416666667 : 6.59375 : JumpStart); (6.28646083333333 : 6.59375 : JumpEnd); (6.75 : 6.59375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2 : 8.625); (2 : 6.59375); (3.29166666666667 : 6.59375 : JumpStart); (3.45833333333333 : 6.59375 : JumpEnd); (6.75 : 6.59375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/aspnet_Users/aspnet_Users_aspnet_UsersInRoles" />
       <nodes>
         <classShapeMoniker Id="0c41fab5-8a97-4740-be21-7082007dc434" />
@@ -275,7 +275,7 @@
         <classShapeMoniker Id="367ea29f-4b77-4d2e-9980-b6ca1d768299" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.90625 : 12.626650390625); (2.90625 : 14.4286612955729); (9.5 : 14.4286612955729)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.90625 : 12.626650390625); (2.90625 : 14.4286612955729); (3.04166666666667 : 14.4286612955729 : JumpStart); (3.20833333333333 : 14.4286612955729 : JumpEnd); (9.5 : 14.4286612955729)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/aspnet_Users/aspnet_Users_aspnet_PersonalizationPerUser" />
       <nodes>
         <classShapeMoniker Id="0c41fab5-8a97-4740-be21-7082007dc434" />
@@ -296,7 +296,7 @@
         <classShapeMoniker Id="b75f3d0f-8827-4fd1-b237-fa7146743143" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.65625 : 12.1650211588542); (5.65625 : 13.03125); (6.11979416666667 : 13.03125 : JumpStart); (6.28646083333333 : 13.03125 : JumpEnd); (6.5 : 13.03125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.65625 : 12.1650211588542); (5.65625 : 13.03125); (6.5 : 13.03125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/aspnet_Membership/aspnet_Membership_empresaUsuario" />
       <nodes>
         <classShapeMoniker Id="f456272a-edc0-4bbb-8460-b413b2da9f1f" />
@@ -316,44 +316,44 @@
         <elementListCompartment Id="25cf250e-2085-4e66-99f1-f2b587c464d9" absoluteBounds="1.0150000000000001, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6e95de85-b7d2-4b09-a286-f0782b0e083b" absoluteBounds="4.375, 20.625, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/RBVDataContext/caracteristicaRecursoValioso" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9e0a4cc0-a9da-4e8d-b56b-3c379be81f8c" absoluteBounds="4.39, 21.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(6.375 : 21.5104484049479); (7.41666666666667 : 21.5104484049479 : JumpStart); (7.58333333333333 : 21.5104484049479 : JumpEnd); (10.25 : 21.5104484049479); (10.25 : 20.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/RBVDataContext/caracteristicaRecursoValioso/caracteristicaRecursoValioso_matrizValoracion" />
-      <nodes>
-        <classShapeMoniker Id="6e95de85-b7d2-4b09-a286-f0782b0e083b" />
-        <classShapeMoniker Id="940039a7-b801-422b-8999-e0d818be69ba" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.96875 : 20.625); (5.96875 : 17.1663460872396); (6.11979416666667 : 17.1663460872396 : JumpStart); (6.28646083333333 : 17.1663460872396 : JumpEnd); (6.5 : 17.1663460872396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/RBVDataContext/caracteristicaRecursoValioso/caracteristicaRecursoValioso_escalaValoracion" />
-      <nodes>
-        <classShapeMoniker Id="6e95de85-b7d2-4b09-a286-f0782b0e083b" />
-        <classShapeMoniker Id="984b0581-cc5c-4b75-9263-b56a8ec63bd2" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3 : 4.72199625651042); (3.29166666666667 : 4.72199625651042 : JumpStart); (3.45833333333333 : 4.72199625651042 : JumpEnd); (6.2031275 : 4.72199625651042); (6.2031275 : 20.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/RBVDataContext/clasificacionRecursoValioso/clasificacionRecursoValioso_caracteristicaRecursoValioso" />
-      <nodes>
-        <classShapeMoniker Id="81cf15f0-7456-4325-a442-d76709eb6147" />
-        <classShapeMoniker Id="6e95de85-b7d2-4b09-a286-f0782b0e083b" />
-      </nodes>
-    </associationConnector>
     <classShape Id="80b5cb0d-d1f8-4a0b-9f54-3c8cba6ac8c7" absoluteBounds="0.875, 21, 2, 1.5785953776041666">
       <DataClassMoniker Name="/RBVDataContext/tipoRecurso" />
       <nestedChildShapes>
         <elementListCompartment Id="0fb03dfd-c4ee-4746-9275-957c69a4d225" absoluteBounds="0.89, 21.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 22.51849609375); (7.5 : 22.51849609375); (7.5 : 20.5208968098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.84375 : 21); (2.84375 : 20.4511946614583); (3.16666666666667 : 20.4511946614583 : JumpStart); (3.33333333333333 : 20.4511946614583 : JumpEnd); (6.5 : 20.4511946614583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/RBVDataContext/tipoRecurso/tipoRecurso_recursosEmpresa" />
       <nodes>
         <classShapeMoniker Id="80b5cb0d-d1f8-4a0b-9f54-3c8cba6ac8c7" />
         <classShapeMoniker Id="56e5e0d0-10bb-4e02-a208-e11b9642d7b3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4603a9fa-c78a-48f2-b939-8f4f8ae2af4e" absoluteBounds="5.625, 21.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/RBVDataContext/caracteristicaRecursoValioso" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4bff0bf2-f2d8-40fa-b11b-48aac666f28d" absoluteBounds="5.64, 22.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.625 : 22.7315991210938); (10.25 : 22.7315991210938); (10.25 : 20.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RBVDataContext/caracteristicaRecursoValioso/caracteristicaRecursoValioso_matrizValoracion" />
+      <nodes>
+        <classShapeMoniker Id="4603a9fa-c78a-48f2-b939-8f4f8ae2af4e" />
+        <classShapeMoniker Id="940039a7-b801-422b-8999-e0d818be69ba" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.0312475 : 21.75); (6.0312475 : 16.4106941145834); (6.5 : 16.4106941145834)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RBVDataContext/caracteristicaRecursoValioso/caracteristicaRecursoValioso_escalaValoracion" />
+      <nodes>
+        <classShapeMoniker Id="4603a9fa-c78a-48f2-b939-8f4f8ae2af4e" />
+        <classShapeMoniker Id="984b0581-cc5c-4b75-9263-b56a8ec63bd2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 4.72199625651042); (3.29166666666667 : 4.72199625651042 : JumpStart); (3.45833333333333 : 4.72199625651042 : JumpEnd); (6.26562625 : 4.72199625651042); (6.26562625 : 21.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/RBVDataContext/clasificacionRecursoValioso/clasificacionRecursoValioso_caracteristicaRecursoValioso" />
+      <nodes>
+        <classShapeMoniker Id="81cf15f0-7456-4325-a442-d76709eb6147" />
+        <classShapeMoniker Id="4603a9fa-c78a-48f2-b939-8f4f8ae2af4e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

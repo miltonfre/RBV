@@ -331,6 +331,30 @@ namespace RBV_AccesoDatos
             empresaInsertar.EmpresasUsuarios.IdEmpresa = empresa.idEmpresa;
             InsertarEmpresaUsuario(empresaInsertar.EmpresasUsuarios);
             InsertarEscalaCalificacion(empresa.idEmpresa);
+            InsertarEscalaValoracionDefault(empresa.idEmpresa);
+        }
+
+        private static void InsertarEscalaValoracionDefault(short idEmpresa)
+        {
+            List<caracteristicaRecursoValioso> Caracteristica = new List<caracteristicaRecursoValioso>();
+
+            RBVDataContext contextoRBV = new RBVDataContext();
+
+            Caracteristica = contextoRBV.caracteristicaRecursoValiosos.ToList();
+
+            List<EscalaValoracion> Escala = new List<EscalaValoracion>();
+
+            Escala = (from cara in Caracteristica
+                      select new EscalaValoracion
+                      {
+                          IdEmpresa = idEmpresa,
+                          IdCaracteristica = cara.idCaracteristicaRV,
+                          IdClasificacion = cara.idClasificacionRV,
+                          Valor = cara.ValorDefault,
+                          Caracteristica = cara.caracteristicaRV                          
+                      }).ToList();
+
+            InsertarEscalaValoracion(Escala);
         }
 
         public static void ActualizarEmpresa(Empresa empresaActualizar)
@@ -419,7 +443,6 @@ namespace RBV_AccesoDatos
             List<Empresa> empresas = new List<Empresa>();
 
             empresas = (from empresaC in contextoRBV.empresa
-
                         select new Empresa
                         {
                             IdEmpresa = empresaC.idEmpresa,

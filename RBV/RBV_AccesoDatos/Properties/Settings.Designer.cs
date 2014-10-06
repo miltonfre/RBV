@@ -27,21 +27,10 @@ namespace RBV_AccesoDatos.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=290DPINEDA_P\\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=Tru" +
-            "e;User ID=USR_RBV;Password=USR_RBV;Context Connection=False")]
+            "e;User ID=USR_RBV;Context Connection=False")]
         public string RBVConnectionString {
             get {
                 return ((string)(this["RBVConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=290DPINEDA_P\\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=Tru" +
-            "e;User ID=USR_RBV;Password=USR_RBV")]
-        public string RBVConnectionString1 {
-            get {
-                return ((string)(this["RBVConnectionString1"]));
             }
         }
     }

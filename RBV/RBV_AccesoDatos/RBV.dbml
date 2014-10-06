@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RBV" Class="RBVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="ConnectionString" ConnectionString="Data Source=290DPINEDA_P\SQLEXPRESS;Initial Catalog=RBV;Persist Security Info=True;User ID=USR_RBV;Password=USR_RBV;Context Connection=False" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_WebEvent_Events" Member="aspnet_WebEvent_Events">
     <Type Name="aspnet_WebEvent_Event">
       <Column Name="EventId" Type="System.String" DbType="Char(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -318,18 +317,6 @@
       <Column Name="Valor" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos">
-    <Type Name="caracteristicaRecursoValioso">
-      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Acciones" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
-      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
-      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tipoRecurso" Member="tipoRecursos">
     <Type Name="tipoRecurso">
       <Column Name="idTipoRecurso" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -337,6 +324,19 @@
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="Acciones" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Association Name="tipoRecurso_recursosEmpresa" Member="recursosEmpresas" ThisKey="idTipoRecurso" OtherKey="idTipoRecurso" Type="recursosEmpresa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.caracteristicaRecursoValioso" Member="caracteristicaRecursoValiosos">
+    <Type Name="caracteristicaRecursoValioso">
+      <Column Name="idCaracteristicaRV" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="caracteristicaRV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idClasificacionRV" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Acciones" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ValorDefault" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="caracteristicaRecursoValioso_matrizValoracion" Member="matrizValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="matrizValoracion" />
+      <Association Name="caracteristicaRecursoValioso_escalaValoracion" Member="escalaValoracions" ThisKey="idCaracteristicaRV" OtherKey="idCaracteristicaRV" Type="escalaValoracion" />
+      <Association Name="clasificacionRecursoValioso_caracteristicaRecursoValioso" Member="clasificacionRecursoValioso" ThisKey="idClasificacionRV" OtherKey="idClasificacionRV" Type="clasificacionRecursoValioso" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.aspnet_Membership_GetPassword" Method="aspnet_Membership_GetPassword">

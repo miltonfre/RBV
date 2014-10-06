@@ -65,6 +65,7 @@ namespace RBV.Reportes
             {
                 objRolesInforme.NombreParticipante = txtNombre1.Text;
                 objRolesInforme.Rol = txtCargo1.Text;
+                objRolesInforme.Fecha = txtCalendar1.Text.ToString();
                 rolesInforme.Add(objRolesInforme);
             }          
             if (!string.IsNullOrEmpty(txtNombre2.Text) || !string.IsNullOrEmpty(txtCargo2.Text))
@@ -72,6 +73,7 @@ namespace RBV.Reportes
                 objRolesInforme = new RolesInforme();
                 objRolesInforme.NombreParticipante = txtNombre2.Text;
                 objRolesInforme.Rol = txtCargo2.Text;
+                objRolesInforme.Fecha = txtCalendar2.Text.ToString();
                 rolesInforme.Add(objRolesInforme);
             }
 
@@ -80,6 +82,7 @@ namespace RBV.Reportes
                 objRolesInforme = new RolesInforme();
                 objRolesInforme.NombreParticipante = txtNombre3.Text;
                 objRolesInforme.Rol = txtCargo3.Text;
+                objRolesInforme.Fecha = txtCalendar3.Text.ToString();
                 rolesInforme.Add(objRolesInforme);
             }
             if (!string.IsNullOrEmpty(txtNombre4.Text) || !string.IsNullOrEmpty(txtCargo4.Text))
@@ -87,6 +90,7 @@ namespace RBV.Reportes
                 objRolesInforme = new RolesInforme();
                 objRolesInforme.NombreParticipante = txtNombre4.Text;
                 objRolesInforme.Rol = txtCargo4.Text;
+                objRolesInforme.Fecha = txtCalendar4.Text.ToString();
                 rolesInforme.Add(objRolesInforme);
             }
             if (!string.IsNullOrEmpty(txtNombre5.Text) || !string.IsNullOrEmpty(txtCargo5.Text))
@@ -94,6 +98,7 @@ namespace RBV.Reportes
                 objRolesInforme = new RolesInforme();
                 objRolesInforme.NombreParticipante = txtNombre5.Text;
                 objRolesInforme.Rol = txtCargo5.Text;
+                objRolesInforme.Fecha = txtCalendar5.Text.ToString();
                 rolesInforme.Add(objRolesInforme);
             }
             return rolesInforme;

@@ -147,4 +147,7 @@
   <data name="lblNombre" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="lblFecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
 </root>
