@@ -21,24 +21,26 @@ namespace RBV.Reportes
         }
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            if (!SeleccionEmpresa1.IdEmpresa.ToString().Equals("0"))
-            {
-                RBV_Negcio.InformeBO genWord = new RBV_Negcio.InformeBO();
-                Empresa empresa = RBV_Negocio.MaestrosBO.ConsultarEmpresaxID(SeleccionEmpresa1.IdEmpresa);
+            //if (!SeleccionEmpresa1.IdEmpresa.ToString().Equals("0"))
+            //{
+            //    RBV_Negcio.InformeBO genWord = new RBV_Negcio.InformeBO();
+            //    Empresa empresa = RBV_Negocio.MaestrosBO.ConsultarEmpresaxID(SeleccionEmpresa1.IdEmpresa);
 
-                Informe informe = new Informe();
-                informe.Empresa = empresa;
-                informe.RolesInforme = llenarRolesInforme();
+            //    Informe informe = new Informe();
+            //    informe.Empresa = empresa;
+            //    informe.RolesInforme = llenarRolesInforme();
 
-                string archivo = genWord.CrearWordWithDocX(informe);
-                System.Diagnostics.Process.Start(archivo);
+            //    string archivo = genWord.CrearWordWithDocX(informe);
+            //    System.Diagnostics.Process.Start(archivo);
               
        
-            }
-            else
-            {
-                Mensaje1.Mensajes = "Favor seleccione empresa";
-            }
+            //}
+            //else
+            //{
+            //    Mensaje1.Mensajes = "Favor seleccione empresa";
+            //}
+
+            //---------------//
             //Response.Clear();
             //Response.AddHeader("Content-Disposition", "attachment; filename=" + path);
             ////Response.AddHeader("Content-Length", file.Length.ToString());
