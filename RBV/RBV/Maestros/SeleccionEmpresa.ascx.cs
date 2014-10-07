@@ -33,7 +33,10 @@ namespace RBV.Maestros
 
         public void ConsultarEmpresas()
         {
-            List<RBV_Clases.Empresa> Empresas = new List<RBV_Clases.Empresa>(RBV_Negocio.MaestrosBO.ConsultarEmpresas(Usuario).ToList());
+            //List<RBV_Clases.Empresa> Empresas = new List<RBV_Clases.Empresa>(RBV_Negocio.MaestrosBO.ConsultarEmpresas(Usuario).ToList());
+            //Se pone en comentario la linea anterior ya que en principio la idea es traer todas las empresas a la persona logueada, 
+            //EN el momento que se quiera que una persona solo pueda ver sus empresas creadas, se descomentarea la línea anterior
+            List<RBV_Clases.Empresa> Empresas = new List<RBV_Clases.Empresa>(RBV_Negocio.MaestrosBO.ConsultarEmpresas().ToList());
             //TODO: Poner mensaje en constante...
             ddlEmpresaUsr.DataSource = Empresas;
             ddlEmpresaUsr.DataBind();
