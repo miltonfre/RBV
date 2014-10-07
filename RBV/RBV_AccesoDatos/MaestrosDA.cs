@@ -585,17 +585,20 @@ namespace RBV_AccesoDatos
 
             List<sectorEmpresa> sectoresEmpresaEliminar = new List<sectorEmpresa>();
 
-            sectoresEmpresaEliminar = contextoRBV.sectorEmpresa.Where(p => p.idEmpresa == SectoresEmpresas[0].IdEmpresa).ToList();
-            contextoRBV.sectorEmpresa.DeleteAllOnSubmit(sectoresEmpresaEliminar);
+            if (SectoresEmpresas.Count > 0)
+            {
+                sectoresEmpresaEliminar = contextoRBV.sectorEmpresa.Where(p => p.idEmpresa == SectoresEmpresas[0].IdEmpresa).ToList();
+                contextoRBV.sectorEmpresa.DeleteAllOnSubmit(sectoresEmpresaEliminar);
 
-            contextoRBV.sectorEmpresa.InsertAllOnSubmit((from sectorC in SectoresEmpresas
-                                                          select new sectorEmpresa
-                                                          {
-                                                              idSector = sectorC.IdSector,
-                                                              idEmpresa = sectorC.IdEmpresa
-                                                          }).ToList());
-            
-            contextoRBV.SubmitChanges();            
+                contextoRBV.sectorEmpresa.InsertAllOnSubmit((from sectorC in SectoresEmpresas
+                                                             select new sectorEmpresa
+                                                             {
+                                                                 idSector = sectorC.IdSector,
+                                                                 idEmpresa = sectorC.IdEmpresa
+                                                             }).ToList());
+
+                contextoRBV.SubmitChanges();            
+            }            
         }
 
         private static void EliminarEmpresaSector(short IdEmpresa)
